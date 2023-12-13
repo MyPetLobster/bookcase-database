@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template
+from flask_login import current_user, login_required
 
 views = Blueprint('views', __name__)
 
@@ -8,9 +9,11 @@ views = Blueprint('views', __name__)
 def home():
     return render_template("home.html")
 
-@views.route('/profile/')
+@views.route('/profile/', methods=['GET', 'POST'])
+@login_required
 def profile():
-    return render_template("profile.html")
+    username = current_user.username if current_user.is_authenticated else "Profile"
+    return render_template("profile.html", username=username)
 
 @views.route('/bookcases/')
 def bookcases():

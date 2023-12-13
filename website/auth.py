@@ -12,20 +12,22 @@ auth = Blueprint('auth', __name__)
 def register():
     if request.method == 'POST':
         print(request.form)
+        print(f"rfg(username) = {request.form.get('username')}")
+
         username = request.form.get('username')
         email = request.form.get('email')
         password = request.form.get('psw')
         password2 = request.form.get('psw-repeat')
 
-        email = User.query.filter_by(email=email).first()
-        username = User.query.filter_by(username=username).first()
+        email_exists = User.query.filter_by(email=email).first()
+        username_exists = User.query.filter_by(username=username).first()
 
         print(f'{email}, {username}, {password}, {password2}')
         print("**************************")
 
-        if email:
+        if email_exists:
             flash('Email already exists.', category='error')
-        elif username:
+        elif username_exists:
             flash('Username already exists.', category='error')
         elif password != password2:
             flash('Passwords do not match.', category='error')
@@ -36,7 +38,7 @@ def register():
         elif password != password2:
             flash('Passwords do not match.', category='error')
         else:
-            new_user = User(email=email, username=username, password=generate_password_hash(password, method='sha256'))
+            new_user = User(email=email, username=username, password=generate_password_hash(password, method='pbkdf2:sha256'))
             # add the variable that stores the new user (User object) to the database
             db.session.add(new_user)
             db.session.commit()
