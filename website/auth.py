@@ -3,9 +3,9 @@ from flask import Blueprint, render_template, redirect, url_for
 auth = Blueprint('auth', __name__)
 
 
-@auth.route('/sign-up')
-def sign_up():
-    return render_template("sign_up.html")
+@auth.route('/register')
+def register():
+    return render_template("register.html")
 
 @auth.route('/login')
 def login():

@@ -8,7 +8,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 h1 {
-  text-align: center;
+
 }
 /* NAVBAR */
 .topnav {
@@ -60,21 +60,23 @@ h1 {
 }
 
 
-
+.register-container,
 .login-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 /* Bordered form */
+.register-form,
 .login-form {
-  margin-top: 120px;
+  margin-top: 100px;
   border: 3px solid #f1f1f1;
   width: 300px;
 }
 
 /* Full-width inputs */
-input[type=text], input[type=password] {
+input[type=text], input[type=password], input[type=email]{
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -115,6 +117,11 @@ button:hover {
 span.psw {
   float: right;
   padding-top: 16px;
+}
+
+.newsletter {
+  display: flex;
+  justify-content: center;
 }
 
 /* Change styles for span and cancel button on extra small screens */
