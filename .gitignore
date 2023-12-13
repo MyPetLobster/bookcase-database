@@ -1,0 +1,25 @@
+# Virtual Environment
+.venv/
+
+# Byte-compiled / optimized / DLL files
+website/__pycache__
+
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Logs and databases
+website/database.db
+
+*.log
+*.sqlite
+
+# VS Code settings
+.vscode/
+
+# Instance Folder
+instance/
+
+
+
