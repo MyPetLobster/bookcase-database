@@ -1,5 +1,23 @@
 {% extends "base.html" %}
 {% block title %}Home{% endblock %}
 {% block content %}
-<h1>Home</h1>
+<div class="home-container">
+    <h1 class="home-header">Bookcase Database</h1>
+    <div class="home-content">
+        <div class="home-content-item hc-left">
+            <h2>What is Bookcase Database?</h2>
+            <p>Bookcase Database is a website that allows you to keep track of your books. You can add books to your bookcase, and then view them later. You can also edit and delete books from your bookcase.</p>
+        </div>
+        <div class="home-content-item hc-right">
+            <h2>How do I use Bookcase Database?</h2>
+            <p>Create your first bookcase, then use the search bar below to start adding books! You can also edit and delete books from your bookcase.</p>
+        </div>
+    </div> 
+    <div class="home-search">
+        <form action="#" class="home-search-form" method="post">
+            <input type="text" placeholder="Search for books..." name="search" id="search" required>
+            <button type="submit">Search</button>
+        </form> 
+</div>
+
 {% endblock %}

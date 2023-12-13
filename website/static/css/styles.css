@@ -3,11 +3,10 @@ html, body {
     width:100%;
     margin:0;
     padding:0;
+    box-sizing: border-box;
 }
 
-h1 {
 
-}
 /* NAVBAR */
 .topnav {
   overflow: hidden;
@@ -36,7 +35,6 @@ h1 {
 
 
 /* FLASHED MESSAGES */
-
 #hideMe {
     -moz-animation: cssAnimation 0s ease-in 2s forwards;
     /* Firefox */
@@ -64,6 +62,90 @@ h1 {
 }
 
 
+/* REGISTRATION AND LOGIN FORMS */
+.register-container,
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+/* Bordered form */
+.register-form,
+.login-form {
+  margin-top: 60px;
+  border: 3px solid #f1f1f1;
+  width: 300px;
+}
+/* Full-width inputs */
+input[type=text], input[type=password], input[type=email]{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+/* Set a style for all buttons */
+button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+/* Add a hover effect for buttons */
+button:hover {
+  opacity: 0.8;
+}
+/* Extra style for the cancel button (red) */
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+/* Add padding to containers */
+.container {
+  padding: 16px;
+}
+/* The "Forgot password" text */
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+.newsletter {
+  display: flex;
+  justify-content: center;
+}
+
+
+/* HOME PAGE */
+.home-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.home-content {
+  margin-top: 40px;
+  margin-bottom: 60px;
+  display: flex;
+  justify-content: space-around;
+
+}
+.home-content-item {
+  margin-left: 20px;
+  margin-right: 20px;
+  max-width: 30vw;
+}
+.home-content-item h2,
+.home-content-item p {
+  text-align: center;
+}
+
+
 
 /* MEDIA QUERIES */
 @media screen and (max-width: 600px) {
@@ -87,71 +169,6 @@ h1 {
   }
 }
 
-
-.register-container,
-.login-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-/* Bordered form */
-.register-form,
-.login-form {
-  margin-top: 60px;
-  border: 3px solid #f1f1f1;
-  width: 300px;
-}
-
-/* Full-width inputs */
-input[type=text], input[type=password], input[type=email]{
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-}
-
-/* Set a style for all buttons */
-button {
-  background-color: #04AA6D;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-}
-
-/* Add a hover effect for buttons */
-button:hover {
-  opacity: 0.8;
-}
-
-/* Extra style for the cancel button (red) */
-.cancelbtn {
-  width: auto;
-  padding: 10px 18px;
-  background-color: #f44336;
-}
-
-/* Add padding to containers */
-.container {
-  padding: 16px;
-}
-
-/* The "Forgot password" text */
-span.psw {
-  float: right;
-  padding-top: 16px;
-}
-
-.newsletter {
-  display: flex;
-  justify-content: center;
-}
-
 /* Change styles for span and cancel button on extra small screens */
 @media screen and (max-width: 300px) {
   span.psw {
@@ -162,5 +179,3 @@ span.psw {
     width: 100%;
   }
 }
-
-
