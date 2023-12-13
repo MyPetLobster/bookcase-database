@@ -8,3 +8,9 @@ burger.addEventListener("click", () => {
     navbar.className = "topnav";
   }
 });
+
+
+// Star Rating
+$(":radio").change(function () {
+  console.log("New star rating: " + this.value);
+});
