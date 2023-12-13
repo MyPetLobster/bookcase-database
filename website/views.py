@@ -31,6 +31,8 @@ def bookcase(id):
 def book(id):
     return render_template("book.html", id=id, user=current_user)
 
+
+
 ##### SEARCH PAGE #####
 @views.route('/search/', methods=['GET', 'POST'])
 @login_required
