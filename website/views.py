@@ -6,7 +6,6 @@ views = Blueprint('views', __name__)
 ##### LOGIN REQUIRED #####
 @views.route('/')
 @views.route('/home/')
-@views.route('/search/')
 @login_required
 def home():
     return render_template("home.html", user=current_user)
@@ -32,7 +31,16 @@ def bookcase(id):
 def book(id):
     return render_template("book.html", id=id, user=current_user)
 
+##### SEARCH PAGE #####
+@views.route('/search/', methods=['GET', 'POST'])
+@login_required
+def search_home():
+    return render_template("search.html", user=current_user)
 
+@views.route('/search/<string:query>/', methods=['GET', 'POST'])
+@login_required
+def search(query):
+    return render_template("search.html", query=query, user=current_user)
 
 
 ##### NO LOGIN REQUIRED #####
