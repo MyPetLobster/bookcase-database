@@ -122,7 +122,8 @@ span.psw {
 
 
 /* HOME PAGE */
-.home-container {
+.home-container,
+.profile-container {
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -147,7 +148,25 @@ span.psw {
 
 
 /* PROFILE PAGE */
-
+.bookcase-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+}
+.bookcase {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  border: 1px solid black;
+  padding: 12px;
+}
+.bookcase h2 {
+  text-align: center;
+  line-height: 0px;
+}
+.bookcase a {
+  text-align: center; 
+}
 
 
 /* MEDIA QUERIES */

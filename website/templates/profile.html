@@ -1,5 +1,32 @@
 {% extends "base.html" %}
 {% block title %}Profile{% endblock %}
 {% block content %}
-<h1>{{ username }}</h1>
+<div class="profile-container">
+    <h1>{{username}}'s Bookcases</h1>
+    <div class="bookcase-container">
+        <div class="bookcase">
+            <h2>Fiction Books</h2>
+            <p>All of the fiction books I've read.</p>
+            <a href="#">View Bookcase</a>
+        </div>
+        <div class="bookcase">
+            <h2>Non-Fiction Books</h2>
+            <p>All of the non-fiction books I've read.</p>
+            <a href="#">View Bookcase</a>
+        </div>
+    </div>
+</div>
+
+
 {% endblock %}
+
+
+
+
+<!-- {% for bookcase in bookcases %}
+        <div class="bookcase">
+            <h2>{{bookcase.name}}</h2>
+            <p>{{bookcase.description}}</p>
+            <a href="/bookcase/{{bookcase.id}}">View Bookcase</a>
+        </div>
+        {% endfor %} -->
