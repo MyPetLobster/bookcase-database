@@ -46,7 +46,7 @@ def register():
             login_user(new_user, remember=True)
             return redirect(url_for('views.home'))
         
-    return render_template("register.html")
+    return render_template("register.html", user=current_user)
 
 
 @auth.route('/login', methods=['POST', 'GET'])
@@ -67,7 +67,7 @@ def login():
         else:
             flash('Username does not exist.', category='error')  
 
-    return render_template("login.html")
+    return render_template("login.html", user=current_user)
 
 
 
