@@ -17,7 +17,8 @@ def home():
 @login_required
 def profile():
     username = current_user.username if current_user.is_authenticated else None
-    return render_template("profile.html", username=username, user=current_user)
+    bookcases = Bookcase.query.filter_by(owner_id=current_user.id).all()
+    return render_template("profile.html", username=username, user=current_user, bookcases=bookcases)
 
 @views.route('/bookcases/', methods=['GET', 'POST'])
 @login_required

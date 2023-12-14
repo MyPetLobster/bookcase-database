@@ -3,18 +3,13 @@
 {% block content %}
 <div class="profile-container">
     <h1>{{username}}'s Bookcases</h1>
-    <div class="bookcase-container">
-        <div class="bookcase">
-            <h2>Fiction Books</h2>
-            <p>All of the fiction books I've read.</p>
-            <a href="#">View Bookcase</a>
-        </div>
-        <div class="bookcase">
-            <h2>Non-Fiction Books</h2>
-            <p>All of the non-fiction books I've read.</p>
-            <a href="#">View Bookcase</a>
-        </div>
+    {% for bookcase in bookcases %}
+    <div class="bookcase">
+        <a href="/bookcase/{{bookcase.id}}/">
+            <h2>{{bookcase.name}}</h2>
+        </a>
     </div>
+    {% endfor %}
 </div>
 
 
