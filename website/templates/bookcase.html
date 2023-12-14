@@ -27,9 +27,16 @@
         <div class="back-to-bookcases">
             <a href="/bookcases/"></a>
         </div>
-        
-
     </div>
+
+    <div class="searchbar bookcase-search">
+        <label for="search">Search for books</label>
+        <form action="#" class="home-search-form" method="post">
+            <input type="text" placeholder="Search for books..." name="search" id="search" required>
+            <button type="submit">Search</button>
+        </form> 
+    </div>
+    
     <div class="manual-add-book">
         <form action="/bookcase/{{ id }}/" method="post">
             <label for="title">Title</label>
