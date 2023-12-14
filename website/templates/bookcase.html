@@ -3,34 +3,30 @@
 {% block content %}
 
 <div class="bookcase-page">
-    <h1>Bookcase</h1>
+    <h1>{{ bookcase_name }}</h1>
     <div class="books-collection">
+        {% if book %}
         <div class="book-in-collection">
-            <p>Title: Other Minds</p>
-            <p>Author: Peter Godfrey-Smith</p>
-            <p>ISBN: 120432532636</p>
-            <p>Genre: Science</p>
-            <p>Year: 2016</p>
-            <p>Pages: 272</p>
-            <p>Your Rating: 4</p>
-            <p>Goodreads Rating: 4.5</p>
-            <p>Read: Yes</p>
+            <p>Title: {{ book.title }}</p>
+            <p>Author: {{ book.author }}</p>
+            <p>ISBN: {{ book.isbn }}</p>
+            <p>Genre: {{ book.genre }}</p>
+            <p>Year: {{ book.year }}</p>
+            <p>Pages: {{ book.pages }}</p>
+            <p>Your Rating: {{ book.user_rating }}</p>
+            <p>Goodreads Rating: {{ book.goodreads_rating }}</p>
+            <p>Read: {{ book.read }}</p>
         </div>
-        <div class="book-in-collection">
-            <p>Title: Other Minds</p>
-            <p>Author: Peter Godfrey-Smith</p>
-            <p>ISBN: 120432532636</p>
-            <p>Genre: Science</p>
-            <p>Year: 2016</p>
-            <p>Pages: 272</p>
-            <p>Your Rating: 4</p>
-            <p>Goodreads Rating: 4.5</p>
-            <p>Read: Yes</p>
+        {% endif %}
+
+        <div class="back-to-bookcases">
+            <a href="/bookcases/"></a>
         </div>
+        
 
     </div>
     <div class="manual-add-book">
-        <form action="/bookcase/" method="post">
+        <form action="/bookcase/{{ id }}/" method="post">
             <label for="title">Title</label>
             <input type="text" name="title" id="title" placeholder="Title" required>
             <label for="author">Author</label>
@@ -43,16 +39,10 @@
             <input type="text" name="year" id="year" placeholder="Year">
             <label for="pages">Pages</label>
             <input type="text" name="pages" id="pages" placeholder="Pages">
-            <label class="rating-label"><strong>Rating</strong>
-            <input
-                class="rating"
-                max="5"
-                oninput="this.style.setProperty('--value', `${this.valueAsNumber}`)"
-                step="0.5"
-                style="--value:2.5"
-                type="range"
-                value="2.5">
-            </label>
+            <label for="goodreads-rating">Goodreads Rating</label>
+            <input type="number" name="goodreads-rating" id="goodreads-rating" placeholder="Goodreads Rating">
+            <label for="user-rating">Your Rating</label>
+            <input type="number" name="user-rating" id="user-rating" placeholder="Your Rating">
             <label for="read">Read?</label>
             <input type="checkbox" name="read" id="read">
             <input type="submit" value="Add Book">

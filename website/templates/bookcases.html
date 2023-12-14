@@ -3,7 +3,11 @@
 {% block content %}
 <h1>Bookcases</h1>
 <div class="bookcases-container">
-    <a href="/bookcase/1/">Bookcase 1</a>
+    <form action="/bookcases/" method="post" class="create-bookcase">
+        <label for="bookcase-name">Bookcase Name</label>
+        <input type="text" name="bookcase-name" id="bookcase-name" placeholder="Bookcase Name" required>
+        <input type="submit" value="Create Bookcase">
+    </form>
     
 </div>
 {% endblock %}

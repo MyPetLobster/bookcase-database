@@ -1,13 +1,12 @@
-from . import db 
+from . import db
 from flask_login import UserMixin
 from sqlalchemy.sql import func
 
-# Association Table
-bookcases = db.Table('bookcases',
-    db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
-    db.Column('book_id', db.Integer, db.ForeignKey('book.id')),
+# Intermediate table to represent the many-to-many relationship
+bookcase_book_association = db.Table(
+    'bookcase_book_association',
     db.Column('bookcase_id', db.Integer, db.ForeignKey('bookcase.id')),
-    db.ForeignKeyConstraint(['user_id', 'bookcase_id'], ['bookcases.user_id', 'bookcases.bookcase_id'])
+    db.Column('book_id', db.Integer, db.ForeignKey('book.id'))
 )
 
 class User(db.Model, UserMixin):
@@ -16,15 +15,14 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(100), nullable=False, unique=True)
     password = db.Column(db.String(100), nullable=False)
     date_created = db.Column(db.DateTime(timezone=True), default=func.now())
-    bookcases = db.relationship('Bookcase', backref='owner', secondary=bookcases,
-                                primaryjoin=('User.id == bookcases.c.user_id'),
-                                secondaryjoin=('and_(User.id == bookcases.c.user_id, Bookcase.id == bookcases.c.bookcase_id)'),
-                                lazy='dynamic')
 
 class Bookcase(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(150), unique=True)
-    books = db.relationship('Book', secondary=bookcases, backref=db.backref('bookcases', lazy='dynamic'))
+    owner_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    
+    # Define the many-to-many relationship
+    books = db.relationship('Book', secondary=bookcase_book_association, back_populates='bookcases')
 
 class Book(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -36,3 +34,6 @@ class Book(db.Model):
     user_rating = db.Column(db.String(150))
     goodreads_rating = db.Column(db.String(150))    
     genre = db.Column(db.String(150))
+    
+    # Define the back-reference in Book model
+    bookcases = db.relationship('Bookcase', secondary=bookcase_book_association, back_populates='books')
