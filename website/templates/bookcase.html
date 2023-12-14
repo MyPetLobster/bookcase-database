@@ -3,21 +3,26 @@
 {% block content %}
 
 <div class="bookcase-page">
-    <h1>{{ bookcase_name }}</h1>
+    <h1>{{ current_bookcase.name }}</h1>
     <div class="books-collection">
-        {% if book %}
-        <div class="book-in-collection">
-            <p>Title: {{ book.title }}</p>
-            <p>Author: {{ book.author }}</p>
-            <p>ISBN: {{ book.isbn }}</p>
-            <p>Genre: {{ book.genre }}</p>
-            <p>Year: {{ book.year }}</p>
-            <p>Pages: {{ book.pages }}</p>
-            <p>Your Rating: {{ book.user_rating }}</p>
-            <p>Goodreads Rating: {{ book.goodreads_rating }}</p>
-            <p>Read: {{ book.read }}</p>
+        {% for book in current_bookcase.books %}
+        <div class="book">
+            <!-- <div class="book-cover">
+                <img src="{{ book.cover }}" alt="{{ book.title }} Cover">
+            </div> -->
+            <div class="book-info">
+                <h2>{{ book.title }}</h2>
+                <h3>{{ book.author }}</h3>
+                <p>ISBN: {{ book.isbn }}</p>
+                <p>Genre: {{ book.genre }}</p>
+                <p>Year: {{ book.year }}</p>
+                <p>Pages: {{ book.pages }}</p>
+                <p>Goodreads Rating: {{ book.goodreads_rating }}</p>
+                <p>Your Rating: {{ book.user_rating }}</p>
+                <p>Read: {{ book.read }}</p>
+            </div>
         </div>
-        {% endif %}
+        {% endfor %}
 
         <div class="back-to-bookcases">
             <a href="/bookcases/"></a>

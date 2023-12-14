@@ -1,8 +1,17 @@
 {% extends "base.html" %}
 {% block title %}Bookcases{% endblock %}
 {% block content %}
-<h1>Bookcases</h1>
+<h1>{{ user.username }}'s Bookcases</h1>
 <div class="bookcases-container">
+
+    {% for bookcase in bookcases %}
+    <div class="bookcase">
+        <a href="/bookcase/{{ bookcase.id }}/">
+            <h2>{{ bookcase.name }}</h2>
+        </a>
+    </div>
+    {% endfor %}
+
     <form action="/bookcases/" method="post" class="create-bookcase">
         <label for="bookcase-name">Bookcase Name</label>
         <input type="text" name="bookcase-name" id="bookcase-name" placeholder="Bookcase Name" required>
