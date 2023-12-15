@@ -3,6 +3,8 @@ from flask_login import current_user, login_required
 from .models import Book, Bookcase, User
 from . import db
 from sqlalchemy.exc import IntegrityError
+import urllib.request, json
+import os
 
 views = Blueprint('views', __name__)
 
@@ -85,6 +87,55 @@ def bookcase(id):
 @login_required
 def book(id):
     return render_template("book.html", id=id, user=current_user)
+
+
+
+
+@views.route('/add-book/', methods=['GET', 'POST'])
+@login_required
+def add_book():
+    if request.method == 'POST':
+        # first check if they submit data in "create bookcase" form
+        if request.form.get('bookcase-name'):
+            name = request.form.get('bookcase-name')
+            owner_id = current_user.id
+            new_bookcase = Bookcase(name=name, owner_id=owner_id)
+            db.session.add(new_bookcase)
+            db.session.commit()
+            # refresh page
+            return redirect(url_for('views.add_book'))
+        # Check if user submits the search form which includes author, title and isbn fields
+        elif request.form.get('author') or request.form.get('title') or request.form.get('isbn'):
+            if request.form.get('author'):
+                author = request.form.get('author')
+                # separate author into list of strings
+                author = author.split()
+                # join the list of strings into a string with "+" between each word
+                author = "+".join(author)
+
+            if request.form.get('title'):
+                title = request.form.get('title')
+
+            if request.form.get('isbn'):
+                isbn = request.form.get('isbn')
+            
+            url = "https://www.googleapis.com/books/v1/volumes?q=" "intitle:" + title + "+inauthor:" + author + "+isbn:" + isbn + "&key=" + "os.environ.get('GOOGLE_BOOKS_API_KEY')"
+            data = urllib.request.urlopen(url).read()
+            dict = json.loads(data)
+            print(dict)
+            
+            return render_template("add_book.html", user=current_user, search_results=dict)
+
+        else:
+            # Handle integrity error (e.g., if the book already exists)
+            db.session.rollback()
+            print("IntegrityError: The book may already exist.")
+            
+
+    return render_template("add_book.html", user=current_user)
+
+
+
 
 
 

@@ -32,8 +32,9 @@ class Book(db.Model):
     year = db.Column(db.String(150))
     pages = db.Column(db.String(150))
     user_rating = db.Column(db.String(150))
+    google_books_rating = db.Column(db.String(150))
     goodreads_rating = db.Column(db.String(150))    
-    genre = db.Column(db.String(150))
-    
+    categories = db.Column(db.ARRAY(db.String(150)))
+
     # Define the back-reference in Book model
     bookcases = db.relationship('Bookcase', secondary=bookcase_book_association, back_populates='books')
