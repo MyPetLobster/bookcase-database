@@ -5,6 +5,7 @@ from . import db
 from sqlalchemy.exc import IntegrityError
 import urllib.request, json
 import os
+from urllib.parse import urlencode
 
 views = Blueprint('views', __name__)
 
@@ -106,25 +107,50 @@ def add_book():
             return redirect(url_for('views.add_book'))
         # Check if user submits the search form which includes author, title and isbn fields
         elif request.form.get('author') or request.form.get('title') or request.form.get('isbn'):
+            author = ''
+            title = ''
+            isbn = ''
+            q_string = ''
+            
             if request.form.get('author'):
                 author = request.form.get('author')
                 # separate author into list of strings
                 author = author.split()
                 # join the list of strings into a string with "+" between each word
                 author = "+".join(author)
+                q_string = f"inauthor:{author}"
 
             if request.form.get('title'):
                 title = request.form.get('title')
+                # separate title into list of strings
+                title = title.split()
+                # join the list of strings into a string with "+" between each word
+                title = "+".join(title)
+                q_string += f"+intitle:{title}"
 
             if request.form.get('isbn'):
                 isbn = request.form.get('isbn')
+                q_string += f"+isbn:{isbn}"
+
+            api_key = os.environ.get('GOOGLE_BOOKS_API_KEY')
             
-            url = "https://www.googleapis.com/books/v1/volumes?q=" "intitle:" + title + "+inauthor:" + author + "+isbn:" + isbn + "&key=" + "os.environ.get('GOOGLE_BOOKS_API_KEY')"
+            query_params = {
+                'q': q_string,
+                'key': api_key,
+            }
+            
+            url = f"https://www.googleapis.com/books/v1/volumes?{urlencode(query_params)}"
+            
             data = urllib.request.urlopen(url).read()
             dict = json.loads(data)
+
+            x = dict.keys()
+            print(x)
+
             print(dict)
-            
-            return render_template("add_book.html", user=current_user, search_results=dict)
+            print(type(dict))
+
+            return render_template("add_book.html", user=current_user, books=dict['items'])
 
         else:
             # Handle integrity error (e.g., if the book already exists)
