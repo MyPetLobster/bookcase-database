@@ -17,9 +17,14 @@
                 <p>Genre: {{ book.genre }}</p>
                 <p>Year: {{ book.year }}</p>
                 <p>Pages: {{ book.pages }}</p>
-                <p>Goodreads Rating: {{ book.goodreads_rating }}</p>
+                <p>Google Books Rating: {{ book.google_books_rating }}</p>
                 <p>Your Rating: {{ book.user_rating }}</p>
                 <p>Read: {{ book.read }}</p>
+                <a href="/book/{{ book.id }}/">View Book Details</a>
+                <div class="book-buttons">
+                    <a href="/bookcase/{{ current_bookcase.id }}/edit-book/{{ book.id }}/">Edit</a>
+                    <a href="/bookcase/{{ current_bookcase.id }}/delete-book/{{ book.id }}/">Delete</a>
+                </div> 
             </div>
         </div>
         {% endfor %}

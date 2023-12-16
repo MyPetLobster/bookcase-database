@@ -74,6 +74,10 @@ content %}
           <p>Year: {{ book['volumeInfo']['publishedDate'].split("-")[0] }}</p>
           <p>Pages: {{ book['volumeInfo']['pageCount'] }}</p>
           <p>Google Books Rating: {{ book['volumeInfo']['averageRating'] }}</p>
+          <p>
+            <a href="{{ book['volumeInfo']['infoLink'] }}" target="_blank">More Info</a>
+          </p>
+          
         </div>
       </div>
       {% endfor %}

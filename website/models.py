@@ -27,14 +27,21 @@ class Bookcase(db.Model):
 class Book(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(150))
+    subtitle = db.Column(db.String(150))
     author = db.Column(db.String(150))
+    description = db.Column(db.String(1500))
     isbn = db.Column(db.String(150))
-    year = db.Column(db.String(150))
+    publisher = db.Column(db.String(150))
+    edition = db.Column(db.String(150))
+    language = db.Column(db.String(150))
+    publication_date = db.Column(db.String(150))
     pages = db.Column(db.String(150))
     user_rating = db.Column(db.String(150))
-    google_books_rating = db.Column(db.String(150))
-    # goodreads_rating = db.Column(db.String(150))    
-    # categories = db.Column(db.ARRAY(db.String(150)))
+    google_books_rating = db.Column(db.String(150))  
+    categories = db.Column(db.ARRAY(db.String(150)))
+    thumbnail_link = db.Column(db.String(150))
+    google_books_link = db.Column(db.String(150))
+    
 
     # Define the back-reference in Book model
     bookcases = db.relationship('Bookcase', secondary=bookcase_book_association, back_populates='books')
