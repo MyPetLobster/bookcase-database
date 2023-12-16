@@ -34,8 +34,10 @@ def bookcases():
         new_bookcase = Bookcase(name=name, owner_id=owner_id)
         db.session.add(new_bookcase)
         db.session.commit()
+        return redirect(url_for('views.bookcases'))
         
     return render_template("bookcases.html", user=current_user, bookcases=bookcases)
+
 
 @views.route('/bookcase/<int:id>/', methods=['GET', 'POST'])
 @login_required
@@ -95,6 +97,7 @@ def book(id):
 @views.route('/add-book/', methods=['GET', 'POST'])
 @login_required
 def add_book():
+    bookcases = Bookcase.query.filter_by(owner_id=current_user.id).all()
     if request.method == 'POST':
         # first check if they submit data in "create bookcase" form
         if request.form.get('bookcase-name'):
@@ -111,7 +114,7 @@ def add_book():
             title = ''
             isbn = ''
             q_string = ''
-            
+
             if request.form.get('author'):
                 author = request.form.get('author')
                 # separate author into list of strings
@@ -150,7 +153,7 @@ def add_book():
             print(dict)
             print(type(dict))
 
-            return render_template("add_book.html", user=current_user, books=dict['items'])
+            return render_template("add_book.html", user=current_user, books=dict['items'], bookcases=bookcases)
 
         else:
             # Handle integrity error (e.g., if the book already exists)
@@ -158,7 +161,7 @@ def add_book():
             print("IntegrityError: The book may already exist.")
             
 
-    return render_template("add_book.html", user=current_user)
+    return render_template("add_book.html", user=current_user, bookcases=bookcases)
 
 
 
