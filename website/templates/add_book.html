@@ -49,8 +49,13 @@ content %}
       <div class="search-result">
         <div class="search-result-cover">
           <img
+            {% if book['volumeInfo']['imageLinks'] %}
             src="{{ book['volumeInfo']['imageLinks']['thumbnail'] }}"
             alt="{{ book['volumeInfo']['title'] }} Cover"
+            {% else %}
+            src="https://via.placeholder.com/150"
+            alt="Placeholder Image"
+            {% endif %}
           />
         </div>
         <div class="search-result-info">
