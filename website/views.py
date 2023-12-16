@@ -50,7 +50,6 @@ def bookcase(id):
         year = request.form.get('year')
         pages = request.form.get('pages')
         user_rating = request.form.get('user-rating')
-        goodreads_rating = request.form.get('goodreads-rating')
         genre = request.form.get('genre')
 
         # Get the current bookcase
@@ -62,7 +61,7 @@ def bookcase(id):
                 # Create a new book
                 new_book = Book(
                     title=title, author=author, isbn=isbn, year=year, pages=pages,
-                    user_rating=user_rating, goodreads_rating=goodreads_rating, genre=genre
+                    user_rating=user_rating, genre=genre
                 )
                 
                 # Add the book to the current bookcase
@@ -99,6 +98,7 @@ def book(id):
 def add_book():
     bookcases = Bookcase.query.filter_by(owner_id=current_user.id).all()
     if request.method == 'POST':
+
         # first check if they submit data in "create bookcase" form
         if request.form.get('bookcase-name'):
             name = request.form.get('bookcase-name')
@@ -108,6 +108,7 @@ def add_book():
             db.session.commit()
             # refresh page
             return redirect(url_for('views.add_book'))
+        
         # Check if user submits the search form which includes author, title and isbn fields
         elif request.form.get('author') or request.form.get('title') or request.form.get('isbn'):
             author = ''
@@ -153,6 +154,19 @@ def add_book():
             print(dict)
             print(type(dict))
 
+            return render_template("add_book.html", user=current_user, books=dict['items'], bookcases=bookcases)
+        elif request.form.get('general-search'):
+            general_search = request.form.get('general-search')
+            general_search = general_search.split()
+            general_search = "+".join(general_search)
+            api_key = os.environ.get('GOOGLE_BOOKS_API_KEY')
+            query_params = {
+                'q': general_search,
+                'key': api_key,
+            }
+            url = f"https://www.googleapis.com/books/v1/volumes?{urlencode(query_params)}"
+            data = urllib.request.urlopen(url).read()
+            dict = json.loads(data)
             return render_template("add_book.html", user=current_user, books=dict['items'], bookcases=bookcases)
 
         else:

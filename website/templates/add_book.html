@@ -53,7 +53,7 @@ content %}
             src="{{ book['volumeInfo']['imageLinks']['thumbnail'] }}"
             alt="{{ book['volumeInfo']['title'] }} Cover"
             {% else %}
-            src="https://via.placeholder.com/150"
+            src="https://dummyimage.com/130x170/e3e3e3/0d0d0d.jpg&text=No+Image+Available"
             alt="Placeholder Image"
             {% endif %}
           />
@@ -74,7 +74,6 @@ content %}
           <p>Year: {{ book['volumeInfo']['publishedDate'].split("-")[0] }}</p>
           <p>Pages: {{ book['volumeInfo']['pageCount'] }}</p>
           <p>Google Books Rating: {{ book['volumeInfo']['averageRating'] }}</p>
-          <p>Goodreads Rating: IMPLEMENT THIS?</p>
         </div>
       </div>
       {% endfor %}
