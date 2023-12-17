@@ -4,18 +4,14 @@
 <h1>Book</h1>
 <div class="book">
     <div class="book-cover">
-        <img src="{{ book.thumnail_link }}" alt="{{ book.title }} Cover">
+        <img src="{{ book.thumbnail_link }}" alt="{{ book.title }} Cover">
     </div>
     <div class="book-info">
         <h2>{{ book.title }}</h2>
-        <h4>{{ book.subtitle }}</h4>
-        {% for author in book.authors %}
-        <h3>{{ author }}</h3>
-        {% endfor %}
+        <h4>{{ book.subtitle }}</h4>  
+        <h3>{{ book.authors }}</h3>
         <p class="description">{{ book.description }}</p>
-        {% for category in book.categories %}
-        <p>Category: {{ category }}</p>
-        {% endfor %}
+        <p>Categories: {{ book.categories }}</p>
         <p>Publisher: {{ book.publisher }}</p>
         <p>Publication Date: {{ book.publication_date }}</p>
         <p>Language: {{ book.language }}</p>
@@ -25,6 +21,7 @@
         <p>ISBN_13: {{ book.isbn_13 }}</p>
         <p>Your Rating: {{ book.user_rating }}</p>
         <p>Read: {{ book.read }}</p>
+        <p>THUMBNAIL LINK: {{ book.thumbnail_link }}</p>
         
         <div class="book-buttons">
             <a href="/bookcase/{{ current_bookcase.id }}/edit-book/{{ book.id }}/">Edit</a>

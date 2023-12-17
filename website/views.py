@@ -247,8 +247,94 @@ def add_book():
     
 
 
+# Delete book from bookcase
+@views.route('/bookcase/<int:bc_id>/<int:book_id>/delete_book/', methods=['GET', 'POST'])
+@login_required
+def delete_book(bc_id, book_id):
+    current_bookcase = Bookcase.query.get(bc_id)
+    book = Book.query.get(book_id)
+    if current_bookcase and current_bookcase.owner_id == current_user.id:
+        try:
+            current_bookcase.books.remove(book)
+            db.session.commit()
+        except IntegrityError:
+            db.session.rollback()
+            print("IntegrityError: The book may already exist.")
+    return redirect(url_for('views.bookcase', id=bc_id))
+
+# Edit book details
+@views.route('/bookcase/<int:bc_id>/<int:book_id>/edit_book/', methods=['GET', 'POST'])
+@login_required
+def edit_book(bc_id, book_id):
+    current_bookcase = Bookcase.query.get(bc_id)
+    book = Book.query.get(book_id)
+
+    # Retrieve all book data
+    title = book.title
+    subtitle = book.subtitle
+    authors = book.authors
+    description = book.description
+    categories = book.categories
+    publisher = book.publisher
+    publication_date = book.publication_date
+    isbn_13 = book.isbn_13
+    isbn_10 = book.isbn_10
+    language = book.language
+    pages = book.pages
+    user_rating = book.user_rating
+    read = book.read
+
+    if request.method == 'POST' and current_bookcase and current_bookcase.owner_id == current_user.id:
+
+        try:
+            # Retrieve all form data
+            title = request.form.get('book-title') 
+            subtitle = request.form.get('book-subtitle')
+            authors = request.form.get('book-authors')
+            description = request.form.get('book-description')
+            categories = request.form.get('book-categories')
+            publisher = request.form.get('book-publisher')
+            publication_date = request.form.get('book-publication-date')
+            isbn_13 = request.form.get('book-isbn-13')
+            isbn_10 = request.form.get('book-isbn-10')
+            language = request.form.get('book-language')
+            pages = request.form.get('book-pages')
+            user_rating = request.form.get('book-user-rating')
+            read = request.form.get('book-read')
 
 
+            # Convert the 'on' or 'off' string to a boolean
+            read_value = read == 'on'
+        
+            # Create truncated description
+            description_truncated = description[:150] + "..."
+
+            # Update the book
+            book.title = title
+            book.subtitle = subtitle
+            book.authors = authors
+            book.description = description
+            book.description_truncated = description_truncated
+            book.categories = categories
+            book.publisher = publisher
+            book.publication_date = publication_date
+            book.isbn_13 = isbn_13
+            book.isbn_10 = isbn_10
+            book.language = language
+            book.pages = pages
+            book.user_rating = user_rating
+            book.read = read_value
+
+            
+
+            db.session.commit()
+        except IntegrityError:
+            db.session.rollback()
+            print("IntegrityError: The book may already exist.")
+
+        return redirect(url_for('views.book', bc_id=bc_id, book_id=book_id))
+    
+    return render_template("edit_book.html", current_bookcase=current_bookcase, user=current_user, book=book)
 
 ##### NO LOGIN REQUIRED #####
 @views.route('/about/')
