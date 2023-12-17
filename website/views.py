@@ -29,6 +29,7 @@ def profile():
 def bookcases():
     # Fetch the bookcases associated with the current user
     bookcases = Bookcase.query.filter_by(owner_id=current_user.id).all()
+    colors = ['red', 'orange', 'yellow', 'green']
     if request.method == 'POST':
         name = request.form.get('bookcase-name')
         owner_id = current_user.id
@@ -37,7 +38,7 @@ def bookcases():
         db.session.commit()
         return redirect(url_for('views.bookcases'))
         
-    return render_template("bookcases.html", user=current_user, bookcases=bookcases)
+    return render_template("bookcases.html", user=current_user, bookcases=bookcases, colors=colors)
 
 
 @views.route('/bookcase/<int:id>/', methods=['GET', 'POST'])
