@@ -21,11 +21,10 @@
         <p>ISBN_13: {{ book.isbn_13 }}</p>
         <p>Your Rating: {{ book.user_rating }}</p>
         <p>Read: {{ book.read }}</p>
-        <p>THUMBNAIL LINK: {{ book.thumbnail_link }}</p>
         
         <div class="book-buttons">
-            <a href="/bookcase/{{ current_bookcase.id }}/edit-book/{{ book.id }}/">Edit</a>
-            <a href="/bookcase/{{ current_bookcase.id }}/delete-book/{{ book.id }}/">Delete</a>
+            <a href="/bookcase/{{ current_bookcase.id }}/{{ book.id }}/edit_book/">Edit</a>
+            <a href="/bookcase/{{ current_bookcase.id }}/{{ book.id }}/delete_book/">Delete</a>
         </div> 
     </div>
 {% endblock %}

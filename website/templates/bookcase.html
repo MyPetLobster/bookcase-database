@@ -12,13 +12,14 @@
             </div>
             <div class="book-info">
                 <h2>{{ book.title }}</h2>
-                <h3>{{ book.author }}</h3>
+                <h3>{{ book.authors }}</h3>
                 <p> {{ book.description_truncated }}</p>
                 <p>Published: {{ book.publication_date }}</p>
                 <p>Genres: {{ book.categories }}</p>
                 </p>
                 <p>Google Books Rating: {{ book.google_books_rating }}</p>
                 <p>Your Rating: {{ book.user_rating }}</p>
+                
                 <!-- Add a checkbox for "Read: ". Leave unchecked if book.read is False and add checkmark if True -->
                 {% if book.read %}
                 <p>Read: <input type="checkbox" name="read" id="read" checked></p>
