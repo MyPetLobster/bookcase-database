@@ -25,7 +25,7 @@
                 {% else %}
                 <p>Read: <input type="checkbox" name="read" id="read"></p>
                 {% endif %}
-                <a href="/book/{{ book.id }}/">View Book Details</a>
+                <a href="/bookcase/{{ current_bookcase.id }}/{{ book.id }}/">View Book Details</a>
                 <div class="book-buttons">
                     <a href="/bookcase/{{ current_bookcase.id }}/edit-book/{{ book.id }}/">Edit</a>
                     <a href="/bookcase/{{ current_bookcase.id }}/delete-book/{{ book.id }}/">Delete</a>

@@ -47,11 +47,11 @@ def bookcase(id):
         # Retrieve form data
         title = request.form.get('title')
         author = request.form.get('author')
-        isbn = request.form.get('isbn') 
-        year = request.form.get('year')
-        pages = request.form.get('pages')
+        # isbn = request.form.get('isbn') 
+        # year = request.form.get('year')
+        # pages = request.form.get('pages')
         user_rating = request.form.get('user-rating')
-        genre = request.form.get('genre')
+        
 
         # Get the current bookcase
         current_bookcase = Bookcase.query.get(id)
@@ -86,11 +86,12 @@ def bookcase(id):
     return render_template("bookcase.html", id=id, current_bookcase=current_bookcase, user=current_user)
 
 
-@views.route('/book/<int:id>/')
+@views.route('/bookcase/<int:bc_id>/<int:book_id>/')
 @login_required
-def book(id):
-    book = Book.query.get(id)
-    return render_template("book.html", id=id, user=current_user, book=book)
+def book(bc_id, book_id):
+    current_bookcase = Bookcase.query.get(bc_id)
+    book = Book.query.get(book_id)
+    return render_template("book.html", current_bookcase=current_bookcase, user=current_user, book=book)
 
 
 @views.route('/search/', methods=['GET', 'POST'])

@@ -48,7 +48,5 @@ class Book(db.Model):
     user_rating = db.Column(db.Numeric(2, 1))           # from user, Tier 1
     read = db.Column(db.Boolean, default=False)         # from user, Tier 1
     date_created = db.Column(db.DateTime(timezone=True), default=func.now()) # from user, hidden from user, Tier 5
-    
-
     # Define the back-reference in Book model
     bookcases = db.relationship('Bookcase', secondary=bookcase_book_association, back_populates='books')
