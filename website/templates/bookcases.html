@@ -2,15 +2,26 @@
 {% block title %}Bookcases{% endblock %}
 {% block content %}
 <h1>{{ user.username }}'s Bookcases</h1>
-<div class="bookcases-container">
-
-    {% for bookcase in bookcases %}
-    <div class="bookcase">
-        <a href="/bookcase/{{ bookcase.id }}/">
-            <h2>{{ bookcase.name }}</h2>
-        </a>
-    </div>
-    {% endfor %}
+<div class="bookcases-page-container">
+    <div class="display-bookcases">
+        {% for bookcase in bookcases %}
+            <div class="bookcases-item">
+                <a href="/bookcase/{{ bookcase.id }}/">
+                    <h2>{{ bookcase.name }}</h2>
+                </a>
+                <div class="gallery">
+                    {% for book in bookcase.books %}
+                        {% if book.thumbnail_link %}
+                            <div class="img-div">
+                                <img class="preview-thumbnail" src="{{ book.thumbnail_link }}" alt="{{ book.title }} Cover">
+                            </div> 
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                
+            </div>
+        {% endfor %}
+    </div>   
 
     <form action="/bookcases/" method="post" class="create-bookcase">
         <label for="bookcase-name">Bookcase Name</label>

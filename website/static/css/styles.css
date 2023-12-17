@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;700&family=Kalnia:wght@200;300;400;700&display=swap');
+
 html, body {
     height:100%;
     width:100%;
@@ -6,11 +8,22 @@ html, body {
     box-sizing: border-box;
 }
 
+h1 {
+  font-family: "Kalnia", serif;
+  font-size: 48px;
+  font-weight: 300;
+  text-align: center;
+
+}
 
 /* NAVBAR */
+
 .topnav {
+  display: flex;
+  align-items: center;
   overflow: hidden;
   background-color: #333;
+  font-family: "Jost", sans-serif;
 }
 .topnav a {
   float: left;
@@ -32,7 +45,10 @@ html, body {
 .topnav .icon {
   display: none;
 }
-
+#bcdb-logo {
+  font-family: "Kalnia", serif;
+  font-size: 28px;
+}
 
 /* FLASHED MESSAGES */
 #hideMe {
@@ -60,7 +76,6 @@ html, body {
         visibility:hidden;
     }
 }
-
 
 /* REGISTRATION AND LOGIN FORMS */
 .register-container,
@@ -147,8 +162,43 @@ span.psw {
 }
 
 
+/* BOOKCASES PAGE */
+.bookcases-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+h2 {
+  text-align: center;
+  text-decoration: none;
+  font-family: "Kalnia", serif;
+  font-size: 36px;
+  font-weight: 300;
+}
+.display-bookcases {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.bookcases-item {
+  border: 1px solid black;
+  margin-bottom: 30px;
+}
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+
+}
 /* PROFILE PAGE */
-.bookcase-container {
+/* .bookcase-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 20px;
@@ -166,10 +216,10 @@ span.psw {
 }
 .bookcase a {
   text-align: center; 
-}
+} */
 
 /* BOOKCASE PAGE */
-.bookcase-page {
+/* .bookcase-page {
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -210,7 +260,7 @@ span.psw {
   flex-direction: column;
   border: 2px solid black;
 }
-
+ */
 
 
 
