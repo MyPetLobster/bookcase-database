@@ -95,6 +95,7 @@ content %}
             <input type="hidden" name="book-google-id" value="{{ book['id'] }}" />
             <label for="bookcase">Select Bookcase</label> 
             <select name="bookcase" id="bookcase">
+              <option value="" disabled selected>Select Bookcase</option>
               {% for bookcase in bookcases %}
               <option value="{{ bookcase.id }}">{{ bookcase.name }}</option>
               {% endfor %}
