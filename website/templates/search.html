@@ -69,7 +69,7 @@ content %}
               {{ category }}
             {% endfor %}
           </p>
-          <p>Year: {{ book['volumeInfo']['publishedDate'].split("-")[0] }}</p>
+          <p>Publication Date: {{ book['volumeInfo']['publishedDate'] }}</p>
           <p>Pages: {{ book['volumeInfo']['pageCount'] }}</p>
           <p>Google Books Rating: {{ book['volumeInfo']['averageRating'] }}</p>
           <p>
