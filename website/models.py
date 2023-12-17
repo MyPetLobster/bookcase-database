@@ -32,6 +32,7 @@ class Book(db.Model):
     subtitle = db.Column(db.String(150))                # from google books api, Tier 2
     authors = db.Column(db.JSON)                        # from google books api, Tier 1
     description = db.Column(db.String(1500))            # from google books api, Tier 2
+    description_truncated = db.Column(db.String(150))   # from google books api, Tier 2
     categories = db.Column(db.JSON)                     # from google books api, Tier 2
     publisher = db.Column(db.String(150))               # from google books api, Tier 2
     publication_date = db.Column(db.String(150))        # from google books api, Tier 2

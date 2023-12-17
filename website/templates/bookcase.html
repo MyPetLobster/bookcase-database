@@ -13,13 +13,18 @@
             <div class="book-info">
                 <h2>{{ book.title }}</h2>
                 <h3>{{ book.author }}</h3>
-                <p>ISBN: {{ book.isbn }}</p>
-                <p>Genre: {{ book.genre }}</p>
-                <p>Year: {{ book.year }}</p>
-                <p>Pages: {{ book.pages }}</p>
+                <p> {{ book.description_truncated }}</p>
+                <p>Published: {{ book.publication_date }}</p>
+                <p>Genres: {{ book.categories }}</p>
+                </p>
                 <p>Google Books Rating: {{ book.google_books_rating }}</p>
                 <p>Your Rating: {{ book.user_rating }}</p>
-                <p>Read: {{ book.read }}</p>
+                <!-- Add a checkbox for "Read: ". Leave unchecked if book.read is False and add checkmark if True -->
+                {% if book.read %}
+                <p>Read: <input type="checkbox" name="read" id="read" checked></p>
+                {% else %}
+                <p>Read: <input type="checkbox" name="read" id="read"></p>
+                {% endif %}
                 <a href="/book/{{ book.id }}/">View Book Details</a>
                 <div class="book-buttons">
                     <a href="/bookcase/{{ current_bookcase.id }}/edit-book/{{ book.id }}/">Edit</a>

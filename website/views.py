@@ -89,7 +89,8 @@ def bookcase(id):
 @views.route('/book/<int:id>/')
 @login_required
 def book(id):
-    return render_template("book.html", id=id, user=current_user)
+    book = Book.query.get(id)
+    return render_template("book.html", id=id, user=current_user, book=book)
 
 
 @views.route('/search/', methods=['GET', 'POST'])
@@ -178,7 +179,7 @@ def search():
 @login_required
 def add_book():
     bookcases = Bookcase.query.filter_by(owner_id=current_user.id).all()
-    
+
     # Which bookcase did user select?
     if request.form.get('bookcase'):
         bookcase_id = request.form.get('bookcase')
@@ -189,6 +190,7 @@ def add_book():
     subtitle = request.form.get('book-subtitle')
     authors = request.form.get('book-author')
     description = request.form.get('book-description')
+    description_truncated = description[:150] + "..."
     categories = request.form.get('book-categories')
     publisher = request.form.get('book-publisher')
     publication_date = request.form.get('book-publication-date')
@@ -211,6 +213,7 @@ def add_book():
                 subtitle=subtitle, 
                 authors=authors, 
                 description=description, 
+                description_truncated=description_truncated,
                 categories=categories,
                 publisher=publisher, 
                 publication_date=publication_date, 
