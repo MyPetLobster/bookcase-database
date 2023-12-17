@@ -1,6 +1,7 @@
 from . import db
 from flask_login import UserMixin
 from sqlalchemy.sql import func
+from datetime import datetime, date
 
 # Intermediate table to represent the many-to-many relationship
 bookcase_book_association = db.Table(
@@ -24,23 +25,28 @@ class Bookcase(db.Model):
     # Define the many-to-many relationship
     books = db.relationship('Book', secondary=bookcase_book_association, back_populates='bookcases')
 
+
 class Book(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(150))
-    subtitle = db.Column(db.String(150))
-    author = db.Column(db.String(150))
-    description = db.Column(db.String(1500))
-    isbn = db.Column(db.String(150))
-    publisher = db.Column(db.String(150))
-    edition = db.Column(db.String(150))
-    language = db.Column(db.String(150))
-    publication_date = db.Column(db.String(150))
-    pages = db.Column(db.String(150))
-    user_rating = db.Column(db.String(150))
-    google_books_rating = db.Column(db.String(150))  
-    categories = db.Column(db.ARRAY(db.String(150)))
-    thumbnail_link = db.Column(db.String(150))
-    google_books_link = db.Column(db.String(150))
+    id = db.Column(db.Integer, primary_key=True)        # primary key, hidden from user, Tier 5
+    title = db.Column(db.String(150))                   # from google books api, Tier 1
+    subtitle = db.Column(db.String(150))                # from google books api, Tier 2
+    authors = db.Column(db.JSON)                        # from google books api, Tier 1
+    description = db.Column(db.String(1500))            # from google books api, Tier 2
+    categories = db.Column(db.JSON)                     # from google books api, Tier 2
+    publisher = db.Column(db.String(150))               # from google books api, Tier 2
+    publication_date = db.Column(db.String(150))        # from google books api, Tier 2
+    isbn_13 = db.Column(db.String(150))                 # from google books api, Tier 3
+    isbn_10 = db.Column(db.String(150))                 # from google books api, Tier 3      
+    language = db.Column(db.String(150))                # from google books api, Tier 3
+    pages = db.Column(db.Integer)                       # from google books api, Tier 3
+    google_books_rating = db.Column(db.Numeric(2, 1))   # from google books api, Tier 4
+    google_books_rating_count = db.Column(db.Integer)   # from google books api, Tier 1 
+    thumbnail_link = db.Column(db.String(150))          # from google books api, Tier 3
+    google_books_link = db.Column(db.String(150))       # from google books api, Tier 3
+    google_books_id = db.Column(db.String(150))         # from google books api, hidden from user, Tier 5
+    user_rating = db.Column(db.Numeric(2, 1))           # from user, Tier 1
+    read = db.Column(db.Boolean, default=False)         # from user, Tier 1
+    date_created = db.Column(db.DateTime(timezone=True), default=func.now()) # from user, hidden from user, Tier 5
     
 
     # Define the back-reference in Book model

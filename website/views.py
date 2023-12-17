@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, flash, redirect, url_for
+from flask import Blueprint, render_template, request, flash, redirect, url_for, session
 from flask_login import current_user, login_required
 from .models import Book, Bookcase, User
 from . import db
@@ -8,6 +8,7 @@ import os
 from urllib.parse import urlencode
 
 views = Blueprint('views', __name__)
+
 
 ##### LOGIN REQUIRED #####
 @views.route('/')
@@ -91,15 +92,13 @@ def book(id):
     return render_template("book.html", id=id, user=current_user)
 
 
-
-
-@views.route('/add-book/', methods=['GET', 'POST'])
+@views.route('/search/', methods=['GET', 'POST'])
 @login_required
-def add_book():
+def search():
     bookcases = Bookcase.query.filter_by(owner_id=current_user.id).all()
     if request.method == 'POST':
-
-        # first check if they submit data in "create bookcase" form
+        
+        # check if user creates new bookcase
         if request.form.get('bookcase-name'):
             name = request.form.get('bookcase-name')
             owner_id = current_user.id
@@ -107,7 +106,7 @@ def add_book():
             db.session.add(new_bookcase)
             db.session.commit()
             # refresh page
-            return redirect(url_for('views.add_book'))
+            return redirect(url_for('views.search'))
         
         # Check if user submits the search form which includes author, title and isbn fields
         elif request.form.get('author') or request.form.get('title') or request.form.get('isbn'):
@@ -144,17 +143,13 @@ def add_book():
             }
             
             url = f"https://www.googleapis.com/books/v1/volumes?{urlencode(query_params)}"
+            session['search_query'] = url
             
             data = urllib.request.urlopen(url).read()
             dict = json.loads(data)
 
-            x = dict.keys()
-            print(x)
+            return render_template("search.html", user=current_user, books=dict['items'], bookcases=bookcases)
 
-            print(dict)
-            print(type(dict))
-
-            return render_template("add_book.html", user=current_user, books=dict['items'], bookcases=bookcases)
         elif request.form.get('general-search'):
             general_search = request.form.get('general-search')
             general_search = general_search.split()
@@ -165,9 +160,10 @@ def add_book():
                 'key': api_key,
             }
             url = f"https://www.googleapis.com/books/v1/volumes?{urlencode(query_params)}"
+            session['search_query'] = url
             data = urllib.request.urlopen(url).read()
             dict = json.loads(data)
-            return render_template("add_book.html", user=current_user, books=dict['items'], bookcases=bookcases)
+            return render_template("search.html", user=current_user, books=dict['items'], bookcases=bookcases)
 
         else:
             # Handle integrity error (e.g., if the book already exists)
@@ -175,23 +171,79 @@ def add_book():
             print("IntegrityError: The book may already exist.")
             
 
-    return render_template("add_book.html", user=current_user, bookcases=bookcases)
+    return render_template("search.html", user=current_user, bookcases=bookcases)
 
 
-
-
-
-
-##### SEARCH PAGE #####
-@views.route('/search/', methods=['GET', 'POST'])
+@views.route('/search/add_book/', methods=['POST'])
 @login_required
-def search_home():
-    return render_template("search.html", user=current_user)
+def add_book():
+    bookcases = Bookcase.query.filter_by(owner_id=current_user.id).all()
+    
+    # Which bookcase did user select?
+    if request.form.get('bookcase'):
+        bookcase_id = request.form.get('bookcase')
+        current_bookcase = Bookcase.query.get(bookcase_id)
 
-@views.route('/search/<string:query>/', methods=['GET', 'POST'])
-@login_required
-def search(query):
-    return render_template("search.html", query=query, user=current_user)
+    # Retrieve all form data
+    title = request.form.get('book-title')
+    subtitle = request.form.get('book-subtitle')
+    authors = request.form.get('book-author')
+    description = request.form.get('book-description')
+    categories = request.form.get('book-categories')
+    publisher = request.form.get('book-publisher')
+    publication_date = request.form.get('book-publication-date')
+    isbn_13 = request.form.get('book-isbn-13')
+    isbn_10 = request.form.get('book-isbn-10')
+    language = request.form.get('book-language')
+    pages = request.form.get('book-pages')
+    google_books_rating = request.form.get('book-google-books-rating')
+    google_books_rating_count = request.form.get('book-google-books-rating-count')
+    thumbnail_link = request.form.get('book-thumbnail-link')
+    google_books_link = request.form.get('book-google-books-link')
+    google_books_id = request.form.get('book-google-books-id')
+
+    # Check if the current bookcase exists and belongs to the current user
+    if current_bookcase and current_bookcase.owner_id == current_user.id:
+        try:
+            # Create a new book
+            new_book = Book(
+                title=title, 
+                subtitle=subtitle, 
+                authors=authors, 
+                description=description, 
+                categories=categories,
+                publisher=publisher, 
+                publication_date=publication_date, 
+                isbn_13=isbn_13, 
+                isbn_10=isbn_10,
+                language=language, 
+                pages=pages, 
+                google_books_rating=google_books_rating,
+                google_books_rating_count=google_books_rating_count, 
+                thumbnail_link=thumbnail_link,
+                google_books_link=google_books_link, 
+                google_books_id=google_books_id
+            )
+            
+            # Add the book to the current bookcase
+            current_bookcase.books.append(new_book)
+            
+            # Commit changes to the database
+            db.session.commit()
+        
+        except IntegrityError:
+            # Handle integrity error (e.g., if the book already exists)
+            db.session.rollback()
+            print("IntegrityError: The book may already exist.")
+
+    url = session.get('search_query')
+    data = urllib.request.urlopen(url).read()
+    dict = json.loads(data)
+    return render_template("search.html", user=current_user, books=dict['items'], bookcases=bookcases)
+    
+
+
+
 
 
 ##### NO LOGIN REQUIRED #####

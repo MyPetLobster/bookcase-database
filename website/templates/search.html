@@ -1,0 +1,112 @@
+{% extends "base.html" %} {% block title %}Add Books{% endblock %} {% block
+content %}
+
+<div class="search-page-container">
+
+  <!-- Create a new bookcase form -->
+  <form action="/search/" method="post" class="create-bookcase">
+    <label for="bookcase-name">Bookcase Name</label>
+    <input
+      type="text"
+      name="bookcase-name"
+      id="bookcase-name"
+      placeholder="Bookcase Name"
+      required
+    />
+    <input type="submit" value="Create Bookcase" />
+  </form>
+
+  <!--Search form that includes author, title and isbn fields-->
+  <form action="/search/" method="post" class="search-book">
+    <label for="title">Title</label>
+    <input type="text" name="title" id="title" placeholder="Title"/>
+    <label for="author">Author</label>
+    <input
+      type="text"
+      name="author"
+      id="author"
+      placeholder="Author"
+    />
+    <label for="isbn">ISBN</label>
+    <input type="text" name="isbn" id="isbn" placeholder="ISBN" />
+    <input type="submit" value="Search" />
+  </form>
+
+  <!--!Search results-->
+  <div class="search-results">
+    <h2>Search Results</h2>
+    <div class="search-results-container">
+
+      {% for book in books %}
+      <div class="search-result">
+        <div class="search-result-cover">
+          <img
+            {% if book['volumeInfo']['imageLinks'] %}
+            src="{{ book['volumeInfo']['imageLinks']['thumbnail'] }}"
+            alt="{{ book['volumeInfo']['title'] }} Cover"
+            {% else %}
+            src="https://dummyimage.com/130x170/e3e3e3/0d0d0d.jpg&text=No+Image+Available"
+            alt="Placeholder Image"
+            {% endif %}
+          />
+        </div>
+        <div class="search-result-info">
+          <h3>{{ book['volumeInfo']['title'] }}</h3>
+          <h4>
+            {% for author in book['volumeInfo']['authors'] %}
+              {{ author }}{% if not loop.last %}, {% endif %}
+            {% endfor %}
+          </h4>
+          {% for isbn_type in book['volumeInfo']['industryIdentifiers'] %}
+            {% if isbn_type['type'] == 'ISBN_13' %}
+              <p>ISBN_13: {{ isbn_type['identifier'] }}</p>
+            {% elif isbn_type['type'] == 'ISBN_10' %}
+              <p>ISBN_10: {{ isbn_type['identifier'] }}</p>
+            {% endif %}
+          {% endfor %}
+          <p>
+            Categories: {% for category in book['volumeInfo']['categories'] %} 
+              {{ category }}
+            {% endfor %}
+          </p>
+          <p>Year: {{ book['volumeInfo']['publishedDate'].split("-")[0] }}</p>
+          <p>Pages: {{ book['volumeInfo']['pageCount'] }}</p>
+          <p>Google Books Rating: {{ book['volumeInfo']['averageRating'] }}</p>
+          <p>
+            <a href="{{ book['volumeInfo']['infoLink'] }}" target="_blank">More Info</a>
+          </p>
+
+          <form action="/search/add_book/" method="post">
+            <input type="hidden" name="book-title" value="{{ book['volumeInfo']['title'] }}" />
+            <input type="hidden" name="book-subtitle" value="{% if book['volumeInfo']['subtitle'] %}{{ book['volumeInfo']['subtitle'] }}{% endif %}" />
+            <input type="hidden" name="book-author" value="{% for author in book['volumeInfo']['authors'] %}{{ author }}{% if not loop.last %}, {% endif %}{% endfor %}" />
+            <input type="hidden" name="book-description" value="{% if book['volumeInfo']['description'] %}{{ book['volumeInfo']['description'] }}{% endif %}" />
+            <input type="hidden" name="book-isbn-13" value="{% for isbn_type in book['volumeInfo']['industryIdentifiers'] %}{% if isbn_type['type'] == 'ISBN_13' %}{{ isbn_type['identifier'] }}{% endif %}{% endfor %}" />
+            <input type="hidden" name="book-isbn-10" value="{% for isbn_type in book['volumeInfo']['industryIdentifiers'] %}{% if isbn_type['type'] == 'ISBN_10' %}{{ isbn_type['identifier'] }}{% endif %}{% endfor %}" />
+            <input type="hidden" name="book-publisher" value="{% if book['volumeInfo']['publisher'] %}{{ book['volumeInfo']['publisher'] }}{% endif %}" />
+            <input type="hidden" name="book-publication-date" value="{% if book['volumeInfo']['publishedDate'] %}{{ book['volumeInfo']['publishedDate'] }}{% endif %}" />
+            <input type="hidden" name="book-categories" value="{% for category in book['volumeInfo']['categories'] %}{{ category }}{% if not loop.last %}, {% endif %}{% endfor %}" />
+            <input type="hidden" name="book-language" value="{% if book['volumeInfo']['language'] %}{{ book['volumeInfo']['language'] }}{% endif %}" />
+            <input type="hidden" name="book-page-count" value="{% if book['volumeInfo']['pageCount'] %}{{ book['volumeInfo']['pageCount'] }}{% endif %}" />
+            <input type="hidden" name="book-google-rating" value="{% if book['volumeInfo']['averageRating'] %}{{ book['volumeInfo']['averageRating'] }}{% endif %}" />
+            <input type="hidden" name="book-google-rating-count" value="{% if book['volumeInfo']['ratingsCount'] %}{{ book['volumeInfo']['ratingsCount'] }}{% endif %}" />
+            <input type="hidden" name="book-google-link" value="{% if book['volumeInfo']['infoLink'] %}{{ book['volumeInfo']['infoLink'] }}{% endif %}" />
+            <input type="hidden" name="book-thumbnail-link" value="{% if book['volumeInfo']['imageLinks'] %}{{ book['volumeInfo']['imageLinks']['thumbnail'] }}{% else %}https://dummyimage.com/130x170/e3e3e3/0d0d0d.jpg&text=No+Image+Available{% endif %}" />
+            <input type="hidden" name="book-google-id" value="{{ book['id'] }}" />
+            <label for="bookcase">Select Bookcase</label> 
+            <select name="bookcase" id="bookcase">
+              {% for bookcase in bookcases %}
+              <option value="{{ bookcase.id }}">{{ bookcase.name }}</option>
+              {% endfor %}
+            </select>
+            <input type="submit" value="Add to Bookcase" />
+          </form>
+          
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

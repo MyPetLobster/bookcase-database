@@ -7,9 +7,9 @@
     <div class="books-collection">
         {% for book in current_bookcase.books %}
         <div class="book">
-            <!-- <div class="book-cover">
-                <img src="{{ book.cover }}" alt="{{ book.title }} Cover">
-            </div> -->
+            <div class="book-cover">
+                <img src="{{ book.thumbnail_link }}" alt="{{ book.title }} Cover">
+            </div>
             <div class="book-info">
                 <h2>{{ book.title }}</h2>
                 <h3>{{ book.author }}</h3>

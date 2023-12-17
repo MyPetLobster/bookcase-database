@@ -2,4 +2,38 @@
 {% block title %}Book{% endblock %}
 {% block content %}
 <h1>Book</h1>
+<div class="book">
+    <div class="book-cover">
+        <img src="{{ book.thumnail_link }}" alt="{{ book.title }} Cover">
+    </div>
+    <div class="book-info">
+        <h2>{{ book.title }}</h2>
+        <h4>{{ book.subtitle }}</h4>
+        {{ for author in book.authors }}
+        <h3>{{ author }}</h3>
+        {{ endfor }}
+        <p class="description">{{ book.description }}</p>
+        {{ for category in book.categories }}
+        <p>Category: {{ category }}</p>
+        {{ endfor }}
+        <p>Publisher: {{ book.publisher }}</p>
+        <p>Publication Date: {{ book.publication_date }}</p>
+        <p>Language: {{ book.language }}</p>
+        <p>Pages: {{ book.pages }}</p>
+        <p>Google Books Rating: {{ book.google_books_rating }}</p>
+        {{ for isbn_type in book['volumeInfo']['industryIdentifiers'] }}
+            {% if isbn_type['type'] == 'ISBN_13' %}
+              <p>ISBN_13: {{ isbn_type['identifier'] }}</p>
+            {% else if isbn_type['type'] == 'ISBN_10' %}
+              <p>ISBN_10: {{ isbn_type['identifier'] }}</p>
+            {% endif %}
+        {% endfor %}
+        <p>Your Rating: {{ book.user_rating }}</p>
+        <p>Read: {{ book.read }}</p>
+        
+        <div class="book-buttons">
+            <a href="/bookcase/{{ current_bookcase.id }}/edit-book/{{ book.id }}/">Edit</a>
+            <a href="/bookcase/{{ current_bookcase.id }}/delete-book/{{ book.id }}/">Delete</a>
+        </div> 
+    </div>
 {% endblock %}
