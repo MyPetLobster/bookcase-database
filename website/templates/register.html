@@ -3,9 +3,9 @@
 {% block content %}
 
 <div class="register-container">
-    <h1>Register</h1>
+    <h1 class="register-h1">Create New Account</h1>
     <form action="#" class="register-form" method="post">
-  <div class="container">
+  <div class="container register-container">
     <label for="username"><b>Username</b></label>
     <input type="text" placeholder="Enter Username" name="username" id="username" required>
 
@@ -15,13 +15,13 @@
     <label for="psw"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="psw" required>
 
-    <label for="psw-repeat"><b>Repeat Password</b></label>
-    <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
+    <label for="psw-repeat"><b>Confirm Password</b></label>
+    <input type="password" placeholder="Confirm Password" name="psw-repeat" required>
 
-    <button type="submit">Submit</button>
+    <button class="home-button" type="submit">Submit</button>
 
-    <label class="newsletter">
-      <input type="checkbox" name="remember"> Sign Up For Newsletter
+    <label id="newsletter">
+      <input class="checkbox" type="checkbox" name="remember"> Sign Up For Newsletter
     </label>
 
   </div>

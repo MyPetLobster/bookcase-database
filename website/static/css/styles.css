@@ -120,11 +120,22 @@ button {
   justify-content: center;
   align-items: center;
 }
+.register-h1 {
+  color: #603d5a;
+}
+.register-container label {
+  color: #603d5a;
+  font-size: 22px;
+}
+.register-container input {
+  border-radius: 7px;
+}
 /* Bordered form */
 .register-form,
 .login-form {
-  margin-top: 60px;
-  border: 3px solid #f1f1f1;
+  background-color: #c3dde7;
+  margin-top: 30px;
+  border-radius: 10px;
   width: 300px;
 }
 /* Full-width inputs */
@@ -138,6 +149,21 @@ input[type="email"] {
   border: 1px solid #ccc;
   box-sizing: border-box;
 }
+#newsletter {
+  align-content: center;
+  margin-top: 25px;
+  font-size: 16px;
+  color: #1a2729;
+}
+.checkbox {
+  accent-color: #603d5a;
+}
+
+
+
+
+
+
 /* Set a style for all buttons */
 button {
   background-color: #04aa6d;
