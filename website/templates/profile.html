@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block title %}Profile{% endblock %}
 {% block content %}
+
 <div class="profile-container">
     <h1>{{username}}'s Bookcases</h1>
     {% for bookcase in bookcases %}
@@ -15,13 +16,3 @@
 
 {% endblock %}
 
-
-
-
-<!-- {% for bookcase in bookcases %}
-        <div class="bookcase">
-            <h2>{{bookcase.name}}</h2>
-            <p>{{bookcase.description}}</p>
-            <a href="/bookcase/{{bookcase.id}}">View Bookcase</a>
-        </div>
-        {% endfor %} -->

@@ -1,19 +1,46 @@
-@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;700&family=Kalnia:wght@200;300;400;700&display=swap');
-
-html, body {
-    height:100%;
-    width:100%;
-    margin:0;
-    padding:0;
-    box-sizing: border-box;
-    background-color: #aec7d1;
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Averia+Serif+Libre:wght@300;400;700&family=Courier+Prime:wght@400;700&family=Dosis:wght@300;400;500;600;700&family=Gravitas+One&family=Kalnia:wght@400;500;600;700&family=Laila:wght@300;400;500;600;700&family=Podkova:wght@400;500;600;700&family=Vollkorn+SC:wght@400;600;700&display=swap');html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #aec7d1;
 }
 
 h1 {
   font-family: "Kalnia", serif;
-  font-size: 48px;
-  font-weight: 300;
+  font-weight: 600;
+  font-size: 56px;
   text-align: center;
+  color: #1a2729;
+}
+h2 {
+  font-family: "Averia Serif Libre", serif;
+  font-weight: 400;
+  font-size: 28px;
+  text-align: center;
+  color: #1a2729;
+}
+p {
+  font-family: "Laila", serif;
+  font-size: 14px;
+  color: #1a2729;
+}
+label {
+  font-family: "Averia Serif Libre", serif;
+  font-size: 32px;
+  color: #1a2729;
+  
+}
+input {
+  font-family: "Courier Prime", monospace;
+  font-size: 16px;
+}
+button {
+  font-family: "Averia Serif Libre", serif;
+  font-weight: 600;
+  font-size: 18px;
 }
 
 /* NAVBAR */
@@ -22,10 +49,11 @@ h1 {
   display: flex;
   align-items: center;
   overflow: hidden;
-  background-color: #242f2b;
-  font-family: "Jost", sans-serif;
+  background-color: #3d5a60;
+  font-family: "Laila", serif;
 }
 .topnav a {
+  margin-right: 10px;
   float: left;
   display: block;
   color: #f2f2f2;
@@ -35,46 +63,53 @@ h1 {
   font-size: 17px;
 }
 .topnav a:hover {
-  background-color: #ddd;
-  color: black;
+  background-color: #517880;
+  border-radius: 10px;
+  color: #1a2729;
 }
 .topnav a.active {
   background-color: #603d5a;
   color: white;
+}
+.topnav a.active:hover {
+  background-color: #603d5a;
+  color: white;
+  border-radius: 0px;
 }
 .topnav .icon {
   display: none;
 }
 #bcdb-logo {
   font-family: "Kalnia", serif;
+  font-weight: 600;
   font-size: 28px;
 }
 
 /* FLASHED MESSAGES */
 #hideMe {
-    -moz-animation: cssAnimation 0s ease-in 2s forwards;
-    /* Firefox */
-    -webkit-animation: cssAnimation 0s ease-in 2s forwards;
-    /* Safari and Chrome */
-    -o-animation: cssAnimation 0s ease-in 2s forwards;
-    /* Opera */
-    animation: cssAnimation 0s ease-in 2s forwards;
-    -webkit-animation-fill-mode: forwards;
-    animation-fill-mode: forwards;
+  -moz-animation: cssAnimation 0s ease-in 2s forwards;
+  /* Firefox */
+  -webkit-animation: cssAnimation 0s ease-in 2s forwards;
+  /* Safari and Chrome */
+  -o-animation: cssAnimation 0s ease-in 2s forwards;
+  /* Opera */
+  animation: cssAnimation 0s ease-in 2s forwards;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
 }
 @keyframes cssAnimation {
-    to {
-        width:0;
-        height:0;
-        overflow:hidden;
-    }
+  to {
+    width: 0;
+    height: 0;
+    overflow: hidden;
+  }
 }
 @-webkit-keyframes cssAnimation {
-    to {
-        width:0;
-        height:0;
-        visibility:hidden;
-    }
+  to {
+    width: 0;
+    height: 0;
+    visibility: hidden;
+  }
 }
 
 /* REGISTRATION AND LOGIN FORMS */
@@ -93,7 +128,9 @@ h1 {
   width: 300px;
 }
 /* Full-width inputs */
-input[type=text], input[type=password], input[type=email]{
+input[type="text"],
+input[type="password"],
+input[type="email"] {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -103,7 +140,7 @@ input[type=text], input[type=password], input[type=email]{
 }
 /* Set a style for all buttons */
 button {
-  background-color: #04AA6D;
+  background-color: #04aa6d;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -135,7 +172,6 @@ span.psw {
   justify-content: center;
 }
 
-
 /* HOME PAGE */
 .home-container,
 .profile-container {
@@ -144,14 +180,24 @@ span.psw {
   flex-direction: column;
   align-items: center;
 }
+.home-h2 {
+  margin: 0px;
+  padding: 0px;
+}
+.home-p {
+  width: 80%;
+}
 .home-content {
   margin-top: 40px;
   margin-bottom: 60px;
   display: flex;
   justify-content: space-around;
-
 }
 .home-content-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
   margin-left: 20px;
   margin-right: 20px;
   max-width: 30vw;
@@ -160,7 +206,23 @@ span.psw {
 .home-content-item p {
   text-align: center;
 }
-
+.home-search,
+.home-form {
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 25px;
+}
+.home-input {
+  border-radius: 7px;
+}
+.home-button {
+  width: 200px;
+  border-radius: 10px;
+  background-color: #603d5a;
+}
 
 /* BOOKCASES PAGE */
 .bookcases-main-header {
@@ -282,24 +344,20 @@ span.psw {
 }
  */
 
-
-
-
-
-
-
-
-
 /* MEDIA QUERIES */
 @media screen and (max-width: 600px) {
-  .topnav a:not(:first-child) {display: none;}
+  .topnav a:not(:first-child) {
+    display: none;
+  }
   .topnav a.icon {
     float: right;
     display: block;
   }
 }
 @media screen and (max-width: 600px) {
-  .topnav.responsive {position: relative;}
+  .topnav.responsive {
+    position: relative;
+  }
   .topnav.responsive .icon {
     position: absolute;
     right: 0;

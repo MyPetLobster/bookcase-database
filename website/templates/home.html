@@ -4,38 +4,48 @@
   <h1 class="home-header">Bookcase Database</h1>
   <div class="home-content">
     <div class="home-content-item hc-left">
-      <h2>What is Bookcase Database?</h2>
-      <p>
+      <h2 class="home-h2">What is Bookcase Database?</h2>
+      <p class="home-p">
         Bookcase Database is a website that allows you to keep track of your
         books. You can add books to your bookcase, and then view them later. You
         can also edit and delete books from your bookcase.
       </p>
     </div>
     <div class="home-content-item hc-right">
-      <h2>How do I use Bookcase Database?</h2>
-      <p>
+      <h2 class="home-h2">How do I use Bookcase Database?</h2>
+      <p class="home-p">
         Create your first bookcase, then use the search bar below to start
         adding books! You can also edit and delete books from your bookcase.
       </p>
     </div>
   </div>
-  
+
   <div class="searchbar home-search">
-    <form action="/bookcases/" method="post" class="create-bookcase">
-        <label for="bookcase-name">Bookcase Name</label>
-        <input type="text" name="bookcase-name" id="bookcase-name" placeholder="Bookcase Name" required>
-        <button type="submit">Create</button>
-    </form>
-    <form action="/search/" class="home-search-form" method="post">
-      <label for="general-search">Search for a book!</label>
+    <form action="/bookcases/" method="post" class="create-bookcase home-form">
+      <label for="bookcase-name">Create a Bookcase</label>
       <input
+        type="text"
+        name="bookcase-name"
+        class="home-input"
+        id="bookcase-name"
+        placeholder="Bookcase Name"
+        autocomplete="off"
+        required
+      />
+      <button class="home-button" type="submit">Create</button>
+    </form>
+    <form action="/search/" class="home-search-form home-form" method="post">
+      <label class="home-label" for="general-search">Search for a book!</label>
+      <input
+        class="home-input"
         type="text"
         placeholder="Search for books..."
         name="general-search"
         id="general-search"
+        autocomplete="off"
         required
       />
-      <button type="submit">Search</button>
+      <button class="home-button" type="submit">Search</button>
     </form>
   </div>
 </div>
