@@ -1,3 +1,5 @@
+
+
 const burger = document.querySelector(".icon");
 const navbar = document.querySelector(".topnav");
 
@@ -8,7 +10,6 @@ burger.addEventListener("click", () => {
     navbar.className = "topnav";
   }
 });
-
 
 // Star Rating
 $(":radio").change(function () {

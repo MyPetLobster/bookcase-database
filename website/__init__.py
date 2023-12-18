@@ -6,10 +6,6 @@ from flask_login import LoginManager
 db = SQLAlchemy()
 DB_NAME = "database.db"
 
-def zip_lists(list1, list2):
-    return zip(list1, list2)
-
-
 
 def create_app():
     app = Flask(__name__)
@@ -19,8 +15,7 @@ def create_app():
 
     from .views import views
     from.auth import auth
-    
-    app.jinja_env.filters['zip_lists'] = zip_lists
+
     app.register_blueprint(views, url_prefix="/")
     app.register_blueprint(auth, url_prefix="/")
 
