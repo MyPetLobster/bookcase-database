@@ -2,9 +2,11 @@
 content %}
 
 <div class="profile-container">
+
   <h1>{{username}}'s Profile</h1>
+
   <div class="profile-content">
-    <div class="profile-info">
+    <div class="profile-info profile-item">
       <h2 class="profile-h2">Info</h2>
       <p>Username: {{username}}</p>
       <p>Email: {{ user.email }}</p>
@@ -14,7 +16,7 @@ content %}
       <a href="/edit-profile">Edit Profile</a>
     </div>
 
-    <div class="profile-bookcases">
+    <div class="profile-bookcases profile-item">
       <h2 class="profile-h2">Bookcases</h2>
       {% for bookcase in bookcases %}
       <li>
@@ -23,6 +25,18 @@ content %}
       {% endfor %}
     </div>
   </div>
+
+  <div class="edit-appearance">
+    <h2 class="select-color-theme">Select Color Theme</h2>
+    <form action="/edit-appearance" method="POST">
+      <select name="color-theme" id="color-theme">
+        <option value="default">Default</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+      </select>
+      <input type="submit" value="Submit" />
+  </div>
+
 </div>
 
 {% endblock %}

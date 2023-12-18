@@ -280,25 +280,25 @@ span.psw {
   height: 185px;
 }
 /* PROFILE PAGE */
-/* .bookcase-container {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 20px;
-}
-.bookcase {
+.profile-container {
   display: flex;
-  flex-wrap: wrap;
   flex-direction: column;
-  border: 1px solid black;
-  padding: 12px;
+  align-items: center;
+} 
+.profile-content {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
 }
-.bookcase h2 {
-  text-align: center;
-  line-height: 0px;
+.profile-item {
+  min-width: 350px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #c3dde7;
 }
-.bookcase a {
-  text-align: center; 
-} */
+
+
+
 
 /* BOOKCASE PAGE */
 /* .bookcase-page {
