@@ -8,7 +8,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 auth = Blueprint('auth', __name__)
 
 
-@auth.route('/register', methods=['POST', 'GET'])
+@auth.route('/register/', methods=['POST', 'GET'])
 def register():
     if request.method == 'POST':
         print(request.form)
@@ -49,7 +49,7 @@ def register():
     return render_template("register.html", user=current_user)
 
 
-@auth.route('/login', methods=['POST', 'GET'])
+@auth.route('/login/', methods=['POST', 'GET'])
 def login():
     if request.method == 'POST':
         username = request.form.get('username')
