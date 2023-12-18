@@ -20,7 +20,7 @@
     </div>
   </div>
   <!-- check if user is logged in -->
-    {% if user.is_authenticated %}  
+  {% if user.is_authenticated %}
   <div class="searchbar home-search">
     <form action="/bookcases/" method="post" class="create-bookcase home-form">
       <label for="bookcase-name">Create a Bookcase</label>
@@ -49,15 +49,14 @@
       <button class="home-button" type="submit">Search</button>
     </form>
   </div>
-    {% else %}
-    <!-- if not logged in, display link to register and login pages -->
-    <h2 class="home-h2-signed-out">Create an account to get started!</h2>
-    <div class="home-login-links">
-      <a href="/register/" class="home-link">Register</a>
-      <a href="/login/" class="home-link">Login</a>
-    </div>
-    {% endif %}
+  {% else %}
+  <!-- if not logged in, display link to register and login pages -->
+  <h2 class="home-h2-signed-out">Create an account to get started!</h2>
+  <div class="home-login-links">
+    <a href="/register/" class="home-link">Register</a>
+    <a href="/login/" class="home-link">Login</a>
+  </div>
+  {% endif %}
 </div>
-
 
 {% endblock %}

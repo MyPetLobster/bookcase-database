@@ -4,13 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title%}{% endblock %}</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='css/styles.css') }}"
     />
-    <script src="{{ url_for('static', filename='js/scripts.js') }}" defer></script>
-    
+    <script
+      src="{{ url_for('static', filename='js/scripts.js') }}"
+      defer
+    ></script>
   </head>
   <body>
     <div class="topnav" id="myTopnav">
@@ -31,24 +36,17 @@
       </a>
     </div>
 
-    {% with messages = get_flashed_messages(with_categories=True) %}
-      {% if messages %}
-        {% for category, message in messages %}
-          {% if category == "error" %}
-          <div class="flash-alerts danger" role="alert" id="hideMe">
-            {{ message }}
-          </div>
-          {% else %}
-          <div class="flash-alerts success" role="alert" id="hideMe">
-            {{ message }}
-          </div>
-          {% endif %}
-        {% endfor %}
-      {% endif %}
-    {% endwith %}
-
-    {% block content %}{% endblock %}
-
-   
+    {% with messages = get_flashed_messages(with_categories=True) %} {% if
+    messages %} {% for category, message in messages %} {% if category ==
+    "error" %}
+    <div class="flash-alerts danger" role="alert" id="hideMe">
+      {{ message }}
+    </div>
+    {% else %}
+    <div class="flash-alerts success" role="alert" id="hideMe">
+      {{ message }}
+    </div>
+    {% endif %} {% endfor %} {% endif %} {% endwith %} {% block content %}{%
+    endblock %}
   </body>
 </html>

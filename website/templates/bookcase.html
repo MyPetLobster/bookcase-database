@@ -1,77 +1,105 @@
-{% extends "base.html" %}
-{% block title %}Bookcase{% endblock %}
-{% block content %}
+{% extends "base.html" %} {% block title %}Bookcase{% endblock %} {% block
+content %}
 
 <div class="bookcase-page">
-    <h1>{{ current_bookcase.name }}</h1>
-    <div class="books-collection">
-        {% for book in current_bookcase.books %}
-        <div class="book">
-            <div class="book-cover">
-                <img src="{{ book.thumbnail_link }}" alt="{{ book.title }} Cover">
-            </div>
-            <div class="book-info">
-                <h2>{{ book.title }}</h2>
-                <h3>{{ book.authors }}</h3>
-                <p> {{ book.description_truncated }}</p>
-                <p>Published: {{ book.publication_date }}</p>
-                <p>Genres: {{ book.categories }}</p>
-                </p>
-                <p>Google Books Rating: {{ book.google_books_rating }}</p>
-                <p>Your Rating: {{ book.user_rating }}</p>
-                
-                <!-- Add a checkbox for "Read: ". Leave unchecked if book.read is False and add checkmark if True -->
-                {% if book.read %}
-                <p>Read: <input type="checkbox" name="read" id="read" checked></p>
-                {% else %}
-                <p>Read: <input type="checkbox" name="read" id="read"></p>
-                {% endif %}
-                <a href="/bookcase/{{ current_bookcase.id }}/{{ book.id }}/">View Book Details</a>
-                <div class="book-buttons">
-                    <a href="/bookcase/{{ current_bookcase.id }}/{{ book.id }}/edit_book/">Edit Book Details</a>
-                    <a href="/bookcase/{{ current_bookcase.id }}/{{ book.id }}/delete_book/">Delete</a>
-                </div> 
-            </div>
+  <h1>{{ current_bookcase.name }}</h1>
+  <div class="books-collection">
+    {% for book in current_bookcase.books %}
+    <div class="book">
+      <div class="book-cover">
+        <img src="{{ book.thumbnail_link }}" alt="{{ book.title }} Cover" />
+      </div>
+      <div class="book-info">
+        <h2>{{ book.title }}</h2>
+        <h3>{{ book.authors }}</h3>
+        <p>{{ book.description_truncated }}</p>
+        <p>Published: {{ book.publication_date }}</p>
+        <p>Genres: {{ book.categories }}</p>
+        <p>Google Books Rating: {{ book.google_books_rating }}</p>
+        <p>Your Rating: {{ book.user_rating }}</p>
+
+        <!-- Add a checkbox for "Read: ". Leave unchecked if book.read is False and add checkmark if True -->
+        {% if book.read %}
+        <p>Read: <input type="checkbox" name="read" id="read" checked /></p>
+        {% else %}
+        <p>Read: <input type="checkbox" name="read" id="read" /></p>
+        {% endif %}
+        <a href="/bookcase/{{ current_bookcase.id }}/{{ book.id }}/"
+          >View Book Details</a
+        >
+        <div class="book-buttons">
+          <a href="/bookcase/{{ current_bookcase.id }}/{{ book.id }}/edit_book/"
+            >Edit Book Details</a
+          >
+          <a
+            href="/bookcase/{{ current_bookcase.id }}/{{ book.id }}/delete_book/"
+            >Delete</a
+          >
         </div>
-        {% endfor %}
-
-        <div class="back-to-bookcases">
-            <a href="/bookcases/"></a>
-        </div>
+      </div>
     </div>
+    {% endfor %}
 
-    <div class="searchbar bookcase-search">
-        <form action="/search/" class="bookcase-search-form" method="post">
-            <label for="general-search">Search for a book!</label>
-            <input type="text" placeholder="Search for books..." name="general-search" id="general-search" required>
-            <button type="submit">Search</button>
-        </form> 
+    <div class="back-to-bookcases">
+      <a href="/bookcases/"></a>
     </div>
-    
-    {# <div class="manual-add-book">
-        <form action="/bookcase/{{ id }}/" method="post">
-            <label for="title">Title</label>
-            <input type="text" name="title" id="title" placeholder="Title" required>
-            <label for="author">Author</label>
-            <input type="text" name="author" id="author" placeholder="Author" required>
-            <label for="isbn">ISBN</label>
-            <input type="text" name="isbn" id="isbn" placeholder="ISBN">
-            <label for="genre">Genre</label>
-            <input type="text" name="genre" id="genre" placeholder="Genre">
-            <label for="year">Year</label>
-            <input type="text" name="year" id="year" placeholder="Year">
-            <label for="pages">Pages</label>
-            <input type="text" name="pages" id="pages" placeholder="Pages">
-            <label for="goodreads-rating">Goodreads Rating</label>
-            <input type="number" name="goodreads-rating" id="goodreads-rating" placeholder="Goodreads Rating">
-            <label for="user-rating">Your Rating</label>
-            <input type="number" name="user-rating" id="user-rating" placeholder="Your Rating">
-            <label for="read">Read?</label>
-            <input type="checkbox" name="read" id="read">
-            <input type="submit" value="Add Book">
-        </form>
-    </div> #}
+  </div>
 
+  <div class="searchbar bookcase-search">
+    <form action="/search/" class="bookcase-search-form" method="post">
+      <label for="general-search">Search for a book!</label>
+      <input
+        type="text"
+        placeholder="Search for books..."
+        name="general-search"
+        id="general-search"
+        required
+      />
+      <button type="submit">Search</button>
+    </form>
+  </div>
+
+  {#
+  <div class="manual-add-book">
+    <form action="/bookcase/{{ id }}/" method="post">
+      <label for="title">Title</label>
+      <input type="text" name="title" id="title" placeholder="Title" required />
+      <label for="author">Author</label>
+      <input
+        type="text"
+        name="author"
+        id="author"
+        placeholder="Author"
+        required
+      />
+      <label for="isbn">ISBN</label>
+      <input type="text" name="isbn" id="isbn" placeholder="ISBN" />
+      <label for="genre">Genre</label>
+      <input type="text" name="genre" id="genre" placeholder="Genre" />
+      <label for="year">Year</label>
+      <input type="text" name="year" id="year" placeholder="Year" />
+      <label for="pages">Pages</label>
+      <input type="text" name="pages" id="pages" placeholder="Pages" />
+      <label for="goodreads-rating">Goodreads Rating</label>
+      <input
+        type="number"
+        name="goodreads-rating"
+        id="goodreads-rating"
+        placeholder="Goodreads Rating"
+      />
+      <label for="user-rating">Your Rating</label>
+      <input
+        type="number"
+        name="user-rating"
+        id="user-rating"
+        placeholder="Your Rating"
+      />
+      <label for="read">Read?</label>
+      <input type="checkbox" name="read" id="read" />
+      <input type="submit" value="Add Book" />
+    </form>
+  </div>
+  #}
 </div>
 
 {% endblock %}

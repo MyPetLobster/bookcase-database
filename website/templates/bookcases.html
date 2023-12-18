@@ -1,36 +1,44 @@
-{% extends "base.html" %}
-{% block title %}Bookcases{% endblock %}
-{% block content %}
+{% extends "base.html" %} {% block title %}Bookcases{% endblock %} {% block
+content %}
 <h1 class="bookcases-main-header">{{ user.username }}'s Bookcases</h1>
 <div class="bookcases-page-container">
-    <div class="display-bookcases">
-        {% for bookcase in bookcases %}
-            <div class="bookcases-item" style="background-color: {{ color }}">
-                <a href="/bookcase/{{ bookcase.id }}/">
-                    <h2 class="bc-header">{{ bookcase.name }}</h2>
-                </a>
-                <div class="gallery">
-                    {% for book in bookcase.books %}
-                        {% if book.thumbnail_link %}
-                            <div class="img-div">
-                                <a href="/bookcase/{{ bookcase.id }}/{{ book.id }}/">
-                                    <img class="preview-thumbnail book-cover" src="{{ book.thumbnail_link }}" alt="{{ book.title }} Cover">
-                                </a>
-                            </div> 
-                        {% endif %}
-                    {% endfor %}
-                </div>
-                
-            </div>
-        {% endfor %}
-    </div>   
+  <div class="display-bookcases">
+    {% for bookcase in bookcases %}
+    <div class="bookcases-item" style="background-color: {{ color }}">
+      <a href="/bookcase/{{ bookcase.id }}/">
+        <h2 class="bc-header">{{ bookcase.name }}</h2>
+      </a>
+      <div class="gallery">
+        {% for book in bookcase.books %} {% if book.thumbnail_link %}
+        <div class="img-div">
+          <a href="/bookcase/{{ bookcase.id }}/{{ book.id }}/">
+            <img
+              class="preview-thumbnail book-cover"
+              src="{{ book.thumbnail_link }}"
+              alt="{{ book.title }} Cover"
+            />
+          </a>
+        </div>
+        {% endif %} {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
 
-    <form action="/bookcases/" method="post" class="create-bookcase">
-        <label for="bookcase-name">Bookcase Name</label>
-        <input type="text" name="bookcase-name" id="bookcase-name" placeholder="Bookcase Name" required>
-        <input type="submit" value="Create Bookcase">
-    </form>
-    
+  <form action="/bookcases/" method="post" class="create-bookcase">
+    <label for="bookcase-name">Bookcase Name</label>
+    <input
+      type="text"
+      name="bookcase-name"
+      id="bookcase-name"
+      placeholder="Bookcase Name"
+      required
+    />
+    <input type="submit" value="Create Bookcase" />
+  </form>
 </div>
-<script type="module" src="https://cdn.jsdelivr.net/npm/colorthief@2.3.2/dist/color-thief.esm.min.js"></script>
+<script
+  type="module"
+  src="https://cdn.jsdelivr.net/npm/colorthief@2.3.2/dist/color-thief.esm.min.js"
+></script>
 {% endblock %}
