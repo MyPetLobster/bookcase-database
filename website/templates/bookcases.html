@@ -13,7 +13,9 @@
                     {% for book in bookcase.books %}
                         {% if book.thumbnail_link %}
                             <div class="img-div">
-                                <img class="preview-thumbnail book-cover" src="{{ book.thumbnail_link }}" alt="{{ book.title }} Cover">
+                                <a href="/bookcase/{{ bookcase.id }}/{{ book.id }}/">
+                                    <img class="preview-thumbnail book-cover" src="{{ book.thumbnail_link }}" alt="{{ book.title }} Cover">
+                                </a>
                             </div> 
                         {% endif %}
                     {% endfor %}
