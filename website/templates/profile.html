@@ -1,18 +1,28 @@
-{% extends "base.html" %}
-{% block title %}Profile{% endblock %}
-{% block content %}
+{% extends "base.html" %} {% block title %}Profile{% endblock %} {% block
+content %}
 
 <div class="profile-container">
-    <h1>{{username}}'s Bookcases</h1>
-    {% for bookcase in bookcases %}
-    <div class="bookcase">
-        <a href="/bookcase/{{bookcase.id}}/">
-            <h2>{{bookcase.name}}</h2>
-        </a>
+  <h1>{{username}}'s Profile</h1>
+  <div class="profile-content">
+    <div class="profile-info">
+      <h2 class="profile-h2">Info</h2>
+      <p>Username: {{username}}</p>
+      <p>Email: {{ user.email }}</p>
+      <p>Bookcases: {{ bookcases|length }}</p>
+      <p>Books: {{ total_books }}</p>
+      <p>Member Since: {{ user.date_created.strftime('%m/%d/%Y') }}</p>
+      <a href="/edit-profile">Edit Profile</a>
     </div>
-    {% endfor %}
+
+    <div class="profile-bookcases">
+      <h2 class="profile-h2">Bookcases</h2>
+      {% for bookcase in bookcases %}
+      <li>
+        <a href="/bookcase/{{bookcase.id}}/"> {{bookcase.name}} </a>
+      </li>
+      {% endfor %}
+    </div>
+  </div>
 </div>
 
-
 {% endblock %}
-

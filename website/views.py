@@ -20,9 +20,11 @@ def home():
 @views.route('/profile/', methods=['GET', 'POST'])
 @login_required
 def profile():
+    
     username = current_user.username if current_user.is_authenticated else None
     bookcases = Bookcase.query.filter_by(owner_id=current_user.id).all()
-    return render_template("profile.html", username=username, user=current_user, bookcases=bookcases)
+    total_books = current_user.total_book_count()
+    return render_template("profile.html", username=username, user=current_user, bookcases=bookcases, total_books=total_books)
 
 @views.route('/bookcases/', methods=['GET', 'POST'])
 @login_required
@@ -33,6 +35,10 @@ def bookcases():
         name = request.form.get('bookcase-name')
         owner_id = current_user.id
         new_bookcase = Bookcase(name=name, owner_id=owner_id)
+        # Check if the bookcase already exists, if so alert error
+        if Bookcase.query.filter_by(name=name, owner_id=owner_id).first():
+            flash('Bookcase already exists!', category='error')
+            return render_template("bookcases.html", user=current_user, bookcases=bookcases)
         db.session.add(new_bookcase)
         db.session.commit()
         return redirect(url_for('views.bookcases'))

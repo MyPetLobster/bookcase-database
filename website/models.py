@@ -16,6 +16,16 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(100), nullable=False, unique=True)
     password = db.Column(db.String(100), nullable=False)
     date_created = db.Column(db.DateTime(timezone=True), default=func.now())
+    def total_book_count(self):
+        # Use a query to count the total number of books associated with the user
+        total_count = (
+            db.session.query(func.count(Book.id))
+            .join(bookcase_book_association)
+            .join(Bookcase)
+            .filter(Bookcase.owner_id == self.id)
+            .scalar()
+        )
+        return total_count
 
 class Bookcase(db.Model):
     id = db.Column(db.Integer, primary_key=True)
