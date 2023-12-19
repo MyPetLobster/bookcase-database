@@ -382,48 +382,86 @@ span.psw {
 
 
 /* BOOKCASE PAGE */
-/* .bookcase-page {
+.bookcase-page {
   width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.manual-add-book {
-  width: 300px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
 .books-collection {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 20px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 700px;
 }
-.book-in-collection {
+.books-in-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background-color: #c3dde7;
+  border-radius: 10px;
+  margin: 20px;
+  padding: 16px;
+}
+.book-info {
+  text-align: center;
+  max-width: 400px;
+}
+.book-buttons {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.med-link,
+.small-link {
+  font-family: "Averia Serif Libre", serif;
+  font-size: 18px;
+  text-decoration: none;
+  color: #3d5a60;
+}
+.med-link {
+  font-size: 24px;
+}
+.small-link:hover,
+.med-link:hover {
+  font-weight: bold;
+  transition-duration: 150ms;
+}
+
+.book-cover {
+  align-self: center;
+}
+.book-cover-img {
+  width: 250px;
+  height: 375px;
+  border-radius: 8px;
+}
+
+.bookcase-search {
+  margin-top: 20px;
+  width: 350px;
   display: flex;
   flex-direction: column;
-  
-  width: 150px;
-
-  border: 1px solid black;
-  padding: 12px;
-  font-size: 10px;
-
-}
-.book-in-collection p {
-  flex-shrink: 1;
-  line-height: 0px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 25px;
+  text-align: center;
 }
 
-.manual-add-book {
-  display: flex;
-  flex-direction: column;
-  border: 2px solid black;
+.bold-menu {
+  font-weight: bold;
 }
- */
+
+
+
+
+
+
 
 /* MEDIA QUERIES */
 @media screen and (max-width: 600px) {

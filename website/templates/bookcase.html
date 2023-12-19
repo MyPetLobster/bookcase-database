@@ -5,38 +5,43 @@ content %}
   <h1>{{ current_bookcase.name }}</h1>
   <div class="books-collection">
     {% for book in current_bookcase.books %}
-    <div class="book">
+    <div class="books-in-container">
       <div class="book-cover">
-        <img src="{{ book.thumbnail_link }}" alt="{{ book.title }} Cover" />
+        <img class="book-cover-img" src="{{ book.thumbnail_link }}" alt="Book Cover" />
       </div>
       <div class="book-info">
         <h2>{{ book.title }}</h2>
         <h3>{{ book.authors }}</h3>
         <p>{{ book.description_truncated }}</p>
-        <p>Published: {{ book.publication_date }}</p>
-        <p>Genres: {{ book.categories }}</p>
-        <p>Google Books Rating: {{ book.google_books_rating }}</p>
-        <p>Your Rating: {{ book.user_rating }}</p>
-
+        <p><span class="bold-menu">Published:</span> {{ book.publication_date }}</p>
+        <p><span class="bold-menu">Genres:</span> {{ book.categories }}</p>
+        <p><span class="bold-menu">Google Books Rating:</span> {{ book.google_books_rating }}</p>
+        <p><span class="bold-menu">Your Rating:</span> {{ book.user_rating }}</p>
         <!-- Add a checkbox for "Read: ". Leave unchecked if book.read is False and add checkmark if True -->
         {% if book.read %}
-        <p>Read: <input type="checkbox" name="read" id="read" checked /></p>
+        <p><span class="bold-menu">Read:</span> <input type="checkbox" name="read" id="read" checked /></p>
         {% else %}
-        <p>Read: <input type="checkbox" name="read" id="read" /></p>
+        <p><span class="bold-menu">Read:</span> <input type="checkbox" name="read" id="read" /></p>
         {% endif %}
-        <a href="/bookcase/{{ current_bookcase.id }}/{{ book.id }}/"
+        <a
+          class="med-link"
+          href="/bookcase/{{ current_bookcase.id }}/{{ book.id }}/"
           >View Book Details</a
         >
         <div class="book-buttons">
-          <a href="/bookcase/{{ current_bookcase.id }}/{{ book.id }}/edit_book/"
+          <a
+            class="small-link"
+            href="/bookcase/{{ current_bookcase.id }}/{{ book.id }}/edit_book/"
             >Edit Book Details</a
           >
           <a
+            class="small-link"
             href="/bookcase/{{ current_bookcase.id }}/{{ book.id }}/delete_book/"
-            >Delete</a
+            >Delete Book</a
           >
         </div>
       </div>
+      
     </div>
     {% endfor %}
 
@@ -55,7 +60,7 @@ content %}
         id="general-search"
         required
       />
-      <button type="submit">Search</button>
+      <button class="home-button" type="submit">Search</button>
     </form>
   </div>
 
