@@ -394,8 +394,18 @@ span.psw {
   font-size: 18px;
 }
 
-
-
+/* BOOK PAGE */
+.book-page {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.book-page-img {
+  width: 200px;
+  height: 300px;
+  border-radius: 8px;
+}
 
 /* PROFILE PAGE */
 .profile-container {

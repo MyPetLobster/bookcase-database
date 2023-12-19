@@ -1,34 +1,42 @@
 {% extends "base.html" %} {% block title %}Book{% endblock %} {% block content
 %}
-<h1>Book</h1>
-<div class="book">
+
+<div class="book-page">
   <div class="book-cover">
-    <img src="{{ book.thumbnail_link }}" alt="{{ book.title }} Cover" />
+    <img class="book-page-img" src="{{ book.thumbnail_link }}" alt="{{ book.title }} Cover" />
   </div>
   <div class="book-info">
     <h2>{{ book.title }}</h2>
     <h4>{{ book.subtitle }}</h4>
     <h3>{{ book.authors }}</h3>
     <p class="description">{{ book.description }}</p>
-    <p>Categories: {{ book.categories }}</p>
-    <p>Publisher: {{ book.publisher }}</p>
-    <p>Publication Date: {{ book.publication_date }}</p>
-    <p>Language: {{ book.language }}</p>
-    <p>Pages: {{ book.pages }}</p>
-    <p>Google Books Rating: {{ book.google_books_rating }}</p>
-    <p>ISBN_10: {{ book.isbn_10 }}</p>
-    <p>ISBN_13: {{ book.isbn_13 }}</p>
-    <p>Your Rating: {{ book.user_rating }}</p>
-    <p>Read: {{ book.read }}</p>
+    <p><span class="bold-menu">Categories:</span> {{ book.categories }}</p>
+    <p><span class="bold-menu">Publisher:</span> {{ book.publisher }}</p>
+    <p><span class="bold-menu">Publication Date:</span> {{ book.publication_date }}</p>
+    <p><span class="bold-menu">Language:</span> {{ book.language }}</p>
+    <p><span class="bold-menu">Pages:</span> {{ book.pages }}</p>
+    <p><span class="bold-menu">Google Books Rating:</span> {{ book.google_books_rating }}</p>
+    <p><span class="bold-menu">ISBN_10:</span> {{ book.isbn_10 }}</p>
+    <p><span class="bold-menu">ISBN_13</span> {{ book.isbn_13 }}</p>
+    <p><span class="bold-menu">Your Rating:</span> {{ book.user_rating }}</p>
+    {% if book.read %}
+        <p><span class="bold-menu">Read:</span> <input type="checkbox" name="read" id="read" checked /></p>
+        {% else %}
+        <p><span class="bold-menu">Read:</span> <input type="checkbox" name="read" id="read" /></p>
+    {% endif %}
 
     <div class="book-buttons">
-      <a href="/bookcase/{{ current_bookcase.id }}/{{ book.id }}/edit_book/"
-        >Edit</a
-      >
-      <a href="/bookcase/{{ current_bookcase.id }}/{{ book.id }}/delete_book/"
-        >Delete</a
-      >
-    </div>
+          <a
+            class="small-link"
+            href="/bookcase/{{ current_bookcase.id }}/{{ book.id }}/edit_book/"
+            >Edit Book Details</a
+          >
+          <a
+            class="small-link"
+            href="/bookcase/{{ current_bookcase.id }}/{{ book.id }}/delete_book/"
+            >Delete Book</a
+          >
+        </div>
   </div>
   {% endblock %}
 </div>
