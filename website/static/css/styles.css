@@ -424,7 +424,52 @@ span.psw {
   border-radius: 10px;
   background-color: #c3dde7;
 }
+.edit-prof-box {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.edit-appear-box {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.edit-appearance {
+  margin:40px;
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
 
+.dropdown-menu {
+  display: flex;
+  padding: 10px;
+  height: 40px;
+  border-radius: 6px;
+  font-size: 18px;
+  background-color: #3d5a60;
+  color: white;
+  border: none;
+  font-family: "Averia Serif Libre", serif;
+}
+.appear-form {
+  display: flex;
+  gap: 10px;
+}
+.dropdown-button {
+  border-radius: 10px;
+  background-color: #603d5a;
+  font-size: 20px;
+}
+#appear-save-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  width: 80px;
+  height: 25px;
+}
 
 
 
@@ -479,6 +524,17 @@ span.psw {
   font-weight: bold;
   transition-duration: 150ms;
 }
+.xs-link {
+  font-family: "Averia Serif Libre", serif;
+  font-size: 16px;
+  text-decoration: none;
+  color: #3d5a60;
+}
+.xs-link:hover {
+  font-weight: bold;
+  transition-duration: 150ms;
+}
+
 
 .book-cover {
   align-self: center;
