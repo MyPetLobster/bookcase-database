@@ -279,8 +279,14 @@ span.psw {
   width: 200px;
   border-radius: 10px;
   background-color: #603d5a;
+  font-size: 20px;
 }
-
+.home-button:hover {
+  background-color: #517880;
+  transition-duration: 150ms;
+  color:#603d5a;
+  font-weight: bold;
+}
 .home-h2-signed-out {
   color: #517880;
   font-size: 36px;
@@ -306,6 +312,13 @@ span.psw {
 }
 
 /* BOOKCASES PAGE */
+.bookcases-page-container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .bookcases-main-header {
   font-weight: 400;
   color: #242f2b;
@@ -326,6 +339,10 @@ span.psw {
   font-size: 36px;
   font-weight: 300;
   line-height: 20px;
+}
+.bc-header:hover {
+  font-weight: bold;
+  transition-duration: 150ms;
 }
 .display-bookcases {
   display: flex;
@@ -360,6 +377,26 @@ span.psw {
   width: 130px;
   height: 185px;
 }
+.img-div:hover {
+  width: 140px;
+  height: 190px;
+  transition-duration: 150ms;
+}
+.img-div:hover img {
+  width: 140px;
+  height: 195px;
+  transition-duration: 150ms;
+}
+.bookcases-create-form {
+  margin-top: 40px;
+}
+.create-bookcase-btn {
+  font-size: 18px;
+}
+
+
+
+
 /* PROFILE PAGE */
 .profile-container {
   display: flex;
@@ -442,7 +479,8 @@ span.psw {
   border-radius: 8px;
 }
 
-.bookcase-search {
+.bookcase-search,
+.bookcases-create-form {
   margin-top: 20px;
   width: 350px;
   display: flex;

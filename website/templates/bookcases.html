@@ -1,7 +1,8 @@
 {% extends "base.html" %} {% block title %}Bookcases{% endblock %} {% block
 content %}
-<h1 class="bookcases-main-header">{{ user.username }}'s Bookcases</h1>
+
 <div class="bookcases-page-container">
+  <h1 class="bookcases-main-header">{{ user.username }}'s Bookcases</h1>
   <div class="display-bookcases">
     {% for bookcase in bookcases %}
     <div class="bookcases-item" style="background-color: {{ color }}">
@@ -25,20 +26,20 @@ content %}
     {% endfor %}
   </div>
 
-  <form action="/bookcases/" method="post" class="create-bookcase">
-    <label for="bookcase-name">Bookcase Name</label>
-    <input
-      type="text"
-      name="bookcase-name"
-      id="bookcase-name"
-      placeholder="Bookcase Name"
-      required
-    />
-    <input type="submit" value="Create Bookcase" />
-  </form>
+  <div class="bookcases-create-form">
+    <form action="/bookcases/" method="post" class="create-bookcase">
+      <label for="bookcase-name">Create New Bookcase</label>
+      <input
+        type="text"
+        name="bookcase-name"
+        id="bookcase-name"
+        placeholder="Bookcase Name"
+        required
+      />
+      <button class="home-button create-bookcase-btn" type="submit">Create Bookcase!</button>
+    </form>
+  </div>
+
 </div>
-<script
-  type="module"
-  src="https://cdn.jsdelivr.net/npm/colorthief@2.3.2/dist/color-thief.esm.min.js"
-></script>
+
 {% endblock %}
