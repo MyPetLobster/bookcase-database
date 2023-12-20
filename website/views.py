@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for, session
-from flask_login import current_user, login_required
+from flask_login import login_user, login_required, logout_user, current_user
+from werkzeug.security import generate_password_hash, check_password_hash   
 from .models import Book, Bookcase, User
 from . import db
 from sqlalchemy.exc import IntegrityError
@@ -347,6 +348,38 @@ def edit_book(bc_id, book_id):
         return redirect(url_for('views.book', bc_id=bc_id, book_id=book_id))
     
     return render_template("edit_book.html", current_bookcase=current_bookcase, user=current_user, book=book)
+
+
+
+@views.route("/edit_profile/", methods=['GET', 'POST'])
+@login_required
+def edit_profile():
+    if request.method == 'POST':
+        # Retrieve all form data
+        username = request.form.get('edit-username')
+        email = request.form.get('edit-email')
+        emailConfirm = request.form.get('edit-email-confirm')
+        password = request.form.get('edit-password')
+        passwordConfirm = request.form.get('edit-password-confirm')
+
+        if password != passwordConfirm:
+            flash('Passwords do not match!', category='error')
+            return render_template("edit_profile.html", user=current_user)
+        if email != emailConfirm:
+            flash('Emails do not match!', category='error')
+            return render_template("edit_profile.html", user=current_user)
+
+        # Update the user
+        current_user.username = username
+        current_user.email = email
+        current_user.password = generate_password_hash(password, method='pbkdf2:sha256')
+
+        db.session.commit()
+
+        return redirect(url_for('views.profile'))
+
+    return render_template("edit_profile.html", user=current_user)
+
 
 ##### NO LOGIN REQUIRED #####
 @views.route('/about/')
