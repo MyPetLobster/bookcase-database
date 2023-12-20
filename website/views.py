@@ -7,25 +7,25 @@ import urllib.request, json
 import os
 from urllib.parse import urlencode
 
+
 views = Blueprint('views', __name__)
 
-
-##### LOGIN REQUIRED #####
+# HOME PAGE
 @views.route('/')
 @views.route('/home/')
-
 def home():
     return render_template("home.html", user=current_user)
 
+# PROFILE PAGE
 @views.route('/profile/', methods=['GET', 'POST'])
 @login_required
 def profile():
-    
     username = current_user.username if current_user.is_authenticated else None
     bookcases = Bookcase.query.filter_by(owner_id=current_user.id).all()
     total_books = current_user.total_book_count()
     return render_template("profile.html", username=username, user=current_user, bookcases=bookcases, total_books=total_books)
 
+# BOOKCASES PAGE
 @views.route('/bookcases/', methods=['GET', 'POST'])
 @login_required
 def bookcases():
@@ -45,7 +45,7 @@ def bookcases():
         
     return render_template("bookcases.html", user=current_user, bookcases=bookcases)
 
-
+# BOOKCASE DETAILS PAGE
 @views.route('/bookcase/<int:id>/', methods=['GET', 'POST'])
 @login_required
 def bookcase(id):
@@ -89,6 +89,9 @@ def bookcase(id):
         return render_template("bookcase.html", id=id, bookcase_name=current_bookcase_name, user=current_user, book=new_book)
 
     current_bookcase=Bookcase.query.get(id)
+    # Check if the user owns the bookcase before allowing them to view it
+    if current_bookcase.owner_id != current_user.id:
+        return redirect(url_for('views.bookcases'))
     return render_template("bookcase.html", id=id, current_bookcase=current_bookcase, user=current_user)
 
 
