@@ -291,6 +291,7 @@ def edit_book(bc_id, book_id):
     language = book.language
     pages = book.pages
     user_rating = book.user_rating
+    user_notes = book.user_notes
     read = book.read
 
     if request.method == 'POST' and current_bookcase and current_bookcase.owner_id == current_user.id:
@@ -309,6 +310,7 @@ def edit_book(bc_id, book_id):
             language = request.form.get('book-language')
             pages = request.form.get('book-pages')
             user_rating = request.form.get('book-user-rating')
+            user_notes = request.form.get('book-user-notes')
             read = request.form.get('book-read')
 
 
@@ -332,6 +334,7 @@ def edit_book(bc_id, book_id):
             book.language = language
             book.pages = pages
             book.user_rating = user_rating
+            book.user_notes = user_notes
             book.read = read_value
 
             

@@ -100,6 +100,8 @@ content %}
     placeholder="0"
     value="{{ book.user_rating }}"
   />
+  <label class="label-med" for="book-user-notes">Notes</label>
+  <textarea name="book-user-notes" id="book-user-notes">
   <label class="label-med" for="book-read">Read</label>
   {% if book.read == "True" %}
   <input class="edit-book-input checkbox"  type="checkbox" name="book-read" id="book-read" checked />

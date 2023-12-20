@@ -14,7 +14,7 @@ def register():
         print(request.form)
         print(f"rfg(username) = {request.form.get('username')}")
 
-        username = request.form.get('username').lower().strip()
+        username = request.form.get('username').strip()
         email = request.form.get('email')
         password = request.form.get('psw')
         password2 = request.form.get('psw-repeat')
@@ -52,7 +52,7 @@ def register():
 @auth.route('/login/', methods=['POST', 'GET'])
 def login():
     if request.method == 'POST':
-        username = request.form.get('username').lower().strip()
+        username = request.form.get('username').strip()
         password = request.form.get('psw')
         remember = request.form.get('remember')
         if (remember == 'on'):
@@ -60,7 +60,7 @@ def login():
         else:
             remember = False
 
-        user = User.query.filter_by(username=username).first()
+        user = User.query.filter(db.func.lower(User.username) == username.lower()).first()
 
         if user: 
             if check_password_hash(user.password, password):
