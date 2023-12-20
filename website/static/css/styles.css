@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Averia+Serif+Libre:wght@300;400;700&family=Courier+Prime:wght@400;700&family=Dosis:wght@300;400;500;600;700&family=Gravitas+One&family=Kalnia:wght@400;500;600;700&family=Laila:wght@300;400;500;600;700&family=Podkova:wght@400;500;600;700&family=Vollkorn+SC:wght@400;600;700&display=swap');html,
+
 body {
   height: 100%;
   width: 100%;
@@ -6,6 +7,10 @@ body {
   padding: 0;
   box-sizing: border-box;
   background-color: #aec7d1;
+}
+
+.spacer-div {
+  height: 80px;
 }
 
 h1 {
@@ -29,13 +34,14 @@ p {
 }
 label {
   font-family: "Averia Serif Libre", serif;
-  font-size: 32px;
+  font-size: 28px;
   color: #1a2729;
   
 }
 input {
   font-family: "Courier Prime", monospace;
   font-size: 16px;
+  border-radius: 7px;
 }
 button {
   font-family: "Averia Serif Libre", serif;
@@ -47,20 +53,31 @@ button {
 
 .topnav {
   display: flex;
+  position: fixed;
+  width: 100%;
   align-items: center;
   overflow: hidden;
-  background-color: #3d5a60;
+  background: transparent;
   font-family: "Laila", serif;
+  transition-duration: 150ms;
+}
+.solid-bg {
+  transition-duration: 150ms;
+  background-color: #3d5a60;
 }
 .topnav a {
   margin-right: 10px;
   float: left;
   display: block;
-  color: #f2f2f2;
+  color: #603d5a;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
+}
+.white-font {
+  color: #f2f2f2 !important;
+  transition-duration: 150ms;
 }
 .topnav a:hover {
   background-color: #517880;
@@ -83,7 +100,22 @@ button {
   font-family: "Kalnia", serif;
   font-weight: 600;
   font-size: 28px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
+#bcdb-logo:hover {
+  background-color: #517880;
+  color: #1a2729;
+  transition-duration: 150ms;
+}
+.remove-border-radius {
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+}
+.remove-border-radius:hover {
+  color: #1a2729 !important;
+}
+
 
 /* FLASHED MESSAGES */
 #hideMe {
@@ -640,7 +672,9 @@ span.psw {
   flex-direction: column;
   align-items: center;
 }
-
+.search-form-header {
+  font-size: 36px;
+}
 .search-book {
   width: 300px;
   display: flex;
@@ -650,7 +684,11 @@ span.psw {
   visibility: hidden;
 }
 
-
+.full-width {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 /* MEDIA QUERIES */
 @media screen and (max-width: 600px) {
   .topnav a:not(:first-child) {

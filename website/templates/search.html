@@ -3,6 +3,23 @@ content %}
 
 <div class="search-page-container">
   <div class="search-page-forms">
+    <!--Search form that includes author, title and isbn fields-->
+    <div class="search-book">
+      <h2 class="search-form-header">Search for a Book!</h2>
+      <form action="/search/" method="post" class="search-book-form">
+        <label class="search-label" for="title">Title</label>
+        <input type="text" name="title" id="title" placeholder="Title" />
+        <label class="search-label" for="author">Author</label>
+        <input type="text" name="author" id="author" placeholder="Author" />
+        <label class="search-label" for="isbn">ISBN</label>
+        <input type="text" name="isbn" id="isbn" placeholder="ISBN" />
+        <div class="full-width">
+          <button class="home-button" id="search-btn-search-page" type="submit">
+            Search
+          </button>
+        </div>
+      </form>
+    </div>
     <!-- Create a new bookcase form -->
     <form action="/search/" method="post" class="create-bookcase">
       <label for="bookcase-name">Create New Bookcase</label>
@@ -17,21 +34,6 @@ content %}
         Create
       </button>
     </form>
-    <!--Search form that includes author, title and isbn fields-->
-    <div class="search-book">
-      <h2 class="search-form-header">Search for a Book!</h2>
-      <form action="/search/" method="post" class="search-book-form">
-        <label class="search-label" for="title">Title</label>
-        <input type="text" name="title" id="title" placeholder="Title" />
-        <label class="search-label" for="author">Author</label>
-        <input type="text" name="author" id="author" placeholder="Author" />
-        <label class="search-label" for="isbn">ISBN</label>
-        <input type="text" name="isbn" id="isbn" placeholder="ISBN" />
-        <button class="home-button" id="search-btn-search-page" type="submit">
-          Search
-        </button>
-      </form>
-    </div>
   </div>
 
   <!--!Search results-->
@@ -174,6 +176,4 @@ content %}
   // Pass the search results from Flask to JavaScript
     const searchResults = {{ books|tojson|safe }};
 </script>
-{% endif %}
-
-{% endblock %}
+{% endif %} {% endblock %}
