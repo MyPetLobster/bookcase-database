@@ -49,9 +49,35 @@ content %}
             <button type="button" id="cancel-button" class="cancelbtn">Cancel</button>
         </div>
     </div>
-    
     </form>
 
+    <button class="home-button" id="delete-profile-btn" type="submit" value="Delete">DELETE ACCOUNT</button>
+    <div class="delete-profile-form-box">
+        <form id="delete-profile-form" action="/delete_profile/" method="post">
+        <label id="delete-acc-header" for="password">Enter Password to Delete Account</label>
+        <div class="med-spacer"></div>
+        <input class="edit-profile-input" type="password" name="delete-password" placeholder="Password"/>
+        <input class="edit-profile-input" type="password" name="delete-password-confirm" placeholder="Confirm Password"/>
+        <button class="home-button" id="confirm-delete-btn" type="submit"><span>Confirm Delete</span></button>
+        <p class="close-form">Nevermind</p>
+        </form>
+    </div>
+    
+
 </div>
+
+<script>
+    const deleteProfileBtn = document.querySelector('#delete-profile-btn');
+    const deleteProfileFormBox = document.querySelector('.delete-profile-form-box');
+
+    deleteProfileBtn.addEventListener('click', () => {
+        deleteProfileFormBox.classList.toggle('delete-profile-form-box-active');
+    });
+
+    const closeForm = document.querySelector(".close-form");
+    closeForm.addEventListener('click', () => {
+        deleteProfileFormBox.classList.toggle('delete-profile-form-box-active');
+    });
+</script>
 
 {% endblock %}

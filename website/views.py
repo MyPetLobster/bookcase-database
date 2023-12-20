@@ -381,6 +381,31 @@ def edit_profile():
     return render_template("edit_profile.html", user=current_user)
 
 
+@views.route("/delete_profile/", methods=['GET', 'POST'])
+@login_required
+def delete_profile():
+    if request.method == 'POST':
+        # Retrieve all form data
+        password = request.form.get('delete-password')
+        passwordConfirm = request.form.get('delete-password-confirm')
+
+        if password != passwordConfirm:
+            flash('Passwords do not match!', category='error')
+            return render_template("edit_profile.html", user=current_user)
+
+        if not check_password_hash(current_user.password, password):
+            flash('Incorrect password!', category='error')
+            return render_template("edit_profile.html", user=current_user)
+
+        # Delete the user
+        db.session.delete(current_user)
+        db.session.commit()
+
+        return redirect(url_for('views.home'))
+
+    return render_template("edit_profile.html", user=current_user)
+
+
 ##### NO LOGIN REQUIRED #####
 @views.route('/about/')
 def about():

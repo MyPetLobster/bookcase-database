@@ -12,6 +12,9 @@ body {
 .spacer-div {
   height: 60px;
 }
+.med-spacer {
+  height: 40px;
+}
 
 h1 {
   font-family: "Kalnia", serif;
@@ -248,8 +251,15 @@ button:hover {
   width: auto;
   border-radius: 10px;
   padding: 10px 18px;
-  background-color: #f44336;
+  background-color: rgb(190, 10, 46);
 }
+.cancelbtn:hover {
+  background-color: rgb(91, 6, 23);
+  color: rgb(190, 10, 46);
+  font-weight: bold;
+  transition-duration: 150ms;
+}
+
 /* Add padding to containers */
 .container {
   padding: 16px;
@@ -517,6 +527,15 @@ span.psw {
   width: 150px;
 }
 
+
+
+
+
+
+
+
+
+
 /* BOOKCASE PAGE */
 .bookcase-page {
   width: 100vw;
@@ -631,6 +650,65 @@ span.psw {
   align-items: center;
   justify-content: center;
 }
+#delete-profile-form {
+  display: flex;
+  justify-content: center;
+}
+#delete-profile-btn {
+  background-color: rgb(190, 10, 46);
+}
+#delete-profile-btn:hover {
+  background-color: rgb(91, 6, 23);
+  color: rgb(190, 10, 46);
+  font-weight: bold;
+  transition-duration: 150ms;
+}
+
+.delete-profile-form-box {
+  width: 450px;
+  visibility: hidden;
+  position: fixed;
+  z-index: 1;
+  background-color: #3d5a60;
+  border-radius: 10px;
+  padding: 20px;
+  padding-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 5px solid #603d5a;
+}
+#delete-acc-header {
+  color: #f8f8f8;
+  font-size: 22px;
+  margin-bottom: 0px;
+}
+#delete-profile-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 0px;
+}
+.delete-profile-form-box-active {
+  /* Make visible in center of screen above other elements */
+  visibility: visible;
+  position: fixed;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#confirm-delete-btn {
+  width: 200px;
+  font-size: 16px;
+  background-color: rgb(190, 10, 46);
+}
+#confirm-delete-btn:hover {
+  background-color: rgb(91, 6, 23);
+  color: rgb(190, 10, 46);
+  transition-duration: 150ms;
+}
+
 
 
 /* EDIT DETAILS PAGE */
