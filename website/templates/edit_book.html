@@ -32,7 +32,7 @@ content %}
     value="{{ book.authors }}"
   />
   <label class="label-med" for="book-description">Description</label>
-  <textarea name="book-description" id="book-description">
+  <textarea name="book-description" class="text-area">
 {{ book.description }}</textarea
   >
   <label class="label-med" for="book-categories">Categories</label>
@@ -99,9 +99,10 @@ content %}
     id="book-user-rating"
     placeholder="0"
     value="{{ book.user_rating }}"
+    default="0"
   />
   <label class="label-med" for="book-user-notes">Notes</label>
-  <textarea name="book-user-notes" id="book-user-notes">
+  <textarea name="book-user-notes" class="text-area"></textarea>
   <label class="label-med" for="book-read">Read</label>
   {% if book.read == "True" %}
   <input class="edit-book-input checkbox"  type="checkbox" name="book-read" id="book-read" checked />

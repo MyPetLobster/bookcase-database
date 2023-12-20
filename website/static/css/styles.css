@@ -627,7 +627,7 @@ span.psw {
   flex-direction: column;
   align-items: flex-start;
 }
-#book-description {
+.text-area {
   width: 100%;
   height: 80px;
   padding: 5px;
