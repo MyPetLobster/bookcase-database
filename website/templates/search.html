@@ -40,6 +40,7 @@ content %}
   <div class="search-results">
     <h2 id="search-results-header">Search Results</h2>
     <div class="search-results-container">
+      <a name="search-results-anchor" id="search-results-anchor"></a>
       {% for book in books %}
       <div class="search-result">
         <div class="search-result-cover">
@@ -175,5 +176,13 @@ content %}
 <script>
   // Pass the search results from Flask to JavaScript
     const searchResults = {{ books|tojson|safe }};
+
+    const searchResultsAnchor = document.querySelector(
+      "#search-results-header"
+    );
+    if (searchResultsAnchor) {
+            searchResultsAnchor.scrollIntoView({ behavior: 'smooth' });
+        }
+
 </script>
 {% endif %} {% endblock %}

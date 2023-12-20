@@ -684,6 +684,7 @@ span.psw {
   align-items: center;
 }
 .search-page-forms {
+  margin-top: 60px;
   width: 600px;
   display: flex;
   flex-direction: column;
@@ -694,6 +695,9 @@ span.psw {
   border-radius: 7px;
 }
 .create-bookcase {
+  background-color: #c3dde7;
+  padding: 20px;
+  border-radius: 10px;
   margin-top: 40px;
   display: flex;
   flex-direction: column;
@@ -701,8 +705,13 @@ span.psw {
 }
 .search-form-header {
   font-size: 36px;
+  line-height: 0px;
+  margin-bottom: 60px;
 }
 .search-book {
+  background-color: #c3dde7;
+  padding: 20px;
+  border-radius: 10px;
   width: 300px;
   display: flex;
   flex-direction: column;
@@ -716,6 +725,12 @@ span.psw {
   display: flex;
   justify-content: center;
 }
+.search-label {
+  font-size: 22px;
+}
+
+
+
 /* MEDIA QUERIES */
 @media screen and (max-width: 600px) {
   .topnav a:not(:first-child) {
