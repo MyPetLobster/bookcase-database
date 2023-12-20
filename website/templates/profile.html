@@ -5,43 +5,57 @@ content %}
   <h1>{{username}}'s Profile</h1>
 
   <div class="profile-content">
-    <div class="profile-info profile-item">
-      <h2 class="profile-h2">User Info</h2>
-      <p><span class="bold-menu">Username:</span> {{username}}</p>
-      <p><span class="bold-menu">Email:</span> {{ user.email }}</p>
-      <p><span class="bold-menu">Bookcases:</span> {{ bookcases|length }}</p>
-      <p><span class="bold-menu">Books:</span> {{ total_books }}</p>
-      <p><span class="bold-menu">Member Since:</span> {{ user.date_created.strftime('%m/%d/%Y') }}</p>
-      <div class="edit-prof-box">
-        <a class="xs-link edit-prof-link" href="/edit-profile">Edit Profile</a>
+    <div>
+      <div class="profile-info profile-item">
+        <h2 class="profile-h2">User Info</h2>
+        <p><span class="bold-menu">Username:</span> {{username}}</p>
+        <p><span class="bold-menu">Email:</span> {{ user.email }}</p>
+        <p><span class="bold-menu">Bookcases:</span> {{ bookcases|length }}</p>
+        <p><span class="bold-menu">Books:</span> {{ total_books }}</p>
+        <p><span class="bold-menu">Member Since:</span> {{ user.date_created.strftime('%m/%d/%Y') }}</p>
       </div>
-      
+      <div class="edit-prof-box">
+          <a class="xs-link edit-prof-link" href="/edit-profile">Edit Profile</a>
+      </div>
     </div>
 
-    <div class="profile-bookcases profile-item">
-      <h2 class="profile-h2">Bookcases</h2>
-      {% for bookcase in bookcases %}
-      <li>
-        <a class="small-link" href="/bookcase/{{bookcase.id}}/"> {{bookcase.name}} </a>
-      </li>
-      {% endfor %}
+    <div>
+      <div class="profile-bookcases profile-item">
+        <h2 class="profile-h2">Bookcases</h2>
+        <ul>
+          {% for bookcase in bookcases %}
+          <li>
+            <a class="small-link" href="/bookcase/{{bookcase.id}}/"> {{bookcase.name}} </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="create-bookcase-box">
+          <a class="xs-link create-bookcase-link" href="#">Create New Bookcase</a>
+      </div>
     </div>
   </div>
 
-  <div class="edit-appearance">
-    <h2 class="select-color-theme">Select Color Theme</h2>
-    <div class="edit-appear-box">
-      <form class="appear-form" action="/edit-appearance" method="POST">
-        <select class="dropdown-menu" name="color-theme" id="color-theme">
-          <option class="dropdown-item" value="default">Default</option>
-          <option class="dropdown-item" value="light">Light</option>
-          <option class="dropdown-item" value="dark">Dark</option>
-        </select>
-        <button class="home-button" id="appear-save-btn" type="submit"><span>Save</span></button>
-      </form>
-    </div>
-    
+  <div class="create-bc-expanded-form-box">
+    <form class="create-bc-expanded-form" action="/create-bookcase" method="POST">
+      <input class="create-bc-input" type="text" name="bookcase-name" placeholder="Bookcase Name" required>
+      <button class="home-button" id="create-bc-btn" type="submit"><span>Create</span></button>
+    </form>
+    <p class="close-form">Nevermind</p>
   </div>
+
 </div>
+<script>
+  const createBookcaseLink = document.querySelector('.create-bookcase-link');
+  const createBookcaseForm = document.querySelector('.create-bc-expanded-form-box');
+  createBookcaseLink.addEventListener('click', () => {
+    createBookcaseForm.classList.toggle('create-bc-expanded-form-box-active');
+  });
+
+  const closeForm = document.querySelector(".close-form") 
+  closeForm.addEventListener('click', () => {
+    createBookcaseForm.classList.toggle('create-bc-expanded-form-box-active');
+  });
+</script>
 
 {% endblock %}

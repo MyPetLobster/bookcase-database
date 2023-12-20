@@ -424,53 +424,61 @@ span.psw {
   border-radius: 10px;
   background-color: #c3dde7;
 }
-.edit-prof-box {
+.edit-prof-box,
+.create-bookcase-box {
+  margin-top: 20px;
   width: 100%;
-  display: flex;
+  display: flex; 
   justify-content: center;
 }
-.edit-appear-box {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-.edit-appearance {
-  margin:40px;
-  width: 350px;
+
+.profile-bookcases {
   display: flex;
   flex-direction: column;
-  align-content: center;
+  align-items: space-between;
 }
-
-.dropdown-menu {
-  display: flex;
-  padding: 10px;
-  height: 40px;
-  border-radius: 6px;
-  font-size: 18px;
+.create-bc-expanded-form-box {
+  width: 450px;
+  visibility: hidden;
+  position: fixed;
+  z-index: 1;
   background-color: #3d5a60;
-  color: white;
-  border: none;
-  font-family: "Averia Serif Libre", serif;
-}
-.appear-form {
-  display: flex;
-  gap: 10px;
-}
-.dropdown-button {
   border-radius: 10px;
-  background-color: #603d5a;
-  font-size: 20px;
-}
-#appear-save-btn {
+  padding: 40px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  font-size: 14px;
-  width: 80px;
-  height: 25px;
+  border: 5px solid #603d5a;
 }
-
+.create-bc-expanded-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.create-bc-expanded-form-box-active {
+  /* Make visible in center of screen above other elements */
+  visibility: visible;
+  position: fixed;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.close-form {
+  color: #c3dde7;
+  font-size: 16px;
+  margin-bottom: 0px;
+}
+.close-form:hover {
+  font-weight: bold;
+  cursor: pointer;
+}
+.create-bc-input {
+  border-radius: 7px;
+}
+#create-bc-btn {
+  width: 150px;
+}
 
 /* BOOKCASE PAGE */
 .bookcase-page {
@@ -581,11 +589,14 @@ span.psw {
   align-items: center;
   gap: 20px;
 }
-
+#bookcase-name {
+  border-radius: 7px;
+}
 .create-bookcase {
+  margin-top: 40px;
   display: flex;
   flex-direction: column;
-
+  align-items: center;
 }
 
 .search-book {

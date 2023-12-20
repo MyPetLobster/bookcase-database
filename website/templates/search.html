@@ -168,10 +168,12 @@ content %}
     </div>
   </div>
 </div>
+
 {% if request.method == "POST" %}
 <script>
   // Pass the search results from Flask to JavaScript
     const searchResults = {{ books|tojson|safe }};
 </script>
 {% endif %}
+
 {% endblock %}
