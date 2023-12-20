@@ -1,0 +1,57 @@
+{% extends "base.html" %} {% block title %}Edit Profile{% endblock %} {% block
+content %}
+<div class="edit-profile-box">
+    <h1>Edit Profile</h1>
+
+    <form
+        class="edit-book-form"
+        action="/edit_profile/"
+        method="post"
+    >
+    <label class="label-small" for="book-title">Change Username</label>
+    <input
+        class="edit-profile-input"
+        type="text"
+        name="edit-username"
+        value="{{ user.username }}"
+    />
+    <label class="label-small change-email" for="book-title">Change Email Address</label>
+    <input
+        class="edit-profile-input"
+        type="text"
+        name="edit-email"
+        value="{{ user.email }}"
+    />
+    <label class="label-small confirm" for="book-title">Confirm New Email</label>
+    <input
+        class="edit-profile-input"
+        type="text"
+        name="edit-email-confirm"
+        value="{{ user.email }}"
+    />
+    <label class="label-small change-password" for="book-title">Change Password</label>
+    <input
+        class="edit-profile-input"
+        type="password"
+        name="edit-password"
+        placeholder="New Password"
+    />
+    <label class="label-small confirm" for="book-title">Confirm New Password</label>
+    <input
+        class="edit-profile-input"
+        type="password"
+        name="edit-password-confirm"
+        placeholder="Confirm New Password"
+    />
+    <div class="button-box">
+        <button class="home-button edit-profile-save" type="submit" value="Save">Save Changes</button>
+        <div class="cancel-container-edit-prof">
+            <button type="button" id="cancel-button" class="cancelbtn">Cancel</button>
+        </div>
+    </div>
+    
+    </form>
+
+</div>
+
+{% endblock %}
