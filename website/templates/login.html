@@ -27,6 +27,7 @@
       <label id="remember-me">
         <input
           class="checkbox"
+          id="remember-checkbox"
           type="checkbox"
           checked="checked"
           name="remember"
@@ -43,5 +44,10 @@
     </div>
   </form>
 </div>
+
+<script>
+  const rememberCheckbox = document.querySelector("#remember-checkbox");
+  rememberCheckbox.checked = false;
+</script>
 
 {% endblock %}

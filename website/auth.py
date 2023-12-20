@@ -54,13 +54,18 @@ def login():
     if request.method == 'POST':
         username = request.form.get('username').lower().strip()
         password = request.form.get('psw')
+        remember = request.form.get('remember')
+        if (remember == 'on'):
+            remember = True
+        else:
+            remember = False
 
         user = User.query.filter_by(username=username).first()
 
         if user: 
             if check_password_hash(user.password, password):
                 flash('Logged in successfully!', category='success')
-                login_user(user, remember=True)
+                login_user(user, remember=remember)
                 return redirect(url_for('views.home'))
             else:
                 flash('Incorrect password, try again.', category='error')
