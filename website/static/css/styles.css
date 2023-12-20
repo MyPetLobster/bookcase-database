@@ -119,6 +119,7 @@ button {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-bottom: 60px;
 }
 .register-h1,
 .login-h1 {
