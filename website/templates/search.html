@@ -70,7 +70,7 @@ content %}
           <p>Pages: {{ book['volumeInfo']['pageCount'] }}</p>
           <p>Google Books Rating: {{ book['volumeInfo']['averageRating'] }}</p>
           <p>
-            <a href="{{ book['volumeInfo']['infoLink'] }}" target="_blank"
+            <a class="xs-link purple" href="{{ book['volumeInfo']['infoLink'] }}" target="_blank"
               >More Info</a
             >
           </p>
@@ -156,17 +156,20 @@ content %}
               name="book-google-id"
               value="{{ book['id'] }}"
             />
-            <label for="bookcase">Select Bookcase</label>
-            <select name="bookcase" id="bookcase">
+            <div class="add-new-container">
+            <select class="dropdown" name="bookcase" id="bookcase">
               <option value="" disabled selected>Select Bookcase</option>
               {% for bookcase in bookcases %}
               <option value="{{ bookcase.id }}">{{ bookcase.name }}</option>
               {% endfor %}
             </select>
-            <input type="submit" value="Add to Bookcase" />
+            <button class="home-button btn-small" type="submit">Add Book</button>
+            </div>
           </form>
+          
         </div>
       </div>
+      
       {% endfor %}
     </div>
   </div>
