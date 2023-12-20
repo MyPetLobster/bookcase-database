@@ -35,18 +35,22 @@
         <i class="fa fa-bars"></i>
       </a>
     </div>
+    
     <div class="spacer-div"></div>
 
-    {% with messages = get_flashed_messages(with_categories=True) %} {% if
-    messages %} {% for category, message in messages %} {% if category ==
-    "error" %}
-    <div class="flash-alerts danger" role="alert" id="hideMe">
-      {{ message }}
-    </div>
-    {% else %}
-    <div class="flash-alerts success" role="alert" id="hideMe">
-      {{ message }}
-    </div>
+    {% with messages = get_flashed_messages(with_categories=True) %}
+    
+    {% if messages %} 
+      <div id="flash-container">
+      {% for category, message in messages %} {% if category == "error" %}
+        <div class="flash-alerts danger" role="alert">
+          {{ message }}
+        </div>
+        {% else %}
+        <div class="flash-alerts success" role="alert">
+          {{ message }}
+        </div>
+      </div>
     {% endif %} {% endfor %} {% endif %} {% endwith %} {% block content %}{%
     endblock %}
     <script>
@@ -69,6 +73,21 @@
         });
       }
     };
+
+    const flashContainer = document.getElementById('flash-container');
+    if (flashContainer) {
+      const flashMessages = flashContainer.getElementsByClassName('flash-alerts');
+
+      // Adjust the timeout value as needed (e.g., 3000 milliseconds for 3 seconds)
+      const timeout = 2500;
+
+      // Close each flashed message after the timeout
+      Array.from(flashMessages).forEach((message) => {
+          setTimeout(() => {
+              message.style.display = 'none';
+          }, timeout);
+      });
+    }
     </script>
   </body>
 </html>

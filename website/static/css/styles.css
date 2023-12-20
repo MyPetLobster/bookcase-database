@@ -10,7 +10,7 @@ body {
 }
 
 .spacer-div {
-  height: 40px;
+  height: 60px;
 }
 
 h1 {
@@ -781,6 +781,25 @@ span.psw {
 
 
 
+.flash-alerts {
+  font-family: "Courier Prime", monospace;
+  position: fixed;
+  top: 60px; /* Adjust this value to position it below the navbar */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px; /* Adjust the width as needed */
+  padding: 10px;
+  color: #fff; /* Set the text color */
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+}
+.danger {
+  background-color: rgb(190, 10, 46);
+}
+.success {
+  background-color: rgb(8, 129, 101);
+}
 
 
 /* MEDIA QUERIES */
