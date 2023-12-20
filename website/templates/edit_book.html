@@ -2,114 +2,153 @@
 content %}
 <h2>Edit <span class="bold-title">{{ book.title }}</span>'s Details</h2>
 <div class="edit-book-box">
-<form
-  class="edit-book-form"
-  action="/bookcase/{{ current_bookcase.id }}/{{ book.id }}/edit_book/"
-  method="post"
->
-  <label class="label-med" for="book-title">Title</label>
-  <input
-    class="edit-book-input"
-    type="text"
-    name="book-title"
-    id="book-title"
-    value="{{ book.title }}"
-  />
-  <label class="label-med" type="text" for="book-subtitle">Subtitle</label>
-  <input
-    class="edit-book-input"
-    type="text"
-    name="book-subtitle"
-    id="book-subtitle"
-    value="{{ book.subtitle }}"
-  />
-  <label class="label-med" for="book-authors">Author</label>
-  <input
-    class="edit-book-input"
-    type="text"
-    name="book-authors"
-    id="book-authors"
-    value="{{ book.authors }}"
-  />
-  <label class="label-med" for="book-description">Description</label>
-  <textarea name="book-description" class="text-area">
-{{ book.description }}</textarea
+  <form
+    class="edit-book-form"
+    action="/bookcase/{{ current_bookcase.id }}/{{ book.id }}/edit_book/"
+    method="post"
   >
-  <label class="label-med" for="book-categories">Categories</label>
-  <input
-    class="edit-book-input"
-    type="text"
-    name="book-categories"
-    id="book-categories"
-    value="{{ book.categories }}"
-  />
-  <label class="label-med" for="book-publisher">Publisher</label>
-  <input
-    class="edit-book-input"
-    type="text"
-    name="book-publisher"
-    id="book-publisher"
-    value="{{ book.publisher }}"
-  />
-  <label class="label-med" for="book-publication-date">Published Date</label>
-  <input
-    class="edit-book-input"
-    type="text"
-    name="book-publication-date"
-    id="book-publication-date"
-    value="{{ book.publication_date }}"
-  />
-  <label class="label-med" for="book-isbn-13">ISBN-13</label>
-  <input
-    class="edit-book-input"
-    type="text"
-    name="book-isbn-13"
-    id="book-isbn-13"
-    value="{{ book.isbn_13 }}"
-  />
-  <label class="label-med" for="book-isbn-10">ISBN-10</label>
-  <input
-    class="edit-book-input"
-    type="text"
-    name="book-isbn-10"
-    id="book-isbn-10"
-    value="{{ book.isbn_10 }}"
-  />
-  <label class="label-med" for="book-language">Language</label>
-  <input
-    class="edit-book-input"
-    type="text"
-    name="book-language"
-    id="book-language"
-    value="{{ book.language }}"
-  />
-  <label class="label-med" for="book-pages">Page Count</label>
-  <input
-    class="edit-book-input"
-    type="text"
-    name="book-pages"
-    id="book-pages"
-    value="{{ book.pages }}"
-  />
-  <label class="label-med" for="book-user-rating">Your Rating</label>
-  <input
-    class="edit-book-input"
-    type="number"
-    name="book-user-rating"
-    id="book-user-rating"
-    placeholder="0"
-    value="{{ book.user_rating }}"
-    default="0"
-  />
-  <label class="label-med" for="book-user-notes">Notes</label>
-  <textarea name="book-user-notes" class="text-area"></textarea>
-  <label class="label-med" for="book-read">Read</label>
-  {% if book.read == "True" %}
-  <input class="edit-book-input checkbox"  type="checkbox" name="book-read" id="book-read" checked />
-  {% else %}
-  <input class="edit-book-input checkbox" type="checkbox" name="book-read" id="book-read" />
-  {% endif %}
-  <button class="home-button edit-book-save" type="submit" value="Save">Save</button>
-</form>
+    <label class="label-med" for="book-title">Title</label>
+    <input
+      class="edit-book-input"
+      type="text"
+      name="book-title"
+      id="book-title"
+      value="{{ book.title }}"
+    />
+    <label class="label-med" type="text" for="book-subtitle">Subtitle</label>
+    <input
+      class="edit-book-input"
+      type="text"
+      name="book-subtitle"
+      id="book-subtitle"
+      value="{{ book.subtitle }}"
+    />
+    <label class="label-med" for="book-authors">Author</label>
+    <input
+      class="edit-book-input"
+      type="text"
+      name="book-authors"
+      id="book-authors"
+      value="{{ book.authors }}"
+    />
+    <label class="label-med" for="book-description">Description</label>
+    <textarea name="book-description" class="text-area">
+{{ book.description }}</textarea
+    >
+    <label class="label-med" for="book-categories">Categories</label>
+    <input
+      class="edit-book-input"
+      type="text"
+      name="book-categories"
+      id="book-categories"
+      value="{{ book.categories }}"
+    />
+    <label class="label-med" for="book-publisher">Publisher</label>
+    <input
+      class="edit-book-input"
+      type="text"
+      name="book-publisher"
+      id="book-publisher"
+      value="{{ book.publisher }}"
+    />
+    <label class="label-med" for="book-publication-date">Published Date</label>
+    <input
+      class="edit-book-input"
+      type="text"
+      name="book-publication-date"
+      id="book-publication-date"
+      value="{{ book.publication_date }}"
+    />
+    <label class="label-med" for="book-isbn-13">ISBN-13</label>
+    <input
+      class="edit-book-input"
+      type="text"
+      name="book-isbn-13"
+      id="book-isbn-13"
+      value="{{ book.isbn_13 }}"
+    />
+    <label class="label-med" for="book-isbn-10">ISBN-10</label>
+    <input
+      class="edit-book-input"
+      type="text"
+      name="book-isbn-10"
+      id="book-isbn-10"
+      value="{{ book.isbn_10 }}"
+    />
+    <label class="label-med" for="book-language">Language</label>
+    <input
+      class="edit-book-input"
+      type="text"
+      name="book-language"
+      id="book-language"
+      value="{{ book.language }}"
+    />
+    <label class="label-med" for="book-pages">Page Count</label>
+    <input
+      class="edit-book-input"
+      type="text"
+      name="book-pages"
+      id="book-pages"
+      value="{{ book.pages }}"
+    />
+    <label class="label-med" for="book-user-notes">Notes</label>
+    <textarea name="book-user-notes" class="text-area"></textarea>
+    <label class="label-med" for="book-read">Read</label>
+    {% if book.read == "True" %}
+    <input
+      class="edit-book-input checkbox"
+      type="checkbox"
+      name="book-read"
+      id="book-read"
+      checked
+    />
+    {% else %}
+    <input
+      class="edit-book-input checkbox"
+      type="checkbox"
+      name="book-read"
+      id="book-read"
+      unchecked
+    />
+    {% endif %}
+
+    <div class="user-rating-container">
+      <label class="label-med" id="user-rating-label" for="book-user-rating">Your Rating:</label>
+      <input type="hidden" name="book-user-rating" id="ratingInput" value="{{ book.user_rating }}" data-rating="{{ book.user_rating}}">
+
+      <div class="star-container">
+        <div class="star-group">
+          <input type="radio" class="star" id="one" name="star_rating" data-value="1"/>
+          <input type="radio" class="star" id="two" name="star_rating" data-value="2"/>
+          <input type="radio" class="star" id="three" name="star_rating" data-value="3"/>
+          <input type="radio" class="star" id="four" name="star_rating" data-value="4"/>
+          <input type="radio" class="star" id="five" name="star_rating" data-value="5"/>
+        </div>
+      </div>
+    </div>
+
+    <button class="home-button edit-book-save" type="submit" value="Save">
+      Save
+    </button>
+  </form>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const currentRating = document.querySelector('#ratingInput').getAttribute('data-rating');
+    const stars = document.querySelectorAll('.star');
+
+    stars.forEach(star => {
+        const value = star.getAttribute('data-value');
+        star.checked = value <= currentRating;
+    });
+});
+
+document.addEventListener('click', function(event) {
+    if (event.target.classList.contains('star')) {
+        const selectedRating = event.target.getAttribute('data-value');
+        document.getElementById('ratingInput').value = selectedRating;
+    }
+});
+</script>
 {% endblock %}
