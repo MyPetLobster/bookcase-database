@@ -142,7 +142,8 @@ content %}
 const readCheckbox = document.querySelector('#book-read');
 
 document.addEventListener('DOMContentLoaded', function() {
-    const currentRating = document.querySelector('#ratingInput').getAttribute('data-rating');
+    const currentRating = 0;
+    currentRating = document.querySelector('#ratingInput').getAttribute('data-rating');
     const stars = document.querySelectorAll('.star');
     
     stars.forEach(star => {
