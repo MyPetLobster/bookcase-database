@@ -711,7 +711,7 @@ span.psw {
 
 
 
-/* EDIT DETAILS PAGE */
+/* EDIT BOOK DETAILS PAGE */
 .bold-title {
   font-weight: bold;
   font-size: 48px;
@@ -754,6 +754,14 @@ span.psw {
 }
 .edit-book-save {
   align-self: center;
+}
+#book-read-label {
+  margin-bottom: 12px;
+}
+.book-read {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 

@@ -93,24 +93,6 @@ content %}
     />
     <label class="label-med" for="book-user-notes">Notes</label>
     <textarea name="book-user-notes" class="text-area"></textarea>
-    <label class="label-med" for="book-read">Read</label>
-    {% if book.read == "True" %}
-    <input
-      class="edit-book-input checkbox"
-      type="checkbox"
-      name="book-read"
-      id="book-read"
-      checked
-    />
-    {% else %}
-    <input
-      class="edit-book-input checkbox"
-      type="checkbox"
-      name="book-read"
-      id="book-read"
-      unchecked
-    />
-    {% endif %}
 
     <div class="user-rating-container">
       <label class="label-med" id="user-rating-label" for="book-user-rating">Your Rating:</label>
@@ -127,6 +109,29 @@ content %}
       </div>
     </div>
 
+    <div class="book-read">
+    <label class="label-med" id="book-read-label" for="book-read">Read?</label>
+    {% if book.read == True %}
+    <input
+      class="edit-book-input checkbox"
+      type="checkbox"
+      name="book-read"
+      id="book-read"
+      value="True"
+      checked
+    />
+    {% else %}
+    <input
+      class="edit-book-input checkbox"
+      type="checkbox"
+      name="book-read"
+      id="book-read"
+      value="False"
+      unchecked
+    />
+    {% endif %}
+    </div>
+
     <button class="home-button edit-book-save" type="submit" value="Save">
       Save
     </button>
@@ -134,14 +139,22 @@ content %}
 </div>
 
 <script>
+const readCheckbox = document.querySelector('#book-read');
+
 document.addEventListener('DOMContentLoaded', function() {
     const currentRating = document.querySelector('#ratingInput').getAttribute('data-rating');
     const stars = document.querySelectorAll('.star');
-
+    
     stars.forEach(star => {
         const value = star.getAttribute('data-value');
         star.checked = value <= currentRating;
     });
+
+     readCheckbox.checked = readCheckbox.value === 'True';
+});
+
+readCheckbox.addEventListener('change', function() {
+    readCheckbox.value = readCheckbox.checked.toString();
 });
 
 document.addEventListener('click', function(event) {

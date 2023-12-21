@@ -313,8 +313,10 @@ def edit_book(bc_id, book_id):
             user_rating = request.form.get('book-user-rating')
             user_notes = request.form.get('book-user-notes')
             read = request.form.get('book-read')
-
-
+            if (read == "true"):
+                read = True
+            elif (read == "false"):
+                read = False
             # Convert the 'on' or 'off' string to a boolean
             read_value = read == 'on'
         
@@ -337,6 +339,9 @@ def edit_book(bc_id, book_id):
             book.user_rating = user_rating
             book.user_notes = user_notes
             book.read = read_value
+            book.user_notes = user_notes
+            book.read = read
+
 
             
 
