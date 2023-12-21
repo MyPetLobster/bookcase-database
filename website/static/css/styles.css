@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Averia+Serif+Libre:wght@300;400;700&family=Courier+Prime:wght@400;700&family=Dosis:wght@300;400;500;600;700&family=Gravitas+One&family=Kalnia:wght@400;500;600;700&family=Laila:wght@300;400;500;600;700&family=Podkova:wght@400;500;600;700&family=Vollkorn+SC:wght@400;600;700&display=swap');html,
 
+
+/* GLOBAL STYLES */
 body {
   height: 100%;
   width: 100%;
@@ -8,14 +10,12 @@ body {
   box-sizing: border-box;
   background-color: #aec7d1;
 }
-
 .spacer-div {
   height: 60px;
 }
 .med-spacer {
   height: 40px;
 }
-
 h1 {
   font-family: "Kalnia", serif;
   font-weight: 600;
@@ -53,7 +53,6 @@ button {
 }
 
 /* NAVBAR */
-
 .topnav {
   display: flex;
   position: fixed;
@@ -147,6 +146,7 @@ button {
   }
 }
 
+
 /* REGISTRATION AND LOGIN FORMS */
 .register-container,
 .login-container {
@@ -217,7 +217,6 @@ span {
   margin: 0;
 }
 .forgot-psw {
-  
   margin-top: 0px;
   font-family: "Averia Serif Libre", serif;
   text-decoration: none;
@@ -227,9 +226,6 @@ span {
   font-size: 16px;
   color: #1a2729;
 }
-
-
-
 
 
 /* Set a style for all buttons */
@@ -273,6 +269,7 @@ span.psw {
   display: flex;
   justify-content: center;
 }
+
 
 /* HOME PAGE */
 .home-container,
@@ -355,6 +352,7 @@ span.psw {
   transition-duration: 150ms;
   text-shadow: #603d5a 1px 1px 3px;
 }
+
 
 /* BOOKCASES PAGE */
 .bookcases-page-container {
@@ -454,6 +452,7 @@ span.psw {
   border-radius: 8px;
 }
 
+
 /* PROFILE PAGE */
 .profile-container {
   display: flex;
@@ -478,7 +477,6 @@ span.psw {
   display: flex; 
   justify-content: center;
 }
-
 .profile-bookcases {
   display: flex;
   flex-direction: column;
@@ -528,14 +526,6 @@ span.psw {
 }
 
 
-
-
-
-
-
-
-
-
 /* BOOKCASE PAGE */
 .bookcase-page {
   width: 100vw;
@@ -571,7 +561,6 @@ span.psw {
   display: flex;
   justify-content: space-around;
 }
-
 .med-link,
 .small-link {
   font-family: "Averia Serif Libre", serif;
@@ -663,7 +652,6 @@ span.psw {
   font-weight: bold;
   transition-duration: 150ms;
 }
-
 .delete-profile-form-box {
   width: 450px;
   visibility: hidden;
@@ -710,7 +698,6 @@ span.psw {
 }
 
 
-
 /* EDIT BOOK DETAILS PAGE */
 .bold-title {
   font-weight: bold;
@@ -745,7 +732,6 @@ span.psw {
   font-size: 24px;
   margin-top: 12px;
 }
-
 .edit-book-input {
   border-radius: 7px;
 }
@@ -763,7 +749,6 @@ span.psw {
   align-items: center;
   gap: 20px;
 }
-
 
 
 /* SEARCH PAGE */
@@ -928,25 +913,22 @@ span.psw {
 
 
 
-
+/* STAR RATING SYSTEM */
 :root {
 	--enlarge: scale(1.25);
 	--star-primary-color: #93778e;
 	--star-secondary-color: #603d5a;
 }
-
 .star-container {
 	display: grid;
 	min-height: 30px;
 	place-content: center;
 }
-
 .star-group {
 	display: grid;
 	font-size: clamp(1.5em, 10px, 8em);
 	grid-auto-flow: column;
 }
-
 /* reset native input styles */
 .star {
 	-webkit-appearance: none;
@@ -962,7 +944,6 @@ span.psw {
 	position: relative;
 	width: 1.15em;
 }
-
 @media (prefers-reduced-motion: no-preference) {
 	.star {
 		transition: all 0.25s;
@@ -973,35 +954,29 @@ span.psw {
 		transition: all 0.25s;
 	}
 }
-
 .star:before,
 .star:after {
 	color: var(--star-primary-color);
 	position: absolute;
 }
-
 .star:before {
 	content: "☆";
 }
-
 /* The checked radio button and each radio button preceding */
 .star:checked:before,
 .star:has(~ .star:checked):before {
 	content: "★";
 }
-
 #two:checked:after,
 .star:has(~ #two:checked):after {
 	opacity: 1;
 	right: 14%;
 	top: 10%;
 }
-
 #three:checked:before,
 .star:has(~ #three:checked):before {
 	transform: var(--enlarge);
 }
-
 #three:checked:after,
 .star:has(~ #three:checked):after {
 	opacity: 1;
@@ -1009,13 +984,11 @@ span.psw {
 	top: 2%;
 	transform: var(--enlarge);
 }
-
 #four:checked:before,
 .star:has(~ #four:checked):before {
 	text-shadow: 0.05em 0.033em 0px var(--star-secondary-color);
 	transform: var(--enlarge);
 }
-
 #four:checked:after,
 .star:has(~ #four:checked):after {
 	opacity: 1;
@@ -1023,13 +996,11 @@ span.psw {
 	top: 2%;
 	transform: var(--enlarge);
 }
-
 #five:checked:before,
 .star:has(~ #five:checked):before {
 	text-shadow: 0.05em 0.033em 0px var(--star-secondary-color);
 	transform: var(--enlarge);
 }
-
 #five:checked:after,
 .star:has(~ #five:checked):after {
 	opacity: 1;
@@ -1038,7 +1009,6 @@ span.psw {
 	top: 2%;
 	transform: var(--enlarge);
 }
-
 .star-group:has(> #five:checked) {
 	#one {
 		transform: rotate(-15deg);
@@ -1060,17 +1030,16 @@ span.psw {
 		transform: rotate(15deg);
 	}
 }
-
 .star:focus {
 	outline: none;
 }
-
 .star:focus-visible {
 	border-radius: 8px;
 	outline: 2px dashed var(--star-primary-color);
 	outline-offset: 8px;
 	transition: all 0s;
 }
+
 
 #user-rating-label {
   margin-bottom: 12px;

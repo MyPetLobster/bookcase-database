@@ -11,13 +11,14 @@ from urllib.parse import urlencode
 
 views = Blueprint('views', __name__)
 
+
 # HOME PAGE
 @views.route('/')
 @views.route('/home/')
 def home():
     return render_template("home.html", user=current_user)
 
-# PROFILE PAGE
+# PROFILE 
 @views.route('/profile/', methods=['GET', 'POST'])
 @login_required
 def profile():
@@ -26,7 +27,7 @@ def profile():
     total_books = current_user.total_book_count()
     return render_template("profile.html", username=username, user=current_user, bookcases=bookcases, total_books=total_books)
 
-# BOOKCASES PAGE
+# BOOKCASES 
 @views.route('/bookcases/', methods=['GET', 'POST'])
 @login_required
 def bookcases():
@@ -46,56 +47,17 @@ def bookcases():
         
     return render_template("bookcases.html", user=current_user, bookcases=bookcases)
 
-# BOOKCASE DETAILS PAGE
-@views.route('/bookcase/<int:id>/', methods=['GET', 'POST'])
+# BOOKCASE DETAILS 
+@views.route('/bookcase/<int:id>/')
 @login_required
 def bookcase(id):
-    if request.method == 'POST':
-        # Retrieve form data
-        title = request.form.get('title')
-        author = request.form.get('author')
-        # isbn = request.form.get('isbn') 
-        # year = request.form.get('year')
-        # pages = request.form.get('pages')
-        user_rating = request.form.get('user-rating')
-        
-
-        # Get the current bookcase
-        current_bookcase = Bookcase.query.get(id)
-
-        # Check if the current bookcase exists and belongs to the current user
-        if current_bookcase and current_bookcase.owner_id == current_user.id:
-            try:
-                # Create a new book
-                new_book = Book(
-                    title=title, author=author, isbn=isbn, year=year, pages=pages,
-                    user_rating=user_rating, genre=genre
-                )
-                
-                # Add the book to the current bookcase
-                current_bookcase.books.append(new_book)
-                
-                # Commit changes to the database
-                db.session.commit()
-
-                return redirect(url_for('views.bookcase', id=id))
-            
-            except IntegrityError:
-                # Handle integrity error (e.g., if the book already exists)
-                db.session.rollback()
-                print("IntegrityError: The book may already exist.")
-
-        # Fetch the books associated with the current bookcase
-        current_bookcase_name = current_bookcase.name
-        return render_template("bookcase.html", id=id, bookcase_name=current_bookcase_name, user=current_user, book=new_book)
-
     current_bookcase=Bookcase.query.get(id)
     # Check if the user owns the bookcase before allowing them to view it
     if current_bookcase.owner_id != current_user.id:
         return redirect(url_for('views.bookcases'))
     return render_template("bookcase.html", id=id, current_bookcase=current_bookcase, user=current_user)
 
-
+# BOOK DETAILS
 @views.route('/bookcase/<int:bc_id>/<int:book_id>/')
 @login_required
 def book(bc_id, book_id):
@@ -103,7 +65,7 @@ def book(bc_id, book_id):
     book = Book.query.get(book_id)
     return render_template("book.html", current_bookcase=current_bookcase, user=current_user, book=book)
 
-
+# SEARCH PAGE
 @views.route('/search/', methods=['GET', 'POST'])
 @login_required
 def search():
@@ -185,7 +147,7 @@ def search():
 
     return render_template("search.html", user=current_user, bookcases=bookcases)
 
-
+# ADD BOOK TO BOOKCASE
 @views.route('/search/add_book/', methods=['POST'])
 @login_required
 def add_book():
@@ -210,6 +172,9 @@ def add_book():
     language = request.form.get('book-language')
     pages = request.form.get('book-pages')
     google_books_rating = request.form.get('book-google-rating')
+    # check type of google_books_rating
+    if type(google_books_rating) == str:
+        google_books_rating = float(0)
     google_books_rating_count = request.form.get('book-google-books-count')
     thumbnail_link = request.form.get('book-thumbnail-link')
     google_books_link = request.form.get('book-google-books-link')
@@ -255,9 +220,7 @@ def add_book():
     dict = json.loads(data)
     return render_template("search.html", user=current_user, books=dict['items'], bookcases=bookcases)
     
-
-
-# Delete book from bookcase
+# DELETE BOOK FROM BOOKCASE
 @views.route('/bookcase/<int:bc_id>/<int:book_id>/delete_book/', methods=['GET', 'POST'])
 @login_required
 def delete_book(bc_id, book_id):
@@ -272,7 +235,7 @@ def delete_book(bc_id, book_id):
             print("IntegrityError: The book may already exist.")
     return redirect(url_for('views.bookcase', id=bc_id))
 
-# Edit book details
+# EDIT BOOK DETAILS
 @views.route('/bookcase/<int:bc_id>/<int:book_id>/edit_book/', methods=['GET', 'POST'])
 @login_required
 def edit_book(bc_id, book_id):
@@ -354,8 +317,7 @@ def edit_book(bc_id, book_id):
     
     return render_template("edit_book.html", current_bookcase=current_bookcase, user=current_user, book=book)
 
-
-
+# EDIT USER PROFILE
 @views.route("/edit_profile/", methods=['GET', 'POST'])
 @login_required
 def edit_profile():
@@ -385,7 +347,7 @@ def edit_profile():
 
     return render_template("edit_profile.html", user=current_user)
 
-
+# DELETE USER PROFILE
 @views.route("/delete_profile/", methods=['GET', 'POST'])
 @login_required
 def delete_profile():
@@ -410,8 +372,7 @@ def delete_profile():
 
     return render_template("edit_profile.html", user=current_user)
 
-
-##### NO LOGIN REQUIRED #####
+# ABOUT PAGE
 @views.route('/about/')
 def about():
     return render_template("about.html", user=current_user)
