@@ -7,7 +7,8 @@ from sqlalchemy.exc import IntegrityError
 import urllib.request, json
 import os
 from urllib.parse import urlencode
-
+from extensions import mail
+from flask_mail import Message
 
 views = Blueprint('views', __name__)
 
@@ -527,3 +528,33 @@ def delete_profile():
 @views.route('/about/')
 def about():
     return render_template("about.html", user=current_user)
+
+
+@views.route('/forgot_password/', methods=['GET', 'POST'])
+def forgot_password():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        user = User.query.filter_by(email=email).first()
+        
+        if user:
+            msg = Message(subject='Bookcase Database Password Reset', sender='BookcaseDatabase@gmail.com', recipients=[email])
+            msg.body = f"Hello {user.username},\n\nYou recently requested to reset your password for your Bookcase Database account. Click the link below to reset it.\n\nhttp://http://127.0.0.1:5000/reset_password/{user.id}\n\nIf you did not request a password reset, please ignore this email.\n\nThanks,\nBookcase Database"
+            mail.send(msg)
+    return render_template("forgot_password.html", user=current_user)
+
+
+@views.route('/reset_password/<int:user_id>/', methods=['GET', 'POST'])
+def reset_password(user_id):
+    if request.method == 'POST':
+        password = request.form.get('password')
+        password_confirm = request.form.get('password-confirm')
+        if password != password_confirm:
+            flash('Passwords do not match!', category='error')
+            return render_template("reset_password.html", user=current_user)
+        user = User.query.get(user_id)
+        user.password = generate_password_hash(password, method='pbkdf2:sha256')
+        db.session.commit()
+        return redirect(url_for('auth.login'))
+    return render_template("reset_password.html", user_id=user_id, user=current_user)
+        
+
