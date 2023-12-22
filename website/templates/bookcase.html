@@ -67,12 +67,13 @@ content %}
     
   </div>
   <h2 id="manual-add-book-btn" class="item">Add Book Manually</h2>
-  
+
   <div id="form-anchor"> </div>
   
 
   <div class="manual-add-book">
-    <form class="manual-add-book-form" action="/bookcase/{{ id }}/" method="post">
+    <!-- ADD BOOK ROUTE NEEDED -->
+    <form class="manual-add-book-form" action="search/add_book/" method="post">
       <label for="title">Title:</label>
       <input type="text" name="title" id="title" required />
       
@@ -119,8 +120,7 @@ content %}
       </div>
       <input type="hidden" name="bookcase_id" value="{{ id }}" />
       <button class="home-button edit-book-save" type="submit">Add Book</button>
-    
-    <div class="container cancel-container">
+    <div class="container cancel-container cancel-add-book">
       <button type="button" id="add-book-cancel-btn" class="cancelbtn">Cancel</button>
     </div>
     </form>

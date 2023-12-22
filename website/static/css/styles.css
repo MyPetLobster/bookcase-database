@@ -623,7 +623,13 @@ span.psw {
   transition-duration: 150ms;
   color: #c3dde7;
   font-weight: bold;
+  cursor: pointer;
 }
+.cancel-add-book {
+  margin: 0px;
+  padding: 0px;
+}
+
 .bc-search-form {
   background-color: #c3dde7;
   padding: 20px;
