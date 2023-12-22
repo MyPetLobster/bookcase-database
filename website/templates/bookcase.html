@@ -51,6 +51,7 @@ content %}
   </div>
 
   <div class="searchbar bookcase-search">
+    <div class="bc-search-form">
     <form action="/search/" class="bookcase-search-form" method="post">
       <label for="general-search">Search for a book!</label>
       <input
@@ -62,49 +63,110 @@ content %}
       />
       <button class="home-button" type="submit">Search</button>
     </form>
+    </div>
+    
   </div>
+  <h2 id="manual-add-book-btn" class="item">Add Book Manually</h2>
+  
+  <div id="form-anchor"> </div>
+  
 
-  {#
   <div class="manual-add-book">
-    <form action="/bookcase/{{ id }}/" method="post">
-      <label for="title">Title</label>
-      <input type="text" name="title" id="title" placeholder="Title" required />
-      <label for="author">Author</label>
-      <input
-        type="text"
-        name="author"
-        id="author"
-        placeholder="Author"
-        required
-      />
-      <label for="isbn">ISBN</label>
-      <input type="text" name="isbn" id="isbn" placeholder="ISBN" />
-      <label for="genre">Genre</label>
-      <input type="text" name="genre" id="genre" placeholder="Genre" />
-      <label for="year">Year</label>
-      <input type="text" name="year" id="year" placeholder="Year" />
-      <label for="pages">Pages</label>
-      <input type="text" name="pages" id="pages" placeholder="Pages" />
-      <label for="goodreads-rating">Goodreads Rating</label>
-      <input
-        type="number"
-        name="goodreads-rating"
-        id="goodreads-rating"
-        placeholder="Goodreads Rating"
-      />
-      <label for="user-rating">Your Rating</label>
-      <input
-        type="number"
-        name="user-rating"
-        id="user-rating"
-        placeholder="Your Rating"
-      />
-      <label for="read">Read?</label>
-      <input type="checkbox" name="read" id="read" />
-      <input type="submit" value="Add Book" />
+    <form class="manual-add-book-form" action="/bookcase/{{ id }}/" method="post">
+      <label for="title">Title:</label>
+      <input type="text" name="title" id="title" required />
+      
+      <label for="subtitle">Subtitle:</label>
+      <input type="text" name="subtitle" id="subtitle" />
+      <label for="authors">Author(s):</label>
+      <input type="text" name="authors" id="authors" required />
+      <label for="description">Description:</label>
+      <textarea class="text-area" name="description" id="description" cols="30" rows="10"></textarea>
+      <label for="categories">Genre(s):</label>
+      <input type="text" name="categories" id="categories" />
+      <label for="publisher">Publisher:</label>
+      <input type="text" name="publisher" id="publisher" />
+      <label for="publication_date">Publication Date:</label>
+      <input type="text" name="publication_date" id="publication_date" />
+      <label for="isbn_13" class="isbn">ISBN-13:</label>
+      <input type="text" name="isbn_13" id="isbn_13" />
+      <label for="isbn_10" class="isbn">ISBN-10:</label>
+      <input type="text" name="isbn_10" id="isbn_10" />
+      <label for="language">Language:</label>
+      <input type="text" name="language" id="language" />
+      <label for="page_count">Page Count:</label>
+      <input type="text" name="page_count" id="page_count" />
+      <label for="thumbnail_link">Thumbnail Link:</label>
+      <input type="text" name="thumbnail_link" id="thumbnail_link" />
+      
+      <div class="user-rating-container">
+      <label class="label-med" id="user-rating-label" for="book-user-rating">Your Rating:</label>
+      <input type="hidden" name="book-user-rating" id="ratingInput" value="0" data-rating="0">
+      <div class="star-container">
+        <div class="star-group">
+          <input type="radio" class="star" id="one" name="star_rating" data-value="1"/>
+          <input type="radio" class="star" id="two" name="star_rating" data-value="2"/>
+          <input type="radio" class="star" id="three" name="star_rating" data-value="3"/>
+          <input type="radio" class="star" id="four" name="star_rating" data-value="4"/>
+          <input type="radio" class="star" id="five" name="star_rating" data-value="5"/>
+        </div>
+      </div>
+    </div>
+
+      <div class="horizontal-flex">
+        <label for="read">Read:</label>
+        <input class="checkbox" type="checkbox" name="read" id="book-read" value="False"/>
+      </div>
+      <input type="hidden" name="bookcase_id" value="{{ id }}" />
+      <button class="home-button edit-book-save" type="submit">Add Book</button>
+    
+    <div class="container cancel-container">
+      <button type="button" id="add-book-cancel-btn" class="cancelbtn">Cancel</button>
+    </div>
     </form>
   </div>
-  #}
+  
+ 
 </div>
+
+
+
+
+<script>
+const manualAddBookAnchor = document.querySelector('#form-anchor');
+
+        
+const addBookCancelBtn = document.getElementById("add-book-cancel-btn");
+if (addBookCancelBtn) {
+  addBookCancelBtn.addEventListener("click", () => {
+    // navigate to home page
+    window.location.href = "/bookcase/{{ id }}";
+  });
+}
+
+
+const manualAddBookBtn = document.querySelector('#manual-add-book-btn');
+const manualAddBook = document.querySelector('.manual-add-book');
+manualAddBookBtn.addEventListener('click', function() {
+    manualAddBook.classList.toggle('manual-add-book-active');
+    manualAddBookAnchor.scrollIntoView({ behavior: 'smooth' });
+});
+
+
+const readCheckbox = document.querySelector('#book-read');
+readCheckbox.addEventListener('change', function() {
+    readCheckbox.value = readCheckbox.checked.toString();
+});
+
+document.addEventListener('click', function(event) {
+    if (event.target.classList.contains('star')) {
+        const selectedRating = event.target.getAttribute('data-value');
+        document.getElementById('ratingInput').value = selectedRating;
+    }
+});
+
+
+
+</script>
 
 {% endblock %}

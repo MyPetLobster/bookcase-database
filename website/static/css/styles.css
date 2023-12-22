@@ -196,8 +196,8 @@ input[type="email"] {
 }
 .checkbox {
   accent-color: #603d5a;
-  height: 30px;
-  width: 30px;
+  height: 25px;
+  width: 25px;
 }
 .cancel-container {
   display: flex;
@@ -529,7 +529,7 @@ span.psw {
 /* BOOKCASE PAGE */
 .bookcase-page {
   width: 100vw;
-  height: 100vh;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -589,6 +589,58 @@ span.psw {
   font-weight: bold;
   transition-duration: 150ms;
 }
+/* Manual Add Book Form */
+
+.manual-add-book {
+  display: none;
+  background-color: #c3dde7;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 25px;
+}
+.manual-add-book-active {
+  display: inherit;
+}
+.manual-add-book-form {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.manual-add-book-form label {
+  font-size: 18px;
+}
+#manual-add-book-btn {
+  margin-bottom: 60px;
+  color: #603d5a;
+  font-size: 22px;
+  background-color: #c3dde7;
+  padding: 10px;
+  border-radius: 7px;
+}
+#manual-add-book-btn:hover {
+  background-color: #517880;
+  transition-duration: 150ms;
+  color: #c3dde7;
+  font-weight: bold;
+}
+.bc-search-form {
+  background-color: #c3dde7;
+  padding: 20px;
+  border-radius: 7px;
+}
+.horizontal-flex {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.user-rating-box {
+  display: block;
+}
+.text-area {
+  margin-bottom: 20px;
+  border-radius: 7px;
+}
 
 
 .book-cover {
@@ -600,7 +652,20 @@ span.psw {
   border-radius: 8px;
 }
 
-.bookcase-search,
+
+.bookcase-search .item {
+  max-width: 300px;
+}
+.bookcase-search-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.search-form-a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .bookcases-create-form {
   margin-top: 20px;
   width: 350px;
