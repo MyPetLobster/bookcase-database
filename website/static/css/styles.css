@@ -923,6 +923,33 @@ span.psw {
 
 
 
+/* FORGOT and RESET PASSWORD PAGES */
+.reset-pass-box {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 100px;
+}
+.reset-pass-box h2 {
+  margin-bottom: 0px;
+}
+.reset-pass-form {
+  width: 350px;
+  background-color: #c3dde7;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#req-reset-btn {
+  width: 250px;
+  font-size: 18px;
+}
+
 .flash-alerts {
   font-family: "Courier Prime", monospace;
   position: fixed;
