@@ -31,7 +31,7 @@
       <a href="/register">Register</a>
       <a href="/about">About</a>
       {% endif %}
-      <a href="javascript:void(0);" class="icon">
+      <a href="javascript:void(0);" class="icon" id="hamburger">
         <i class="fa fa-bars"></i>
       </a>
     </div>
@@ -53,10 +53,13 @@
       </div>
     {% endif %} {% endfor %} {% endif %} {% endwith %} {% block content %}{%
     endblock %}
+
     <script>
     const topNav = document.getElementById("myTopnav");
     const anchorTags = document.querySelectorAll("#myTopnav a");
     const bcdbLogo = document.getElementById("bcdb-logo");
+
+  
    
     window.onscroll = function () {
       if (window.pageYOffset > 0) {
@@ -73,6 +76,32 @@
         });
       }
     };
+
+
+    const burger = document.getElementById("hamburger");
+    burger.addEventListener("click", () => {
+      if (topNav.className === "topnav") {
+        topNav.className += " responsive";
+        topNav.scrollIntoView({ behavior: 'smooth' });
+      } else if (topNav.className === "topnav solid-bg") {
+        topNav.className = "topnav responsive";
+        topNav.scrollIntoView({ behavior: 'smooth' });
+      }
+      else {
+        topNav.className = "topnav";
+      }
+    });
+
+    bcdbLogo.addEventListener("click", () => {
+      if (topNav.className === "topnav responsive") {
+        topNav.className = "topnav";
+        bcdbLogo.removeAttribute("href");
+      }
+      else {
+        bcdbLogo.setAttribute("href", "/home");
+      }
+    });
+
 
     const flashContainer = document.getElementById('flash-container');
     if (flashContainer) {
