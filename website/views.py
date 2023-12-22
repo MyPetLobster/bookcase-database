@@ -48,10 +48,65 @@ def bookcases():
     return render_template("bookcases.html", user=current_user, bookcases=bookcases)
 
 # BOOKCASE DETAILS 
-@views.route('/bookcase/<int:id>/')
+@views.route('/bookcase/<int:id>/', methods=['GET', 'POST'])
 @login_required
 def bookcase(id):
     current_bookcase=Bookcase.query.get(id)
+    if request.method == 'POST':
+        
+        title = request.form.get('title')
+        subtitle = request.form.get('subtitle')
+        authors = request.form.get('authors')
+        description = request.form.get('description')
+        description_truncated = ""
+        categories = request.form.get('categories')
+        publisher = request.form.get('publisher')
+        publication_date = request.form.get('publication_date')
+        isbn_13 = request.form.get('isbn_13')
+        isbn_10 = request.form.get('isbn_10')
+        language = request.form.get('language')
+        pages = request.form.get('pages')
+        thumbnail_link = request.form.get('thumbnail_link')
+        user_notes = request.form.get('user_notes')
+        user_rating = request.form.get('user_rating')
+        read = request.form.get('read')
+        if (read == "true"):
+            read = True
+        elif (read == "false"):
+            read = False
+        # Convert the 'on' or 'off' string to a boolean
+        read_value = read == 'on'
+
+        # Create truncated description
+        if description != None:
+            if len(description) > 150:
+                description_truncated = description[:150] + "..."
+        try:
+            new_book = Book(
+                title=title,
+                subtitle=subtitle,
+                authors=authors,
+                description=description,
+                description_truncated=description_truncated,
+                categories=categories,
+                publisher=publisher,
+                publication_date=publication_date,
+                isbn_13=isbn_13,
+                isbn_10=isbn_10,
+                language=language,
+                pages=pages,
+                thumbnail_link=thumbnail_link,
+                user_rating=user_rating,
+                user_notes=user_notes,
+                read=read_value
+            )     
+
+            current_bookcase.books.append(new_book)
+            db.session.commit()
+        except IntegrityError:
+            db.session.rollback()
+            print("IntegrityError: The book may already exist.")
+
     # Check if the user owns the bookcase before allowing them to view it
     if current_bookcase.owner_id != current_user.id:
         return redirect(url_for('views.bookcases'))
@@ -147,6 +202,94 @@ def search():
 
     return render_template("search.html", user=current_user, bookcases=bookcases)
 
+
+
+
+def add_book(template_string):
+    bookcases = Bookcase.query.filter_by(owner_id=current_user.id).all()
+
+    # Which bookcase did user select?
+    if request.form.get('bookcase'):
+        bookcase_id = request.form.get('bookcase')
+        current_bookcase = Bookcase.query.get(bookcase_id)
+
+    # Retrieve all form data
+    title = request.form.get('book-title')
+    subtitle = request.form.get('book-subtitle')
+    authors = request.form.get('book-author')
+    description = request.form.get('book-description')
+    description_truncated = ""
+    if description != None:
+        if len(description) > 150:
+            description_truncated = description[:150] + "..."
+    categories = request.form.get('book-categories')
+    publisher = request.form.get('book-publisher')
+    publication_date = request.form.get('book-publication-date')
+    isbn_13 = request.form.get('book-isbn-13')
+    isbn_10 = request.form.get('book-isbn-10')
+    language = request.form.get('book-language')
+    pages = request.form.get('book-pages')
+    google_books_rating = request.form.get('book-google-rating')
+    # check type of google_books_rating
+    if type(google_books_rating) == str:
+        google_books_rating = float(0)
+    google_books_rating_count = request.form.get('book-google-books-count')
+    thumbnail_link = request.form.get('book-thumbnail-link')
+    google_books_link = request.form.get('book-google-books-link')
+    google_books_id = request.form.get('book-google-books-id')
+
+    # Check if the current bookcase exists and belongs to the current user
+    if current_bookcase and current_bookcase.owner_id == current_user.id:
+        try:
+            # Create a new book
+            new_book = Book(
+                title=title, 
+                subtitle=subtitle, 
+                authors=authors, 
+                description=description, 
+                description_truncated=description_truncated,
+                categories=categories,
+                publisher=publisher, 
+                publication_date=publication_date, 
+                isbn_13=isbn_13, 
+                isbn_10=isbn_10,
+                language=language, 
+                pages=pages, 
+                google_books_rating=google_books_rating,
+                google_books_rating_count=google_books_rating_count, 
+                thumbnail_link=thumbnail_link,
+                google_books_link=google_books_link, 
+                google_books_id=google_books_id
+            )
+            
+            # Add the book to the current bookcase
+            current_bookcase.books.append(new_book)
+            
+            # Commit changes to the database
+            db.session.commit()
+        
+        except IntegrityError:
+            # Handle integrity error (e.g., if the book already exists)
+            db.session.rollback()
+            print("IntegrityError: The book may already exist.")
+
+    url = session.get('search_query')
+    data = urllib.request.urlopen(url).read()
+    dict = json.loads(data)
+    if (template_string == "search.html"):
+        return render_template(template_string, user=current_user, books=dict['items'], bookcases=bookcases)
+    # Check if template_string starts with "bookcase"
+    elif (template_string[:8] == "bookcase"):
+        return render_template(template_string, id=current_bookcase.id, current_bookcase=current_bookcase, user=current_user)
+    
+    
+
+
+
+
+
+
+
 # ADD BOOK TO BOOKCASE
 @views.route('/search/add_book/', methods=['POST'])
 @login_required
@@ -163,7 +306,10 @@ def add_book():
     subtitle = request.form.get('book-subtitle')
     authors = request.form.get('book-author')
     description = request.form.get('book-description')
-    description_truncated = description[:150] + "..."
+    description_truncated = ""
+    if description != None:
+        if len(description) > 150:
+            description_truncated = description[:150] + "..."
     categories = request.form.get('book-categories')
     publisher = request.form.get('book-publisher')
     publication_date = request.form.get('book-publication-date')
@@ -284,7 +430,8 @@ def edit_book(bc_id, book_id):
             read_value = read == 'on'
         
             # Create truncated description
-            description_truncated = description[:150] + "..."
+            if len(description) > 150:
+                description_truncated = description[:150] + "..."
 
             # Update the book
             book.title = title

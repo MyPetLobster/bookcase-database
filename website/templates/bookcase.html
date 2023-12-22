@@ -73,16 +73,15 @@ content %}
 
   <div class="manual-add-book">
     <!-- ADD BOOK ROUTE NEEDED -->
-    <form class="manual-add-book-form" action="search/add_book/" method="post">
+    <form class="manual-add-book-form" action="/bookcase/{{ id }}" method="post">
       <label for="title">Title:</label>
       <input type="text" name="title" id="title" required />
-      
       <label for="subtitle">Subtitle:</label>
       <input type="text" name="subtitle" id="subtitle" />
       <label for="authors">Author(s):</label>
       <input type="text" name="authors" id="authors" required />
       <label for="description">Description:</label>
-      <textarea class="text-area" name="description" id="description" cols="30" rows="10"></textarea>
+      <textarea class="text-area" name="description" id="description" cols="30" rows="10">&nbsp;</textarea>
       <label for="categories">Genre(s):</label>
       <input type="text" name="categories" id="categories" />
       <label for="publisher">Publisher:</label>
@@ -99,10 +98,11 @@ content %}
       <input type="text" name="page_count" id="page_count" />
       <label for="thumbnail_link">Thumbnail Link:</label>
       <input type="text" name="thumbnail_link" id="thumbnail_link" />
-      
+      <label for="user_notes">Notes:</label>
+      <textarea class="text-area" name="user_notes" id="user_notes" cols="30" rows="10"></textarea>
       <div class="user-rating-container">
-      <label class="label-med" id="user-rating-label" for="book-user-rating">Your Rating:</label>
-      <input type="hidden" name="book-user-rating" id="ratingInput" value="0" data-rating="0">
+      <label class="label-med" id="user_rating_label" for="user-rating">Your Rating:</label>
+      <input type="hidden" name="user_rating" id="ratingInput" value="0" data-rating="0">
       <div class="star-container">
         <div class="star-group">
           <input type="radio" class="star" id="one" name="star_rating" data-value="1"/>
@@ -116,7 +116,7 @@ content %}
 
       <div class="horizontal-flex">
         <label for="read">Read:</label>
-        <input class="checkbox" type="checkbox" name="read" id="book-read" value="False"/>
+        <input class="checkbox" type="checkbox" name="read" id="read" value="False"/>
       </div>
       <input type="hidden" name="bookcase_id" value="{{ id }}" />
       <button class="home-button edit-book-save" type="submit">Add Book</button>
