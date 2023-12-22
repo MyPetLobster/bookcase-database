@@ -3,7 +3,15 @@
 
 <div class="book-page">
   <div class="book-cover">
+    {% if book.thumbnail_link == "" %}
+    <img
+      class="book-page-img"
+      src="/static/images/image_not_available.jpeg"
+      alt="Image Not Available"
+    />
+    {% else %}
     <img class="book-page-img" src="{{ book.thumbnail_link }}" alt="{{ book.title }} Cover" />
+    {% endif %}
   </div>
   <div class="book-info">
     <h2>{{ book.title }}</h2>
@@ -43,5 +51,5 @@
           >
         </div>
   </div>
-  {% endblock %}
 </div>
+{% endblock %}

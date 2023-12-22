@@ -74,7 +74,7 @@ def bookcase(id):
             read = True
         elif (read == "False"):
             read = False
-            
+
         # Create truncated description
         if description != None:
             if len(description) > 150:
@@ -413,6 +413,7 @@ def edit_book(bc_id, book_id):
             subtitle = request.form.get('book-subtitle')
             authors = request.form.get('book-authors')
             description = request.form.get('book-description')
+            description_truncated = ""
             categories = request.form.get('book-categories')
             publisher = request.form.get('book-publisher')
             publication_date = request.form.get('book-publication-date')
