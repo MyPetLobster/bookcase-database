@@ -70,13 +70,11 @@ def bookcase(id):
         user_notes = request.form.get('user_notes')
         user_rating = request.form.get('user_rating')
         read = request.form.get('read')
-        if (read == "true"):
+        if (read == "True"):
             read = True
-        elif (read == "false"):
+        elif (read == "False"):
             read = False
-        # Convert the 'on' or 'off' string to a boolean
-        read_value = read == 'on'
-
+            
         # Create truncated description
         if description != None:
             if len(description) > 150:
@@ -98,7 +96,7 @@ def bookcase(id):
                 thumbnail_link=thumbnail_link,
                 user_rating=user_rating,
                 user_notes=user_notes,
-                read=read_value
+                read=read
             )     
 
             current_bookcase.books.append(new_book)
