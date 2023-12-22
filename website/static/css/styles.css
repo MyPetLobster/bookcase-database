@@ -552,7 +552,7 @@ span.psw {
 }
 .book-info {
   text-align: center;
-  max-width: 400px;
+  width: 400px;
 }
 .book-buttons {
   margin-top: 20px;

@@ -10,17 +10,25 @@ content %}
         <h2 class="bc-header">{{ bookcase.name }}</h2>
       </a>
       <div class="gallery">
-        {% for book in bookcase.books %} {% if book.thumbnail_link %}
+        {% for book in bookcase.books %}
         <div class="img-div">
           <a href="/bookcase/{{ bookcase.id }}/{{ book.id }}/">
+            {% if book.thumbnail_link == "" %}
+            <img
+              class="preview-thumbnail book-cover"
+              src="/static/images/image_not_available.jpeg"
+              alt="{{ book.title }} Cover"
+            />
+            {% else %}
             <img
               class="preview-thumbnail book-cover"
               src="{{ book.thumbnail_link }}"
               alt="{{ book.title }} Cover"
             />
+            {% endif %}
           </a>
         </div>
-        {% endif %} {% endfor %}
+        {% endfor %}
       </div>
     </div>
     {% endfor %}

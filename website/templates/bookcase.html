@@ -7,7 +7,11 @@ content %}
     {% for book in current_bookcase.books %}
     <div class="books-in-container">
       <div class="book-cover">
-        <img class="book-cover-img" src="{{ book.thumbnail_link }}" alt="Book Cover" />
+        {% if book.thumbnail_link == "" %}
+        <img class="book-cover-img" src="/static/images/image_not_available.jpeg" alt="Image Not Available" />
+        {% else %}
+        <img class="book-cover-img" src="{{ book.thumbnail_link }}" alt="{{ book.title }} Cover" />
+        {% endif %}
       </div>
       <div class="book-info">
         <h2>{{ book.title }}</h2>

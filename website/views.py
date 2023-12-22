@@ -406,7 +406,7 @@ def edit_book(bc_id, book_id):
 
     print(f"user rating: {user_rating}")
     print("-------------------")
-    
+
     if request.method == 'POST' and current_bookcase and current_bookcase.owner_id == current_user.id:
 
         try:
@@ -425,9 +425,9 @@ def edit_book(bc_id, book_id):
             user_rating = request.form.get('book-user-rating')
             user_notes = request.form.get('book-user-notes')
             read = request.form.get('book-read')
-            if (read == "true"):
+            if (read == "True"):
                 read = True
-            elif (read == "false"):
+            elif (read == "False"):
                 read = False
             # Convert the 'on' or 'off' string to a boolean
             read_value = read == 'on'
