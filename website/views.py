@@ -404,6 +404,9 @@ def edit_book(bc_id, book_id):
     user_notes = book.user_notes
     read = book.read
 
+    print(f"user rating: {user_rating}")
+    print("-------------------")
+    
     if request.method == 'POST' and current_bookcase and current_bookcase.owner_id == current_user.id:
 
         try:
