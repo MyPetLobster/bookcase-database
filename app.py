@@ -13,4 +13,4 @@ if __name__ == '__main__':
     app.config['MAIL_USE_TLS'] = False
     app.config['MAIL_USE_SSL'] = True
     mail.init_app(app)
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000)
