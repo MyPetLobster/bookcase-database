@@ -272,6 +272,7 @@ span.psw {
 
 
 /* HOME PAGE */
+
 .home-container,
 .profile-container {
   height: 100vh;
@@ -330,9 +331,8 @@ span.psw {
   font-weight: bold;
 }
 .home-h2-signed-out {
-  color: #517880;
+  color: #603d5a;
   font-size: 36px;
-  text-shadow: #603d5a 1px 1px 1px;
   margin-bottom: 30px;
 }
 .home-login-links {
@@ -344,13 +344,14 @@ span.psw {
 .home-login-links a {
   font-family: "Averia Serif Libre", serif;
   text-decoration: none;
-  color: #517880;
+  color: #603d5a;
   font-size: 24px;
 }
 .home-login-links a:hover {
   font-size: 28px;
   transition-duration: 150ms;
-  text-shadow: #603d5a 1px 1px 3px;
+  color: #517880;
+
 }
 
 
@@ -884,6 +885,12 @@ span.psw {
 #bookcase-name {
   border-radius: 7px;
 }
+input:focus,
+select:focus {
+  outline: 2px solid #603d5a;
+  outline-offset: -4px; 
+}
+
 .create-bookcase {
   background-color: #c3dde7;
   padding: 20px;
