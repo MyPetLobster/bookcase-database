@@ -99,8 +99,16 @@ def generate_reset_token(user_id):
 @auth.route('/forgot_password/', methods=['GET', 'POST'])
 def forgot_password():
     if request.method == 'POST':
-        email = request.form.get('email')
-        user = User.query.filter_by(email=email).first()
+
+        input = request.form.get('email-username')
+        # check if input is an email address or username
+        if '@' in input:
+            email = input
+            user = User.query.filter_by(email=email).first()
+        else:
+            username = input
+            user = User.query.filter(db.func.lower(User.username) == username.lower()).first()
+            email = user.email
 
         if user:
             user.reset_token = generate_reset_token(user.id)
