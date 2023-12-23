@@ -16,8 +16,8 @@ def register():
 
         username = request.form.get('username').strip()
         email = request.form.get('email')
-        password = request.form.get('psw')
-        password2 = request.form.get('psw-repeat')
+        password = request.form.get('password')
+        password2 = request.form.get('password-confirm')
 
         email_exists = User.query.filter_by(email=email).first()
         username_exists = User.query.filter_by(username=username).first()

@@ -11,20 +11,22 @@ content %}
         placeholder="Enter Username"
         name="username"
         id="username"
+        autocomplete="on"
         required
       />
 
       <label for="email"><b>Email</b></label>
-      <input type="email" placeholder="Enter Email" name="email" id="email" />
+      <input type="email" placeholder="Enter Email" name="email" id="email" autocomplete="on" />
 
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required />
+      <label for="password"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="password" id="password" required />
 
-      <label for="psw-repeat"><b>Confirm Password</b></label>
+      <label for="password-confirm"><b>Confirm Password</b></label>
       <input
         type="password"
         placeholder="Confirm Password"
-        name="psw-repeat"
+        name="password-confirm"
+        id="password-confirm"
         required
       />
 

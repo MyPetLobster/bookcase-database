@@ -9,15 +9,7 @@ if (cancelBtn) {
 
 
 
-// Assuming your search results are stored in a variable named `searchResults`
-const searchResultsHeader = document.querySelector("#search-results-header");
 
-// Check if there are search results
-if (searchResults && searchResults.length > 0) {
-  searchResultsHeader.style.visibility = "visible";
-} else {
-  searchResultsHeader.style.visibility = "hidden";
-}
 
 
 
