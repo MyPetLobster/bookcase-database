@@ -154,11 +154,19 @@ document.addEventListener('DOMContentLoaded', function() {
         star.checked = value <= currentRating;
     });
 
-     readCheckbox.checked = readCheckbox.value === 'True';
+    if (readCheckbox.value == 'True') {
+        readCheckbox.checked = true;
+    } else {
+        readCheckbox.checked = false;
+    }
 });
 
 readCheckbox.addEventListener('change', function() {
-    readCheckbox.value = readCheckbox.checked.toString();
+    if (readCheckbox.checked == true) {
+      readCheckbox.value = "True";
+    } else {
+      readCheckbox.value = "False";
+    }
 });
 
 document.addEventListener('click', function(event) {

@@ -19,7 +19,7 @@ body {
 h1 {
   font-family: "Kalnia", serif;
   font-weight: 600;
-  font-size: 56px;
+  font-size: 50px;
   text-align: center;
   color: #1a2729;
 }
@@ -1406,6 +1406,107 @@ span.psw {
   }
 }
 
+/* Bookcase Page Media Query */
+@media screen and (max-width: 600px) {
+  .bookcase-page {
+    width: 100vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .books-collection {
+    width: 300px;
+  }
+  .books-in-container {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .book-info {
+    width: 200px;
+  }
+  .book-buttons {
+    width: 100%;
+    gap: 20px;
+    justify-content: center;
+  }
+  .med-link,
+  .small-link {
+    font-size: 14px;
+  }
+  .med-link {
+    font-size: 18px;
+  }
+  .small-link:hover,
+  .med-link:hover {
+    font-size: 22px;
+  }
+  .xs-link {
+    font-size: 14px;
+  }
+  .xs-link:hover {
+    font-size: 18px;
+  }
+  .manual-add-book {
+    width: 300px;
+  }
+  .manual-add-book-form {
+    width: 250px;
+  }
+  .text-area {
+    width: 250px;
+  }
+  .label-small {
+    font-size: 14px;
+  }
+  .label-med {
+    font-size: 18px;
+  }
+  .edit-book-input {
+    width: 200px;
+  }
+  #book-user-rating {
+    width: 30px;
+  }
+  .edit-book-save {
+    align-self: center;
+  }
+  #book-read-label {
+    margin-bottom: 12px;
+  }
+  .book-read {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .book-cover {
+    align-self: center;
+  }
+  .book-cover-img {
+    width: 150px;
+    height: 225px;
+    border-radius: 8px;
+  }
+  .bookcase-search .item {
+    max-width: 300px;
+  }
+  .bookcase-search-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .search-form-a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .bookcases-create-form {
+    margin-top: 20px;
+    width: 300px;
+  }
+}
 
 /* Change styles for span and cancel button on extra small screens */
 @media screen and (max-width: 300px) {
