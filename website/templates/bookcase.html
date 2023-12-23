@@ -68,6 +68,23 @@ content %}
     </div>
   </div>
 
+  <div class="delete-bookcase-button-box">
+      <button class="home-button delete-bookcase-button" type="button">Delete Bookcase</button>
+  </div>
+
+  <div class="confirm-delete-bookcase">
+    <h4>Are you sure you want to delete your <span class="bold-big">{{ current_bookcase.name }}</span> bookcase? This action cannot be undone!</h4>
+    
+    <a href="/bookcase/{{ current_bookcase.id }}/delete_bookcase/">
+      <button class="home-button" type="button">Confirm Delete Bookcase</button>
+    </a>
+    <div class="container cancel-container cancel-add-book">
+      <button type="button" id="add-book-cancel-btn" class="cancelbtn">
+        Cancel
+      </button>
+    </div>
+  </div>
+
   <div class="searchbar bookcase-search">
     <div class="bc-search-form">
       <form action="/search/" class="bookcase-search-form" method="post">
@@ -88,7 +105,6 @@ content %}
   <div id="form-anchor"></div>
 
   <div class="manual-add-book">
-    <!-- ADD BOOK ROUTE NEEDED -->
     <form
       class="manual-add-book-form"
       action="/bookcase/{{ id }}"
@@ -207,6 +223,12 @@ content %}
 </div>
 
 <script>
+  const deleteBookcaseButton = document.querySelector(".delete-bookcase-button");
+  const confirmDeleteBookcase = document.querySelector(".confirm-delete-bookcase");
+  deleteBookcaseButton.addEventListener("click", function () {
+    confirmDeleteBookcase.classList.toggle("confirm-delete-bookcase-active");
+  });
+
   const manualAddBookAnchor = document.querySelector("#form-anchor");
 
   const addBookCancelBtn = document.getElementById("add-book-cancel-btn");

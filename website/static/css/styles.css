@@ -647,8 +647,6 @@ span.psw {
   margin-bottom: 20px;
   border-radius: 7px;
 }
-
-
 .book-cover {
   align-self: center;
 }
@@ -657,8 +655,6 @@ span.psw {
   height: 375px;
   border-radius: 8px;
 }
-
-
 .bookcase-search .item {
   max-width: 300px;
 }
@@ -682,7 +678,54 @@ span.psw {
   margin-bottom: 25px;
   text-align: center;
 }
+.delete-bookcase-button-box {
+  margin-bottom: 20px;
+}
+.delete-bookcase-button {
+  width: 150px;
+  font-size: 14px;
+  border-radius: 10px;
+  background-color: rgb(190, 10, 46);
+}
+.delete-bookcase-button:hover {
+  background-color: rgb(91, 6, 23);
+  color: rgb(190, 10, 46);
+  font-weight: bold;
+  transition-duration: 150ms;
+}
+h4 {
+  text-align: center;
+  font-family: "Averia Serif Libre", serif;
+  color: #f2f2f2;
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+.confirm-delete-bookcase {
+  width: 350px;
+  visibility: hidden;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  background-color: #3d5a60;
+  border-radius: 10px;
+  padding: 20px;
+  padding-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 5px solid #603d5a;
+}
+.confirm-delete-bookcase-active {
+  visibility: visible;
+}
 
+
+.bold-big {
+  font-weight: bold;
+  font-size: 20px;
+}
 
 .bold-menu {
   font-weight: bold;
@@ -1112,6 +1155,8 @@ span.psw {
   align-items: center;
   gap: 20px;
 }
+
+
 
 
 

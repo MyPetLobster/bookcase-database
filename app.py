@@ -2,8 +2,8 @@ from website import create_app
 from extensions import mail
 import os
 
-gmail_pass = os.environ.get('GMAIL_PASSWORD')
-# gmail_pass = "nxnt zopk aiai iqvp"
+# gmail_pass = os.environ.get('GMAIL_PASSWORD')
+gmail_pass = "nxnt zopk aiai iqvp"
 
 if __name__ == '__main__':
     app = create_app()
@@ -14,6 +14,7 @@ if __name__ == '__main__':
     app.config['MAIL_USE_TLS'] = False
     app.config['MAIL_USE_SSL'] = True
     mail.init_app(app)
-    app.run(host="0.0.0.0", port=5000)
+    app.run(debug=True)
 
 
+# app.run(host="0.0.0.0", port=5000)

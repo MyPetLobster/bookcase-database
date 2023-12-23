@@ -10,6 +10,7 @@ from urllib.parse import urlencode
 from extensions import mail
 from flask_mail import Message
 
+
 views = Blueprint('views', __name__)
 
 
@@ -111,6 +112,20 @@ def bookcase(id):
         return redirect(url_for('views.bookcases'))
     return render_template("bookcase.html", id=id, current_bookcase=current_bookcase, user=current_user)
 
+# DELETE BOOKCASE
+@views.route('/bookcase/<int:id>/delete_bookcase/', methods=['GET', 'POST'])
+@login_required
+def delete_bookcase(id):
+    current_bookcase = Bookcase.query.get(id)
+    if current_bookcase.owner_id == current_user.id:
+        try:
+            db.session.delete(current_bookcase)
+            db.session.commit()
+        except IntegrityError:
+            db.session.rollback()
+            print("IntegrityError: The book may already exist.")
+    return redirect(url_for('views.bookcases'))
+
 # BOOK DETAILS
 @views.route('/bookcase/<int:bc_id>/<int:book_id>/')
 @login_required
@@ -200,8 +215,6 @@ def search():
             
 
     return render_template("search.html", user=current_user, bookcases=bookcases)
-
-    
 
 # ADD BOOK TO BOOKCASE
 @views.route('/search/add_book/', methods=['POST'])
@@ -454,7 +467,7 @@ def delete_profile():
 def about():
     return render_template("about.html", user=current_user)
 
-
+# FORGOT PASSWORD
 @views.route('/forgot_password/', methods=['GET', 'POST'])
 def forgot_password():
     if request.method == 'POST':
@@ -467,7 +480,7 @@ def forgot_password():
             mail.send(msg)
     return render_template("forgot_password.html", user=current_user)
 
-
+# RESET PASSWORD
 @views.route('/reset_password/<int:user_id>/', methods=['GET', 'POST'])
 def reset_password(user_id):
     if request.method == 'POST':
