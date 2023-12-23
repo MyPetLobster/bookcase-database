@@ -942,6 +942,9 @@ select:focus {
 .search-result-info {
   width: 300px;
 }
+.author-results {
+  text-align: center;
+}
 h4,
 h3 {
   font-family: "Averia Serif Libre", serif;

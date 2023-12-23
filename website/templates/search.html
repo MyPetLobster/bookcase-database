@@ -52,23 +52,23 @@ content %}
         </div>
         <div class="search-result-info">
           <h3>{{ book['volumeInfo']['title'] }}</h3>
-          <h4>
+          <h4 class="author-results">
             {% for author in book['volumeInfo']['authors'] %} {{ author }}{% if
             not loop.last %}, {% endif %} {% endfor %}
           </h4>
           {% for isbn_type in book['volumeInfo']['industryIdentifiers'] %} {% if
           isbn_type['type'] == 'ISBN_13' %}
-          <p>ISBN_13: {{ isbn_type['identifier'] }}</p>
+          <p><span class="bold-menu">ISBN_13:</span> {{ isbn_type['identifier'] }}</p>
           {% elif isbn_type['type'] == 'ISBN_10' %}
-          <p>ISBN_10: {{ isbn_type['identifier'] }}</p>
+          <p><span class="bold-menu">ISBN_10:</span> {{ isbn_type['identifier'] }}</p>
           {% endif %} {% endfor %}
           <p>
-            Categories: {% for category in book['volumeInfo']['categories'] %}
+            <span class="bold-menu">Categories:</span> {% for category in book['volumeInfo']['categories'] %}
             {{ category }} {% endfor %}
           </p>
-          <p>Publication Date: {{ book['volumeInfo']['publishedDate'] }}</p>
-          <p>Pages: {{ book['volumeInfo']['pageCount'] }}</p>
-          <p>Google Books Rating: {{ book['volumeInfo']['averageRating'] }}</p>
+          <p><span class="bold-menu">Publication Date:</span> {{ book['volumeInfo']['publishedDate'] }}</p>
+          <p><span class="bold-menu">Pages:</span> {{ book['volumeInfo']['pageCount'] }}</p>
+          <p><span class="bold-menu">Google Books Rating:</span> {{ book['volumeInfo']['averageRating'] }}</p>
           <p>
             <a class="xs-link purple" href="{{ book['volumeInfo']['infoLink'] }}" target="_blank"
               >More Info</a

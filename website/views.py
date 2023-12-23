@@ -225,6 +225,12 @@ def add_book():
     if request.form.get('bookcase'):
         bookcase_id = request.form.get('bookcase')
         current_bookcase = Bookcase.query.get(bookcase_id)
+    else:
+        flash('Please select a bookcase!', category='error')
+        url = session.get('search_query')
+        data = urllib.request.urlopen(url).read()
+        dict = json.loads(data)
+        return render_template("search.html", user=current_user, books=dict['items'], bookcases=bookcases)
 
     # Retrieve all form data
     title = request.form.get('book-title')
