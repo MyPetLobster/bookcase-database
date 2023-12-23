@@ -3,11 +3,13 @@ from . import db
 from .models import User
 from flask_login import login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash   
-
+from extensions import mail
+from flask_mail import Message
 
 auth = Blueprint('auth', __name__)
 
 
+# REGISTER
 @auth.route('/register/', methods=['POST', 'GET'])
 def register():
     if request.method == 'POST':
@@ -48,7 +50,7 @@ def register():
         
     return render_template("register.html", user=current_user)
 
-
+# LOGIN
 @auth.route('/login/', methods=['POST', 'GET'])
 def login():
     if request.method == 'POST':
@@ -74,32 +76,41 @@ def login():
 
     return render_template("login.html", user=current_user)
 
-
-
+# LOGOUT
 @auth.route('/logout')  
 @login_required
 def logout():
     logout_user()
     return redirect(url_for('views.home'))
 
+# FORGOT PASSWORD
+@auth.route('/forgot_password/', methods=['GET', 'POST'])
+def forgot_password():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        user = User.query.filter_by(email=email).first()
+        
+        if user:
+            msg = Message(subject='Bookcase Database Password Reset', sender='BookcaseDatabase@gmail.com', recipients=[email])
+            msg.body = f"Hello {user.username},\n\nYou recently requested to reset your password for your Bookcase Database account. Click the link below to reset it.\n\nhttp://127.0.0.1:5000/reset_password/{user.id}\n\nIf you did not request a password reset, please ignore this email.\n\nThanks,\nBookcase Database"
+            mail.send(msg)
+    return render_template("forgot_password.html", user=current_user)
+
+# RESET PASSWORD
+@auth.route('/reset_password/<int:user_id>/', methods=['GET', 'POST'])
+def reset_password(user_id):
+    if request.method == 'POST':
+        password = request.form.get('password')
+        password_confirm = request.form.get('password-confirm')
+        if password != password_confirm:
+            flash('Passwords do not match!', category='error')
+            return render_template("reset_password.html", user=current_user)
+        user = User.query.get(user_id)
+        user.password = generate_password_hash(password, method='pbkdf2:sha256')
+        db.session.commit()
+        return redirect(url_for('auth.login'))
+    return render_template("reset_password.html", user_id=user_id, user=current_user)
 
 
 
 
-
-# def login():
-#     if request.method == 'POST':
-#         username = request.form.get('usrname')
-#         password = request.form.get('psw')
-#         remember = True if request.form.get('remember') else False
-
-#         user = User.query.filter_by(username=username).first()
-
-#         if not user or not check_password_hash(user.password, password):
-#             flash('Please check your login details and try again.', category='error')
-#         else:
-#             login_user(user, remember=remember)
-#             flash('Logged in successfully!', category='success')
-#             return redirect(url_for('views.home'))
-    
-#     return render_template("login.html")
