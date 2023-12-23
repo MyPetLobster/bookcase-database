@@ -5,6 +5,10 @@ from flask_login import login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash   
 from extensions import mail
 from flask_mail import Message
+import os
+
+import secrets 
+from itsdangerous import URLSafeTimedSerializer, SignatureExpired, BadSignature
 
 auth = Blueprint('auth', __name__)
 
@@ -83,33 +87,55 @@ def logout():
     logout_user()
     return redirect(url_for('views.home'))
 
+
+secret_key = os.environ.get('SECRET_KEY', secrets.token_hex(32))
+
+def generate_reset_token(user_id):
+    s = URLSafeTimedSerializer(secret_key)
+    return s.dumps({'user_id': user_id})
+
+
 # FORGOT PASSWORD
 @auth.route('/forgot_password/', methods=['GET', 'POST'])
 def forgot_password():
     if request.method == 'POST':
         email = request.form.get('email')
         user = User.query.filter_by(email=email).first()
-        
+
         if user:
+            user.reset_token = generate_reset_token(user.id)
+            db.session.commit()
+
             msg = Message(subject='Bookcase Database Password Reset', sender='BookcaseDatabase@gmail.com', recipients=[email])
-            msg.body = f"Hello {user.username},\n\nYou recently requested to reset your password for your Bookcase Database account. Click the link below to reset it.\n\nhttp://127.0.0.1:5000/reset_password/{user.id}\n\nIf you did not request a password reset, please ignore this email.\n\nThanks,\nBookcase Database"
+            msg.body = f"Hello {user.username},\n\nYou recently requested to reset your password for your Bookcase Database account. Click the link below to reset it.\n\nhttp://127.0.0.1:5000/reset_password/{user.id}/{user.reset_token}\n\nIf you did not request a password reset, please ignore this email.\n\nThanks,\nBookcase Database"
             mail.send(msg)
     return render_template("forgot_password.html", user=current_user)
 
 # RESET PASSWORD
-@auth.route('/reset_password/<int:user_id>/', methods=['GET', 'POST'])
-def reset_password(user_id):
+@auth.route('/reset_password/<int:user_id>/<token>/', methods=['GET', 'POST'])
+def reset_password(user_id, token):
     if request.method == 'POST':
-        password = request.form.get('password')
-        password_confirm = request.form.get('password-confirm')
-        if password != password_confirm:
-            flash('Passwords do not match!', category='error')
-            return render_template("reset_password.html", user=current_user)
-        user = User.query.get(user_id)
-        user.password = generate_password_hash(password, method='pbkdf2:sha256')
-        db.session.commit()
-        return redirect(url_for('auth.login'))
-    return render_template("reset_password.html", user_id=user_id, user=current_user)
+        s = URLSafeTimedSerializer(secret_key)
+        try:
+            data = s.loads(token, max_age=1800)
+            if data.get('user_id') == user_id:
+                password = request.form.get('password')
+                password_confirm = request.form.get('password-confirm')
+                if password != password_confirm:
+                    flash('Passwords do not match!', category='error')
+                    return render_template("reset_password.html", user=current_user)
+                user = User.query.get(user_id)
+                user.password = generate_password_hash(password, method='pbkdf2:sha256')
+                db.session.commit()
+                return redirect(url_for('auth.login'))
+            else:
+                flash('The token is invalid!', category='error')
+        except SignatureExpired:
+            flash('The token is expired!', category='error')
+        except BadSignature:
+            flash('The token is invalid!', category='error')
+
+    return render_template("reset_password.html", user_id=user_id, user=current_user, token=token)
 
 
 

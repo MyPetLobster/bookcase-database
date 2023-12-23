@@ -16,6 +16,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(100), nullable=False, unique=True)
     password = db.Column(db.String(100), nullable=False)
     date_created = db.Column(db.DateTime(timezone=True), default=func.now())
+    reset_token = db.Column(db.String(120), nullable=True)
     def total_book_count(self):
         # Use a query to count the total number of books associated with the user
         total_count = (
