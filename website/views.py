@@ -239,13 +239,18 @@ def add_book():
     google_books_link = request.form.get('book-google-books-link')
     google_books_id = request.form.get('book-google-books-id')
 
-    # Check if the google_books_id already exists in the database
-    if Book.query.filter_by(google_books_id=google_books_id).first():
-        flash(f'Book is already in your {current_bookcase.name} bookcase', category='error')
-        url = session.get('search_query')
-        data = urllib.request.urlopen(url).read()
-        dict = json.loads(data)
-        return render_template("search.html", user=current_user, books=dict['items'], bookcases=bookcases)
+    # Check if the book's isbn already exists in this specific bookcase
+    if current_bookcase:
+        for book in current_bookcase.books:
+            if book.isbn_13 == isbn_13 or book.isbn_10 == isbn_10:
+                flash('Book already exists in this bookcase!', category='error')
+                url = session.get('search_query')
+                data = urllib.request.urlopen(url).read()
+                dict = json.loads(data)
+                return render_template("search.html", user=current_user, books=dict['items'], bookcases=bookcases)
+                
+
+    
 
     # Check if the current bookcase exists and belongs to the current user
     if current_bookcase and current_bookcase.owner_id == current_user.id:
