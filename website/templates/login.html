@@ -25,7 +25,8 @@
       />
 
       <button class="home-button" type="submit">Login</button>
-      <label id="remember-me">
+      <div class="remember-me-container">
+        <label id="remember-me">Remember me</label>
         <input
           class="checkbox"
           id="remember-checkbox"
@@ -33,11 +34,11 @@
           checked="checked"
           name="remember"
         />
-        Remember me
-      </label>
+      </div>
+    
     </div>
 
-    <div class="container cancel-container">
+    <div class="container cancel-container" id="cancel-login">
       <button type="button" id="cancel-button" class="cancelbtn">Cancel</button>
       <span class="psw"
         ><a class="forgot-psw" href="/forgot_password/">Forgot password?</a></span
