@@ -467,6 +467,24 @@ def delete_profile():
 
     return render_template("edit_profile.html", user=current_user)
 
+@views.route("/create_bookcase/", methods=['POST'])
+@login_required
+def create_bookcase():
+    if request.method == 'POST':
+        # Retrieve all form data
+        name = request.form.get('bookcase-name')
+        owner_id = current_user.id
+        new_bookcase = Bookcase(name=name, owner_id=owner_id)
+        # Check if the bookcase already exists, if so alert error
+        if Bookcase.query.filter_by(name=name, owner_id=owner_id).first():
+            flash('Bookcase already exists!', category='error')
+            return redirect(url_for('views.profile'))
+        db.session.add(new_bookcase)
+        db.session.commit()
+        return redirect(url_for('views.profile'))
+
+    return render_template("profile.html", user=current_user)
+
 # ABOUT PAGE
 @views.route('/about/')
 def about():
