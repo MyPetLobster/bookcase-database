@@ -6,9 +6,9 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from extensions import mail
 from flask_mail import Message
 import os
-
 import secrets 
 from itsdangerous import URLSafeTimedSerializer, SignatureExpired, BadSignature
+
 
 auth = Blueprint('auth', __name__)
 
