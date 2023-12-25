@@ -466,6 +466,7 @@ span.psw {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 100px;
 } 
 .profile-content {
   display: flex;
@@ -1033,6 +1034,8 @@ h3 {
 .about-h1 {
   font-size: 48px;
   margin-top: 0px;
+  margin-bottom: 0px;
+  color: var(--greenish-blue);
 }
 .about-container {
   height: 100%;
@@ -1054,7 +1057,7 @@ h3 {
   text-align: center;
   font-size: 18px;
 }
-ul {
+.about-ul {
   margin-top: 0px;
   width: 450px;
   display: flex;
@@ -1065,6 +1068,16 @@ li {
   font-family: "Laila", serif;
   font-size: 14px;
 }
+.github {
+  text-decoration: none;
+  color: var(--greenish-blue);
+}
+.github:hover {
+  font-weight: bold;
+  color: var(--primary-purple);
+  transition-duration: 150ms;
+}
+
 
 /* FOOTER */
 footer {
