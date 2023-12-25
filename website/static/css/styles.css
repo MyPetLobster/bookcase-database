@@ -1033,6 +1033,33 @@ h3 {
 
 
 /* FOOTER */
+footer {
+  visibility: hidden;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: var(--greenish-blue);
+  color: var(--almost-white);
+  display: flex;
+  justify-content: space-around;
+  align-items: center; /* Center the links vertically */
+  height: 30px;
+  transition: visibility 0.15s linear;
+}
+footer a {
+  color: var(--almost-white);
+  font-family: 'Courier New', Courier, monospace;
+  text-decoration: none;
+  font-size: 14px;
+  padding: 0 10px; /* Add horizontal padding to create spacing between links */
+}
+footer a:hover {
+  font-weight: bold;
+}
+.footer-visible {
+  visibility: visible; /* Change visibility to visible when the class is applied */
+}
 
 
 

@@ -54,12 +54,46 @@
     {% endif %} {% endfor %} {% endif %} {% endwith %} {% block content %}{%
     endblock %}
 
+<footer id="footer" class="footer-hidden">
+    <a href="/home">Home</a>
+    <a href="/profile">Profile</a>
+    <a href="/bookcases">Bookcases</a>
+    <a href="/search">Search</a>
+    <a href="/about">About</a>
+</footer>
+          
     <script>
     const topNav = document.getElementById("myTopnav");
     const anchorTags = document.querySelectorAll("#myTopnav a");
     const bcdbLogo = document.getElementById("bcdb-logo");
+    const footer = document.getElementById("footer");
 
-  
+    // Function to check if the footer should be visible
+    function checkFooterVisibility() {
+      const windowHeight = window.innerHeight;
+      const documentHeight = Math.max(
+        document.body.scrollHeight,
+        document.body.offsetHeight,
+        document.documentElement.clientHeight,
+        document.documentElement.scrollHeight,
+        document.documentElement.offsetHeight
+      );
+
+      if (windowHeight + window.scrollY >= documentHeight) {
+        footer.classList.add("footer-visible");
+      } else {
+        footer.classList.remove("footer-visible");
+      }
+    }
+
+    // Listen for scroll events and window resize
+    window.addEventListener("scroll", checkFooterVisibility);
+    window.addEventListener("resize", checkFooterVisibility);
+
+    // Initially check footer visibility on page load
+    checkFooterVisibility();
+    
+ 
    
     window.onscroll = function () {
       if (window.pageYOffset > 0) {
