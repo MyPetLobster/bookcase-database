@@ -1,4 +1,44 @@
 {% extends "base.html" %} {% block title %}About{% endblock %} {% block content
 %}
-<h1>About</h1>
+<div class="about-container container">
+    <div class="about">
+        <h1 class="about-h1">About Us</h1>
+        <p>
+        Bookcase Database is a simple web application that allows users to 
+        create a virtual bookcase to store information about books they have. 
+        Users can add books to their bookcase manually or search for books
+        using the Google Books API, edit the information about the
+        books, and delete books from their bookcase.
+        </p>
+        <p>
+        As it currently stands, bc.db does not bring anything new to the
+        table, but stay tuned for exciting new features in the near future. 
+        </p>
+        <ul>
+            <li>
+            <span class="bold-menu">Image Recognition Automatic Uploads: </span>Upload photos of
+            your own bookshelf and watch as the books are automatically added to your bookcase.
+            </li>
+            <li>
+            <span class="bold-menu">Personal Recommendations: </span>Tired of spending too much time 
+            deciding what to read and not nearly enough time actually reading? Bookcase Database will 
+            do the legwork for you and keep a constantly updated recommendation list.
+            </li>
+            <li>
+            <span class="bold-menu">Chat with Your Favorite Characters: </span>Ever wonder what it 
+            would be like to have a chat with your favorite characters from your favorite books or the 
+            authors who wrote them? Bookcase Database will make that dream a reality! 
+            </li>
+            <li>
+            <span class="bold-menu">Data Exporting and Seamless Integration with Other Applications: </span> 
+            Bookcase Database will allow you to export your data to other applications, such as Excel, and 
+            will also allow you to import data from other applications into your bookcase.
+            </li>
+        </ul>
+        <p>
+        The source code for this project can be found on GitHub 
+        <a href="https://github.com/mypetlobster/bookcase-database">here</a>.
+        </p>
+    </div>
+</div>
 {% endblock %}

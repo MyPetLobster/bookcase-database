@@ -1030,7 +1030,41 @@ h3 {
 
 
 /* ABOUT PAGE */
-
+.about-h1 {
+  font-size: 48px;
+  margin-top: 0px;
+}
+.about-container {
+  height: 100%;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 60px;
+  padding-top: 0px;
+}
+.about {
+  margin-top: 60px;
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;}
+.about p {
+  text-align: center;
+  font-size: 18px;
+}
+ul {
+  margin-top: 0px;
+  width: 450px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+li {
+  font-family: "Laila", serif;
+  font-size: 14px;
+}
 
 /* FOOTER */
 footer {
@@ -1611,6 +1645,47 @@ footer a:hover {
   }
 }
 
+/* ABOUT PAGE MEDIA QUERIES */
+@media screen and (max-width: 600px) {
+  .about-container {
+    height: 100%;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 60px;
+  }
+  .about {
+    margin-top: 60px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  .about p {
+    text-align: center;
+    font-size: 14px;
+  }
+  ul {
+    margin-top: 0px;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  li {
+    font-family: "Laila", serif;
+    font-size: 12px;
+  }
+}
+
+/* FOOTER MEDIA QUERIES */
+@media screen and (max-width: 600px) {
+  footer a {
+    font-size: 11px;
+  }
+}
 /* Change styles for span and cancel button on extra small screens */
 @media screen and (max-width: 300px) {
   span.psw {
