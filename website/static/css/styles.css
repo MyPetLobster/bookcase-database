@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Averia+Serif+Libre:wght@300;400;700&family=Courier+Prime:wght@400;700&family=Dosis:wght@300;400;500;600;700&family=Gravitas+One&family=Kalnia:wght@400;500;600;700&family=Laila:wght@300;400;500;600;700&family=Podkova:wght@400;500;600;700&family=Vollkorn+SC:wght@400;600;700&display=swap');html,
 
+
+/* GLOBAL STYLES */
 :root{
   /* COLORS */
   --primary-purple: #603d5a;
@@ -16,8 +18,6 @@
 	--star-primary-color: #93778e;
 	--star-secondary-color: var(--primary-purple);
 }
-
-/* GLOBAL STYLES */
 body {
   height: 100%;
   width: 100%;
@@ -62,10 +62,50 @@ input {
   font-size: 16px;
   border-radius: 7px;
 }
+/* Add padding to containers */
+.container {
+  padding: 16px;
+}
+.bold-big {
+  font-weight: bold;
+  font-size: 20px;
+}
+.bold-menu {
+  font-weight: bold;
+}
+
+
+/* BUTTONS */
 button {
   font-family: "Averia Serif Libre", serif;
   font-weight: 600;
   font-size: 18px;
+}
+/* Set a style for all buttons */
+button {
+  color: var(--almost-white);
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+/* Add a hover effect for buttons */
+button:hover {
+  opacity: 0.8;
+}
+/* Extra style for the cancel button (red) */
+.cancelbtn {
+  width: auto;
+  border-radius: 10px;
+  padding: 10px 18px;
+  background-color: var(--active-red);
+}
+.cancelbtn:hover {
+  background-color: var(--passive-red);
+  color: var(--active-red);
+  font-weight: bold;
+  transition-duration: 150ms;
 }
 
 
@@ -233,51 +273,13 @@ span {
   gap: 6px;
   align-items: center;
 }
-
-/* Set a style for all buttons */
-button {
-  color: var(--almost-white);
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-}
-/* Add a hover effect for buttons */
-button:hover {
-  opacity: 0.8;
-}
-/* Extra style for the cancel button (red) */
-.cancelbtn {
-  width: auto;
-  border-radius: 10px;
-  padding: 10px 18px;
-  background-color: var(--active-red);
-}
-.cancelbtn:hover {
-  background-color: var(--passive-red);
-  color: var(--active-red);
-  font-weight: bold;
-  transition-duration: 150ms;
-}
-
-/* Add padding to containers */
-.container {
-  padding: 16px;
-}
-/* The "Forgot password" text */
 span.psw {
   float: right;
   padding-top: 16px;
 }
-.newsletter {
-  display: flex;
-  justify-content: center;
-}
 
 
 /* HOME PAGE */
-
 .home-container,
 .profile-container {
   height: 100vh;
@@ -597,8 +599,9 @@ span.psw {
   font-weight: bold;
   transition-duration: 150ms;
 }
-/* Manual Add Book Form */
 
+
+/* Manual Add Book Form */
 .manual-add-book {
   display: none;
   background-color: var(--form-bg-blue);
@@ -639,7 +642,6 @@ span.psw {
   margin: 0px;
   padding: 0px;
 }
-
 .bc-search-form {
   background-color: var(--form-bg-blue);
   padding: 20px;
@@ -730,16 +732,6 @@ span.psw {
 }
 .confirm-delete-bookcase-active {
   visibility: visible;
-}
-
-
-.bold-big {
-  font-weight: bold;
-  font-size: 20px;
-}
-
-.bold-menu {
-  font-weight: bold;
 }
 
 
@@ -904,7 +896,6 @@ select:focus {
   outline: 2px solid var(--primary-purple);
   outline-offset: -4px; 
 }
-
 .create-bookcase {
   background-color: var(--form-bg-blue);
   padding: 20px;
@@ -987,8 +978,6 @@ h3 {
   background-color: var(--primary-purple);
   font-size: 14px;
 }
-
-
 .full-width {
   width: 100%;
   display: flex;
@@ -999,9 +988,7 @@ h3 {
 }
 
 
-
 /* FORGOT and RESET PASSWORD PAGES */
-
 .reset-pass-h2 {
   font-size: 48px;
   color: var(--primary-purple);
@@ -1041,6 +1028,15 @@ h3 {
   margin-top: 20px;
 }
 
+
+/* ABOUT PAGE */
+
+
+/* FOOTER */
+
+
+
+/* FLASH MESSAGES */
 .flash-alerts {
   font-family: "Courier Prime", monospace;
   position: fixed;
@@ -1062,10 +1058,7 @@ h3 {
 }
 
 
-
-
 /* STAR RATING SYSTEM */
-
 .star-container {
 	display: grid;
 	min-height: 30px;
@@ -1095,7 +1088,6 @@ h3 {
 	.star {
 		transition: all 0.25s;
 	}
-
 	.star:before,
 	.star:after {
 		transition: all 0.25s;
@@ -1186,8 +1178,6 @@ h3 {
 	outline-offset: 8px;
 	transition: all 0s;
 }
-
-
 #user-rating-label {
   margin-bottom: 12px;
 }
@@ -1196,9 +1186,6 @@ h3 {
   align-items: center;
   gap: 20px;
 }
-
-
-
 
 
 /* MEDIA QUERIES */
@@ -1336,7 +1323,6 @@ h3 {
   }
 }
 
-
 /* HOME PAGE */
 @media screen and (max-width: 600px) {
   h1 {
@@ -1376,8 +1362,7 @@ h3 {
   }
 }
 
-/* Profile Page */
-
+/* PROFILE PAGE */
 @media screen and (max-width: 600px) {
   .profile-h2 {
     font-size: 36px;
@@ -1440,7 +1425,7 @@ h3 {
   }
 }
 
-/* Search Page Media Query */
+/* SEARCH PAGE */
 @media screen and (max-width: 600px) {
   .search-page-forms {
     width: 300px;
@@ -1497,7 +1482,7 @@ h3 {
   }
 }
 
-/* Bookcase Page Media Query */
+/* BOOKCASE PAGE */
 @media screen and (max-width: 600px) {
   .bookcase-page {
     width: 100vw;
@@ -1609,5 +1594,3 @@ h3 {
     width: 100%;
   }
 }
-
-
