@@ -38,10 +38,14 @@ def bookcases():
         name = request.form.get('bookcase-name')
         owner_id = current_user.id
         new_bookcase = Bookcase(name=name, owner_id=owner_id)
-        # Check if the bookcase already exists, if so alert error
-        if Bookcase.query.filter_by(name=name, owner_id=owner_id).first():
-            flash('Bookcase already exists!', category='error')
-            return render_template("bookcases.html", user=current_user, bookcases=bookcases)
+        # create a list of all owner's bookcases
+        bookcases = Bookcase.query.filter_by(owner_id=current_user.id).all()
+        # Check new bookcase name against all bookcase names, all converted to lowercase
+        for bookcase in bookcases:
+            print (bookcase.name.lower())
+            if name.lower() == bookcase.name.lower():
+                flash('Bookcase already exists!', category='error')
+                return redirect(url_for('views.profile'))
         db.session.add(new_bookcase)
         db.session.commit()
         return redirect(url_for('views.bookcases'))
@@ -475,10 +479,15 @@ def create_bookcase():
         name = request.form.get('bookcase-name')
         owner_id = current_user.id
         new_bookcase = Bookcase(name=name, owner_id=owner_id)
-        # Check if the bookcase already exists, if so alert error
-        if Bookcase.query.filter_by(name=name, owner_id=owner_id).first():
-            flash('Bookcase already exists!', category='error')
-            return redirect(url_for('views.profile'))
+        # create a list of all owner's bookcases
+        bookcases = Bookcase.query.filter_by(owner_id=current_user.id).all()
+        # Check new bookcase name against all bookcase names, all converted to lowercase
+        for bookcase in bookcases:
+            print (bookcase.name.lower())
+            if name.lower() == bookcase.name.lower():
+                flash('Bookcase already exists!', category='error')
+                return redirect(url_for('views.profile'))
+
         db.session.add(new_bookcase)
         db.session.commit()
         return redirect(url_for('views.profile'))

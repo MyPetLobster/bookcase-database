@@ -466,7 +466,7 @@ span.psw {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 100px;
+  gap: 75px;
 } 
 .profile-content {
   display: flex;
@@ -1065,6 +1065,7 @@ h3 {
   align-items: center;
 }
 li {
+  margin-top: 10px;
   font-family: "Laila", serif;
   font-size: 14px;
 }
@@ -1442,7 +1443,8 @@ footer a:hover {
     font-size: 36px;
   }
   .profile-h1 {
-    font-size: 48px;
+    font-size: 42px;
+    margin-bottom: 0px;
   }
   .profile-content {
     flex-direction: column;
@@ -1680,7 +1682,7 @@ footer a:hover {
     text-align: center;
     font-size: 14px;
   }
-  ul {
+  .about-ul {
     margin-top: 0px;
     width: 250px;
     display: flex;
@@ -1688,6 +1690,7 @@ footer a:hover {
     align-items: center;
   }
   li {
+    margin-top: 10px;
     font-family: "Laila", serif;
     font-size: 12px;
   }
