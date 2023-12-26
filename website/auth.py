@@ -88,14 +88,13 @@ def logout():
     return redirect(url_for('views.home'))
 
 
+# FORGOT PASSWORD
 secret_key = os.environ.get('SECRET_KEY', secrets.token_hex(32))
-
 def generate_reset_token(user_id):
     s = URLSafeTimedSerializer(secret_key)
     return s.dumps({'user_id': user_id})
 
 
-# FORGOT PASSWORD
 @auth.route('/forgot_password/', methods=['GET', 'POST'])
 def forgot_password():
     if request.method == 'POST':
