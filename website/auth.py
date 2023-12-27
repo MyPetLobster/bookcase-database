@@ -1,12 +1,12 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from . import db
+from . import mail
 from .models import User
 from flask_login import login_user, login_required, logout_user, current_user
-from werkzeug.security import generate_password_hash, check_password_hash   
-from extensions import mail
+from werkzeug.security import generate_password_hash, check_password_hash
 from flask_mail import Message
 import os
-import secrets 
+import secrets
 from itsdangerous import URLSafeTimedSerializer, SignatureExpired, BadSignature
 
 
@@ -51,7 +51,7 @@ def register():
             flash('Account created!', category='success')
             login_user(new_user, remember=True)
             return redirect(url_for('views.home'))
-        
+
     return render_template("register.html", user=current_user)
 
 # LOGIN
@@ -68,7 +68,7 @@ def login():
 
         user = User.query.filter(db.func.lower(User.username) == username.lower()).first()
 
-        if user: 
+        if user:
             if check_password_hash(user.password, password):
                 flash('Logged in successfully!', category='success')
                 login_user(user, remember=remember)
@@ -76,12 +76,12 @@ def login():
             else:
                 flash('Incorrect password, try again.', category='error')
         else:
-            flash('Username does not exist.', category='error')  
+            flash('Username does not exist.', category='error')
 
     return render_template("login.html", user=current_user)
 
 # LOGOUT
-@auth.route('/logout')  
+@auth.route('/logout')
 @login_required
 def logout():
     logout_user()
@@ -89,7 +89,7 @@ def logout():
 
 
 # FORGOT PASSWORD
-secret_key = os.environ.get('SECRET_KEY', secrets.token_hex(32))
+secret_key = os.environ.get('SECRET_TOKEN', secrets.token_hex(32))
 def generate_reset_token(user_id):
     s = URLSafeTimedSerializer(secret_key)
     return s.dumps({'user_id': user_id})
@@ -114,9 +114,10 @@ def forgot_password():
             db.session.commit()
 
             msg = Message(subject='Bookcase Database Password Reset', sender='BookcaseDatabase@gmail.com', recipients=[email])
-            msg.body = f"Hello {user.username},\n\nYou recently requested to reset your password for your Bookcase Database account. Click the link below to reset it.\n\nhttp://127.0.0.1:5000/reset_password/{user.id}/{user.reset_token}\n\nIf you did not request a password reset, please ignore this email.\n\nThanks,\nBookcase Database"
+            msg.body = f"Hello {user.username},\n\nYou recently requested to reset your password for your Bookcase Database account. Click the link below to reset it.\n\nhttps://mypetlobster.pythonanywhere.com/reset_password/{user.id}/{user.reset_token}\n\nIf you did not request a password reset, please ignore this email.\n\nThanks,\nBookcase Database"
             mail.send(msg)
     return render_template("forgot_password.html", user=current_user)
+
 
 # RESET PASSWORD
 @auth.route('/reset_password/<int:user_id>/<token>/', methods=['GET', 'POST'])
