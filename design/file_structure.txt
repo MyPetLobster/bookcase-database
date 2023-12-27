@@ -1,0 +1,36 @@
+.
+├── README.md
+├── app.py
+├── design
+│   ├── bcdb-erd-dark.png
+│   └── bcdb-logo-h-sm.png
+├── instance
+│   └── database.db
+├── requirements.txt
+└── website
+    ├── __init__.py
+    ├── auth.py
+    ├── models.py
+    ├── static
+    │   ├── css
+    │   │   └── styles.css
+    │   ├── images
+    │   │   └── image_not_available.jpeg
+    │   └── js
+    │       └── scripts.js
+    ├── templates
+    │   ├── about.html
+    │   ├── base.html
+    │   ├── book.html
+    │   ├── bookcase.html
+    │   ├── bookcases.html
+    │   ├── edit_book.html
+    │   ├── edit_profile.html
+    │   ├── forgot_password.html
+    │   ├── home.html
+    │   ├── login.html
+    │   ├── profile.html
+    │   ├── register.html
+    │   ├── reset_password.html
+    │   └── search.html
+    └── views.py
