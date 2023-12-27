@@ -264,16 +264,22 @@ def add_book():
     # Check if the book's isbn already exists in this specific bookcase
     if current_bookcase:
         for book in current_bookcase.books:
-            if book.isbn_13 == isbn_13 or book.isbn_10 == isbn_10:
-                flash('Book already exists in this bookcase!', category='error')
-                url = session.get('search_query')
-                data = urllib.request.urlopen(url).read()
-                dict = json.loads(data)
-                return render_template("search.html", user=current_user, books=dict['items'], bookcases=bookcases)
+            # Handle cases where book does not have an isbn
+            if isbn_13 == "" and isbn_10 == "":
+                if book.title == title and book.authors == authors:
+                    flash('Book already exists in this bookcase!', category='error')
+                    url = session.get('search_query')
+                    data = urllib.request.urlopen(url).read()
+                    dict = json.loads(data)
+                    return render_template("search.html", user=current_user, books=dict['items'], bookcases=bookcases)
+            else:
+                if book.isbn_13 == isbn_13 or book.isbn_10 == isbn_10:
+                    flash('Book already exists in this bookcase!', category='error')
+                    url = session.get('search_query')
+                    data = urllib.request.urlopen(url).read()
+                    dict = json.loads(data)
+                    return render_template("search.html", user=current_user, books=dict['items'], bookcases=bookcases)
                 
-
-    
-
     # Check if the current bookcase exists and belongs to the current user
     if current_bookcase and current_bookcase.owner_id == current_user.id:
         try:
