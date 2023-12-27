@@ -9,7 +9,7 @@ import os
 import secrets
 from itsdangerous import URLSafeTimedSerializer, SignatureExpired, BadSignature
 
-
+# Create a Blueprint object that we can use to register routes
 auth = Blueprint('auth', __name__)
 
 

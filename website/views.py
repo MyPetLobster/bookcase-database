@@ -9,7 +9,6 @@ import os
 from urllib.parse import urlencode
 
 
-
 views = Blueprint('views', __name__)
 
 
