@@ -42,7 +42,6 @@ def bookcases():
         bookcases = Bookcase.query.filter_by(owner_id=current_user.id).all()
         # Check new bookcase name against all bookcase names, all converted to lowercase
         for bookcase in bookcases:
-            print (bookcase.name.lower())
             if name.lower() == bookcase.name.lower():
                 flash('Bookcase already exists!', category='error')
                 return redirect(url_for('views.profile'))
@@ -358,9 +357,6 @@ def edit_book(bc_id, book_id):
     user_notes = book.user_notes
     read = book.read
 
-    print(f"user rating: {user_rating}")
-    print("-------------------")
-
     if request.method == 'POST' and current_bookcase and current_bookcase.owner_id == current_user.id:
 
         try:
@@ -489,7 +485,6 @@ def create_bookcase():
         bookcases = Bookcase.query.filter_by(owner_id=current_user.id).all()
         # Check new bookcase name against all bookcase names, all converted to lowercase
         for bookcase in bookcases:
-            print (bookcase.name.lower())
             if name.lower() == bookcase.name.lower():
                 flash('Bookcase already exists!', category='error')
                 return redirect(url_for('views.profile'))

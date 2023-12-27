@@ -17,9 +17,6 @@ auth = Blueprint('auth', __name__)
 @auth.route('/register/', methods=['POST', 'GET'])
 def register():
     if request.method == 'POST':
-        print(request.form)
-        print(f"rfg(username) = {request.form.get('username')}")
-
         username = request.form.get('username').strip()
         email = request.form.get('email')
         password = request.form.get('password')
@@ -27,9 +24,6 @@ def register():
 
         email_exists = User.query.filter_by(email=email).first()
         username_exists = User.query.filter_by(username=username).first()
-
-        print(f'{email}, {username}, {password}, {password2}')
-        print("**************************")
 
         if email_exists:
             flash('Email already exists.', category='error')
