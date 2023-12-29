@@ -30,7 +30,7 @@ do in the near future. So, I intend to revisit my original idea, updating this
 app or creating a new app entirely.
 
 ### My Process
-#### (FULL process <a href="design/process/process.html">here</a>)
+#### (FULL process <a href="https://mypetlobster.github.io/bookcase-process/">here</a>)
 <p>
 I started by jotting down a list of the features I wanted to include in my
 app. 
@@ -48,7 +48,7 @@ Just kidding.
 </p>
 <p>
 Anyway, if you're actually interested in the process I took to create this app, there's a brief summary below. I've kept fairly 
-detailed notes of each step and the things I've learned along the way. So if you're interested in reading about any of that, here is a full version of the <a href="design/process/process.html">entire process</a>.
+detailed notes of each step and the things I've learned along the way. So if you're interested in reading about any of that, here is a full version of the <a href="https://mypetlobster.github.io/bookcase-process/">entire process</a>.
 
 #### Summary of the steps I took to create Bookcase Database
 - Create a Trello board to keep track of the entire process
