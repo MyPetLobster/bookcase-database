@@ -619,6 +619,53 @@ span.psw {
   transition-duration: 150ms;
 }
 
+.edit-bookcase {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  background-color: #93778e;
+  border: 6px solid var(--primary-purple);
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 25px;
+  box-shadow: 0px 0px 40px var(--shadow-color);
+
+}
+.edit-bookcase-active {
+  display: inherit;
+}
+
+.edit-bookcase-form {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#edit-bookcase-button {
+  color: var(--primary-purple);
+  font-size: 22px;
+  background-color: var(--form-bg-blue);
+  padding: 10px;
+  border-radius: 7px;
+  box-shadow: 0px 0px 40px var(--shadow-color);
+  margin-top: 0px;
+  margin-bottom: 30px;
+}
+#edit-bookcase-button:hover {
+  background-color: #517880;
+  transition-duration: 150ms;
+  color: var(--form-bg-blue);
+  font-weight: bold;
+  cursor: pointer;
+}
+#bc-name-change-label {
+  font-size: 22px;
+}
+
+
 
 /* Manual Add Book Form */
 .manual-add-book {

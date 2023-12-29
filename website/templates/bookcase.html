@@ -72,6 +72,34 @@ content %}
       <button class="home-button delete-bookcase-button" type="button">Delete Bookcase</button>
   </div>
 
+  <div class="edit-bookcase-button-box">
+      <button class="home-button" id="edit-bookcase-button" type="button">Edit Bookcase Name</button>
+  </div>
+
+  <div class="edit-bookcase">
+    <form
+      class="edit-bookcase-form"
+      action="/bookcase/{{ current_bookcase.id }}/edit_bookcase/"
+      method="post"
+    >
+      <label id="bc-name-change-label" for="name">Bookcase Name:</label>
+      <input
+        type="text"
+        name="name"
+        id="name"
+        value="{{ current_bookcase.name }}"
+        required
+      />
+      <button class="home-button edit-book-save" type="submit">Save</button>
+      <div class="container cancel-container cancel-add-book">
+        <button type="button" id="cancel-edit-bookcase" class="cancelbtn">
+          Cancel
+        </button>
+      </div>
+    </form>
+
+  </div>
+
   <div class="confirm-delete-bookcase">
     <h4 class="delete-h4">Are you sure you want to delete your <span class="bold-big">{{ current_bookcase.name }}</span> bookcase? This action cannot be undone!</h4>
     
@@ -79,7 +107,7 @@ content %}
       <button class="home-button" type="button">Confirm Delete Bookcase</button>
     </a>
     <div class="container cancel-container cancel-add-book">
-      <button type="button" id="add-book-cancel-btn" class="cancelbtn">
+      <button type="button" id="delete-book-cancel-btn" class="cancelbtn">
         Cancel
       </button>
     </div>
@@ -225,19 +253,16 @@ content %}
 <script>
   const deleteBookcaseButton = document.querySelector(".delete-bookcase-button");
   const confirmDeleteBookcase = document.querySelector(".confirm-delete-bookcase");
+  const deleteBookCancelBtn = document.getElementById("delete-book-cancel-btn");
   deleteBookcaseButton.addEventListener("click", function () {
+    confirmDeleteBookcase.classList.toggle("confirm-delete-bookcase-active");
+  });
+  deleteBookCancelBtn.addEventListener("click", function () {
     confirmDeleteBookcase.classList.toggle("confirm-delete-bookcase-active");
   });
 
   const manualAddBookAnchor = document.querySelector("#form-anchor");
 
-  const addBookCancelBtn = document.getElementById("add-book-cancel-btn");
-  if (addBookCancelBtn) {
-    addBookCancelBtn.addEventListener("click", () => {
-      // navigate to home page
-      window.location.href = "/bookcase/{{ id }}";
-    });
-  }
 
   const manualAddBookBtn = document.querySelector("#manual-add-book-btn");
   const manualAddBook = document.querySelector(".manual-add-book");
@@ -260,6 +285,24 @@ content %}
       const selectedRating = event.target.getAttribute("data-value");
       document.getElementById("ratingInput").value = selectedRating;
     }
+  });
+
+  const addBookCancelBtn = document.getElementById("add-book-cancel-btn");
+  if (addBookCancelBtn) {
+    addBookCancelBtn.addEventListener("click", () => {
+      manualAddBook.classList.toggle("manual-add-book-active");
+    });
+  }
+
+
+  const editBookcaseButton = document.querySelector("#edit-bookcase-button");
+  const editBookcase = document.querySelector(".edit-bookcase");
+  const cancelEditBookcase = document.querySelector("#cancel-edit-bookcase");
+  editBookcaseButton.addEventListener("click", function () {
+    editBookcase.classList.toggle("edit-bookcase-active");
+  });
+  cancelEditBookcase.addEventListener("click", function () {
+    editBookcase.classList.toggle("edit-bookcase-active");
   });
 </script>
 
