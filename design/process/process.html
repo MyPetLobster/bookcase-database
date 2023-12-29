@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="process.css" />
+    <title>Bookcase Database Creation Process</title>
+  </head>
+  <body>
+    <div class="flex-container">
+      <div class="overview">
+        <h1 class="top-header">Bookcase Database Creation Process</h1>
+        <h2>CS50x Final Project</h2>
+        <h3>by Cory Suzuki</h3>
+        <div class="dates">
+            <p class="date">Began Work On: 12/12/2023</p>
+            <p class="date">Deployed On: 12/27/2023</p>
+        </div>
+
+        <h2>Overview</h2>
+        <div class="horizontal-flex">
+
+        <ul class="over-ul">
+          <h4>Libraries/Modules</h4>
+          <li>Flask</li>
+          <li>Flask-Login</li>
+          <li>Flask-Mail</li>
+          <li>SQLAlchemy</li>
+          <li>itsdangerous</li>
+          <li>secrets</li>
+          <li>Werkzeug</li>
+        </ul>
+        
+        <ul class="over-ul">
+          <h4>Languages/Frameworks</h4>
+          <li>HTML</li>
+          <li>CSS</li>
+          <li>Python</li>
+          <li>Flask</li>
+          <li>Jinja</li>
+          <li>JavaScript</li>
+          <li>SQL</li>
+        </ul>
+        
+        <ul class="over-ul">
+          <h4>Other Tools</h4>
+          <li>ChatGPT</li>  
+          <li>Git & GitHub</li>
+          <li>VS Code</li>
+          <li>VS Code Extensions: </li>
+          <li>&emsp;copilot</li>
+          <li>&emsp;better-jinja</li>
+          <li>&emsp;prettier</li>
+        </ul>
+        </div>
+      </div>
+
+      <div class="all-parts">
+        <div class="part">
+          <h2>Part One: Scratching My Head...</h2>
+          <div class="part-content">
+            <p>
+                My initial plan was to create an application where a user could
+                upload a photo of a bookshelf full of books. My app would then use
+                image recognition and machine learning to identify the specific 
+                edition of each and every book in the photo. It would then automatically add 
+                all of those books to the user's database.
+            <p>
+                However, I didn't even make it past "Part One: Scratching my head..." 
+                before I realized that I should probably scale back the idea a bit
+                seeing as this is my first proper website. So I decided not to abandon
+                my initial idea, but to instead build the application in stages. Stage 
+                one, the goal of this project, would be to create a website where users
+                can search for books and add them to their bookcases. Simple as that, or
+                so I thought.
+            </p>
+              
+            <p>
+                At this point three months into my learning journey, I have a basic
+                understanding of HTML, CSS, Python, SQL, and JavaScript. I've also
+                started using the basic functionality of Git and GitHub. I learned
+                the Flask basics in Week 9 of CS50x where I completed the infamous
+                "Finance" problem set. Despite that, I felt overwhelmed by the
+                thought of creating my own Flask application from scratch. I took a
+                step back and followed along with some tutorials. I also actually
+                read the documentation for Flask and Jinja. This was a bit of a
+                milestone in that previously I'd try to read the documentation for a
+                library or framework and it would be like reading a foreign
+                language. This time, I was able to understand the documentation and
+                use it to my advantage.
+            </p>
+            <p>
+                By far the most helpful tutorials I found were by Youtubers
+                <a href="">@bitfumes</a> and <a href="#">@TechWithTim</a>. I
+                greatly appreciate their help in getting many concepts to finally
+                start clicking for me.
+            </p>
+            <p>
+                Armed with a better understanding of Flask, I was able to start
+                building my application. I created my repository
+                "bookcase-database" and got to work thinking about the bones of
+                the project, its
+                <a href="#">basic file structure</a>.
+            </p>
+          </div>
+          <div class="summary-learned">
+            <h3>What I Learned</h3>
+            <ul>
+              <li>
+                Flask: brushed up on general knowledge and how to structure
+                projects
+              </li>
+              <li>Jinja: reviewed the syntax</li>
+              <li>General project planning</li>
+            </ul>
+          </div>
+          <div class="links">
+            <h3>Links</h3>
+            <ul>
+              <li>
+                <a href="https://www.youtube.com/watch?v=dam0GPOAvVI&t=7103s"
+                  >Tech with Tim: Python Website Full Tutorial</a
+                >
+              </li>
+              <li>
+                <a href="https://www.youtube.com/watch?v=nxMG-RZB26Q"
+                  >Bitfumes: Python Flask Crash Course</a
+                >
+              </li>
+              <li>
+                <a href="https://flask.palletsprojects.com/en/3.0.x/"
+                  >Flask Documentation</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="part">
+          <h2>Part Two: Enter the Matrix</h2>
+          <h3>(aka WTF is a virtual environment)</h3>
+          <div class="part-content">
+            <p>
+              As soon as I started reading about creating web applications with
+              Flask, I kept seeing the term "virtual environment" pop up. I had
+              no idea what this was, but I knew I needed to figure it out. I did
+              some reading and asked ChatGPT some questions.
+            </p>
+
+            <p>
+              I learned that a virtual environment is a way to isolate your
+              project from the rest of your computer. This is useful because it
+              allows you to install packages and libraries specific to your
+              project without affecting the rest of your computer. Once I
+              understood and figured out how to create a venv and activate it, I
+              found it incredible useful. I appreciate being able to view all
+              the packages I've installed for a project and know they're not
+              some unrelated package installed on my computer that I don't
+              understand the purpose of (there's still a lot of those). So for
+              me with this first project at least, the real value of using a
+              venv was the ability to use "pip list" and "pip freeze >
+              requirements.txt". This formed the beginning of my understanding
+              of dependencies and requirements. Much later in the project, I
+              learned that virtual environments are also useful for deploying
+              your application.
+            </p>
+
+            <p></p>
+
+            <p>
+              I was able to get the venv up and running on the first day of
+              working on the project. I think the highlight of this part was
+              when I created my first bash script that actually proved useful.
+              All it did was save me a few seconds of typing "source
+              venv/bin/activate" but it was a proud moment for me. This script
+              would evolve a bit over the course of the project to include
+              exporting environment variables (which was another foreign concept
+              to me at this point).
+            </p>
+          </div>
+          <div class="summary-learned">
+            <h3>What I Learned</h3>
+            <ul>
+              <li>
+                Virtual Environments: Their purpose, how to create them, and how
+                to use them
+              </li>
+              <li>bash: how to create and use a bash script</li>
+            </ul>
+          </div>
+          <div class="links">
+            <h3>Links</h3>
+            <ul>
+              <li>
+                <a
+                  href="https://www.reddit.com/r/learnpython/comments/g3rz06/i_still_dont_understand_the_concept_of_a_venv/"
+                  >Reddit: I still don't understand the concept of a venv</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.reddit.com/r/learnpython/comments/rh16i3/why_are_virtual_environments_useful/"
+                  >Reddit: Why are virtual environments useful?</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.geeksforgeeks.org/python-virtual-environment/"
+                  >GeeksforGeeks: Python Virtual Environment</a
+                >
+              </li>
+              <li>
+                <a href="https://python.land/virtual-environments/virtualenv"
+                  >Python.land: Virtual Environments</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://stackoverflow.com/questions/55087632/recommended-workflow-for-cloning-git-into-a-virtual-python-environment"
+                  >Stack Overflow: Cloning git into a virtual environment</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="part">
+          <h2>Part Three: Put the db in bc.db</h2>
+          <h3>Actually, I think it's pronounced "Skewl"</h3>
+          <div class="part-content">
+            <p>
+              The next step was creating a database. I decided to use SQLite for
+              this project. I had used it before in CS50x and it seemed like a
+              good choice for a small project like this. I also decided to use
+              SQLAlchemy as an ORM. I didn't know what that was until I started
+              preparing for this project. I learned that an ORM is an Object
+              Relational Mapper. It's a tool that allows you to interact with a
+              database using objects and methods instead of SQL queries. I
+              decided to use an ORM because I thought it would be a good
+              learning experience. I also thought it would be useful to know how
+              to use an ORM for future projects.
+            </p>
+
+            <p>
+              I loved the SQL week of CS50x and I was excited to get to use SQL
+              again. I knew my database would need a table for users, a table
+              for books, and a table for bookcases. I connected the bookcase
+              table to the user table through the "owner_id". This means that
+              each bookcase would belong to one user. A user can have many
+              bookcases, but each bookcase can only belong to one user. I used a
+              many-to-many relationship between the bookcase table and the book
+              table. This means that a bookcase can have many books and a book
+              can be in many bookcases. I used a join table called
+              "bookcase_book" to connect the two tables. This table has a
+              bookcase_id and a book_id.
+            </p>
+
+            <p>
+              I used the "flask db migrate" command to create a migration file.
+              I then used the "flask db upgrade" command to apply the migration
+              to my database. I was able to use the "flask shell" command to
+              test out my database. I was able to create a user, bookcase, and
+              book and add the book to the bookcase. I was also able to query
+              the database to get the books in a bookcase and the bookcases a
+              user owns. I used the "flask db downgrade" command to undo the
+              migration and start over. I did this a few times as I made changes
+              to my database. Though much of the time, I just opened a second
+              terminal and used the "sqlite3" command to open the database and
+              make changes that way.
+            </p>
+
+            <p>
+              In order to connect the database to my flask project, I created a
+              "models.py" file. I imported SQLAlchemy and created a db object. I
+              then imported the db object into my "app.py" file and initialized
+              it. I also imported the db object into my "auth.py" file so I
+              could begin the next stage of the project: user authentication
+              (dun dun dun).
+            </p>
+
+            <h5><a href="#">Here is an ERD of my database model</a></h5>
+          </div>
+          <div class="summary-learned">
+            <h3>What I Learned</h3>
+            <ul>
+              <li>Refresher on creating a database schema</li>
+              <li>SQLAlchemy: how to use an ORM</li>
+              <li>SQLAlchemy: how to create a many-to-many relationship</li>
+              <li>
+                Flask-Migrate: how to create a migration file and apply it to a
+                database
+              </li>
+              <li>Flask-Shell: how to use the shell to test a database</li>
+              <li>
+                How to create models.py file and connect database to my project
+              </li>
+            </ul>
+          </div>
+          <div class="links">
+            <h3>Links</h3>
+            <ul>
+              <li>
+                <a href="https://www.youtube.com/watch?v=zrCLRC3Ci1c"
+                  >CS50x Week 7 - SQL</a
+                >
+              </li>
+              <li>
+                <a href="https://cs50.harvard.edu/sql/2023/"
+                  >CS50 Introduction to Databases with SQL</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://medium.com/@shivamkhandelwal555/a-proper-way-of-declaring-models-in-flask-9ce0bb0e42c1"
+                  >@shivamkhandelwal555's Medium Article</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="part">
+          <h2>Part Four: Inside Out</h2>
+          <h3>Register, Login, and Logout</h3>
+          <div class="part-content">
+            <p>
+              Before I started this part of the project, I used Jinja to create
+              a base.html file and a home.html file. I used the "extends" and
+              "block" keywords to create a base template that I could extend to
+              other pages. I also created a "static" folder for CSS and
+              JavaScript files, and a "templates" folder for all the HTML files.
+            </p>
+            <p>
+              Thanks to <a href="#">TechWithTim's Flask tutorials</a>, I was
+              able to get user authentication up and running pretty quickly. I
+              created a "auth.py" file and imported the db object from my
+              "models.py" file. I created a User class and a Bookcase class. I
+              used the UserMixin class from Flask-Login to add some useful
+              methods to my User class. I created a login_manager object and
+              initialized it in create_app() function inside my __init__.py
+              file. I created a login.html file and a register.html file, along
+              with a login route and a register route. I used the "flask-login"
+              extension to create a login_required decorator for my routes and
+              finally created a logout route.
+            </p>
+
+            <p>
+              Flask-Login was fairly straight forward to use. As I type this I'm
+              trying to think of issues I had setting this up, but I can't think
+              of any. I think the only part I remember struggling to understand
+              was the "current_user" variable. But turns out it's just a
+              variable that stores the current user...duh. I guess I just
+              expected more steps to make that work.
+            </p>
+
+            <p>
+              Oh! I almost forgot, password hashing! I used the
+              "werkzeug.security" module to hash passwords. I used the
+              "generate_password_hash" function to hash the password when a user
+              registers. I then used the "check_password_hash" function to check
+              the password when a user logs in. Easy peasy.
+            </p>
+          </div>
+          <div class="summary-learned">
+            <h3>What I Learned</h3>
+            <ul>
+              <li>Brush up on Jinja, installed better-jinja extension</li>
+              <li>The in's and out's of Flask-Login</li>
+              <li>How to store user inputted data in my database</li>
+              <li>How to hash passwords</li>
+              <li>How to authenticate users</li>
+            </ul>
+          </div>
+          <div class="links">
+            <h3>Links</h3>
+            <ul>
+              <li><a href="#">TechWithTim Flask Tutorials</a></li>
+              <li>
+                <a
+                  href="https://realpython.com/using-flask-login-for-user-management-with-flask/"
+                  >Real Python: Using Flask Login for User Management</a
+                >
+              </li>
+              <li>
+                <a href="https://flask-login.readthedocs.io/en/latest/"
+                  >Flask-Login Documentation</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://flask.palletsprojects.com/en/2.0.x/tutorial/views/"
+                  >Flask Tutorial: Views</a
+                >
+              </li>
+              <li>
+                <a href="https://pypi.org/project/Flask-Login/"
+                  >PyPi: Flask-Login</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="part">
+          <h2>Part Five: Oh, the Places You'll Go</h2>
+          <h3>Routes, views, adding books manually</h3>
+          <div class="part-content">
+            <p>
+              This portion of the project was a bit of a blur. Once I got the
+              user authentication working and I was able to direct users to the
+              home page, I repeated that process, using @login_required as
+              needed, for most of the pages that I wanted to create.
+            </p>
+            <p>
+              Once I finished creating all the routes, views and templates for
+              the pages I wanted, I created a form to create bookcases and a
+              form to manually add books to a bookcase. I ran into a few hurdles
+              during this part of the project. That pesky "current_user"
+              variable was one of them. I had to figure out how to pass the
+              current user's id to the bookcase form so that I could connect the
+              bookcase to the user and how to pass the current bookcase's id to
+              the book form so that I could connect the book to the bookcase. I
+              went in circles for a bit with ChatGPT but finally realized I
+              could use hidden inputs to pass the ids.
+            </p>
+
+            <p>
+              I was very pleased to have the basic structure and functionality
+              of the application up and running. At this point, I was able to
+              create a user, login, logout, create a bookcase, add books to the
+              bookcase, and view the book information on the /bookcase page. I
+              was also able to view all the bookcases a user owns on the
+              /bookcases page, as well as details about each individual book on
+              the /book page.
+            </p>
+          </div>
+          <div class="summary-learned">
+            <h3>What I Learned</h3>
+            <ul>
+              <li>Learned more about creating routes and views</li>
+              <li>How to pass data from forms within a Flask application</li>
+              <li>How to pass data between routes and views</li>
+              <li>How to use hidden inputs</li>
+              <li>How to use Jinja to display data from a database</li>
+            </ul>
+          </div>
+          <div class="links">
+            <h3>Links</h3>
+            <ul>
+              <li>
+                <a href="https://exploreflask.com/en/latest/views.html"
+                  >Explore Flask: Views</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://flask.palletsprojects.com/en/2.3.x/tutorial/views/"
+                  >Flask Docs: Blueprints and Views</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://stackoverflow.com/questions/51443011/view-route-structure-of-flask-app"
+                  >Stack Overflow: View Route Structure of Flask App</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="part">
+          <h2>Part Six: The Keys to the Kingdom</h2>
+          <h3>How to use API's</h3>
+          <div class="part-content">
+            <p>
+              I knew I wanted to use the Google Books API to get book
+              information for my application. I had no idea how to use an API or
+              how to get an API key. I did some reading and watched some videos
+              and I was able to get a basic understanding of how API's work. I
+              learned that an API is a set of functions and procedures that
+              allow the creation of applications that access data and features
+              of another service. I learned that an API key is a unique
+              identifier that's used to authenticate a user, developer, or
+              program to an API. I learned that API keys are used to track and
+              control how the API is being used, for example to prevent
+              malicious use or abuse of the API.
+            </p>
+            <p>
+              This is also the part where I had to learn about environment
+              variables. I learned that environment variables are variables that
+              are set in the operating system or in the terminal. They store
+              information that is used by applications. When I was developing
+              locally, I just used a bash script to activate my venv and export
+              my environment variables. However, later before I deployed the
+              website, I ended up using the "python-dotenv" module to create a
+              .env file and store my environment variables.
+            </p>
+            <p>
+              To start with, I created a search form with three fields -- title,
+              author, and isbn. I created a route for the search form and a view
+              to handle the form data. I used the requests module to make a GET
+              request to the Google Books API. The hardest part was figuring out
+              how to format the search query itself. I ended up using
+              "f-strings" to format the query and .join() to join each word in
+              the query with a "+". Once I got the search results back, I was
+              able to display them on the search page along with a thumbnail
+              image of each book's cover. I also added a button to each book
+              that would allow the user to add the book to their bookcase.
+            </p>
+
+            <p>
+              But then I ran into a problem. How do I actually add the book to
+              the database? Seeing as I already had a working form to manually
+              add books, I realized all I had to do was create an invisible form
+              for each book in the search results and use those hidden inputs to
+              pass the data to the /add_book route.
+            </p>
+          </div>
+          <div class="summary-learned">
+            <h3>What I Learned</h3>
+            <ul>
+              <li>How to use an API</li>
+              <li>How to get an API key</li>
+              <li>How to use environment variables</li>
+              <li>How to use the requests module</li>
+              <li>How to format a search query</li>
+              <li>Refresher on how to use f-strings and .join()</li>
+              <li>How to use Jinja to display data from a database</li>
+            </ul>
+          </div>
+          <div class="links">
+            <h3>Links</h3>
+            <ul>
+              <li>
+                <a href="https://developers.google.com/books/docs/v1/using"
+                  >Google Books API Documentation</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.section.io/engineering-education/integrating-external-apis-with-flask/"
+                  >Geoffrey Mungai Section Article</a
+                >
+              </li>
+              <li>
+                <a href="https://www.dataquest.io/blog/python-api-tutorial/"
+                  >Data Quest: API Tutorial</a
+                >
+              </li>
+              <li>
+                <a href="https://www.youtube.com/watch?v=zsYIw6RXjfM"
+                  >TechWithTim: Create a Python API in 12 Minutes</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="part">
+          <h2>Part Seven: CSS</h2>
+          <h3>More Like CS-MESS, amirite?</h3>
+          <div class="part-content">
+            <p>
+              Yeah. Coming into this project, CSS was actually one of my
+              favorite parts of web development. It still is, but now I have
+              learned that I need to be more organized with my CSS. When I
+              started working on the CSS, I created a file within the /static
+              folder called "styles.css". I figured one document would be
+              plenty. Despite there being eleven different HTML pages on my
+              website at this point, I figured each page was similar enough that
+              it wouldn't be a problem. I was wrong.
+            </p>
+            <p>
+              By the time I finished the "global" styling and navbar CSS, I was
+              already nearing 400 lines of code. "Not much more" thought the
+              inexperienced developer. I was wrong. I was so wrong. I was so, so
+              wrong. I was so, so, so wrong. I was so, so, so, so wrong. Like
+              1,714 lines of code wrong. whoops.
+            </p>
+            <p>
+              I was probably about halfway through the fever dream of CSS when I
+              realized my mistake. It started with one of the very first classes
+              I created -- ".container-home". Why did I do that right after I
+              was thinking about how each page would be so similar? I don't
+              know. But by the time I realized my mistake, I was too far down
+              this road to turn back. I had to finish what I started. I embraced
+              the chaos. I felt like a mad scientist. I was a mad scientist. I
+              was a mad scientist and my CSS was my monster. I was Victor
+              Frankenstein and my CSS was my monster. I was Victor Frankenstein
+              and my CSS was my monster and I was the monster. I was the
+              monster. I was the monster.
+            </p>
+
+            <p>
+              Honestly, once I committed to just letting it fly and not worrying
+              about the mess, I had a blast with the CSS. Do I regret not
+              keeping things more organized from the start? Absolutely. Will I
+              take the time to learn about SASS and CSS best practices before my
+              next project? Absolutely. But I'm still proud of the CSS I created
+              for this project. I think it looks pretty good. And I'm especially
+              proud of the little touches I managed to add, such as the dynamic
+              navbar.
+            </p>
+            <p>
+              The final thing I have in my notes for this part of the project is
+              -- "Fuck Bootstrap". To be fair, I didn't really give it much of a
+              chance. But without taking the time to dive into understanding
+              Bootstrap, I was feeling very confined by the framework, so opted
+              to do things "freehand".
+            </p>
+          </div>
+          <div class="summary-learned">
+            <h3>What I Learned</h3>
+            <p>
+              I learned that despite feeling more confident with CSS than any
+              other language when I started this project, my understanding is
+              still rudimentary at best. I've got a lot left to learn about CSS.
+              I need to figure out a better workflow and methodology to keep
+              things much more organized. My finger is still sore from scrolling
+              around that god forsaken page. I've seen SASS come up a lot, so
+              I'll start my googling there before my next project.
+            </p>
+            <p>
+              I feel like I owe <a href="#">Kevin Powell</a> an apology for my
+              butchering of this CSS. I'm sorry, Kevin. This does NOT reflect on
+              Kevin's tutorials which I have found to be incredibly helpful. In
+              fact, I can't even imagine what my website and CSS file would look
+              like if it weren't for his tutorials. I'll be better next time!
+            </p>
+          </div>
+          <div class="links">
+            <h3>Links</h3>
+            <ul>
+              <li>
+                <a href="https://www.youtube.com/@KevinPowell"
+                  >Kevin Powell's Youtube Channel</a
+                >
+              </li>
+              <li>
+                <a href="https://www.kevinpowell.co/">Kevin Powell's Website</a>
+              </li>
+              <li>
+                <a href="https://www.theodinproject.com/"
+                  >The Odin Project (All my HTML and JS knowledge)</a
+                >
+              </li>
+              <li>
+                <a href="https://codepen.io/BrandonGuerra"
+                  >BrandonGuerra's awesome star rating CSS that I used</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="part">
+          <h2>Part Eight: The Home Stretch</h2>
+          <h3>Testing, Debugging, and Missing Features</h3>
+          <div class="part-content">
+            <p>
+              I was nearing the end of the project and I was feeling pretty good
+              about it. I had a working application that I was proud of. I had
+              learned a lot and I was excited to deploy it. But I knew I had to
+              test it first.
+            </p>
+            <p>
+              I started by testing the routes and views. I went through each
+              page and made sure everything was working as expected. I made a
+              list of all the features I wanted to test and checked them off the
+              list one by one. I ran into problems immediately.
+            </p>
+            <p>
+              First, I decided to make the username case-insensitive so that
+              "JohnDoe" and "johndoe" would be the same username, while the
+              database remembers the capitalization that the user used when they
+              registered. I also adjusted the login route code to allow for the
+              user to enter their Email Address or username.
+            </p>
+            <p>
+              The next problem that I encountered was on the /search page. My
+              application displays a list of all the books that match the user's
+              search query. Each book has a button that allows the user to add
+              the book to their bookcase. I noticed that if the user clicked the
+              button to add the book to their bookcase, the book would be added
+              to the database, but the page would refresh and the search results
+              would disappear. I decided to figure out a way to refresh the page
+              with the same search results after the user added a book. I was
+              able to accomplish this by passing the search query to the
+              /add_book route and then passing the search query back to the
+              /search route with render_template().
+            </p>
+            <p>
+              It was during testing that my sloppy CSS came back to bite me a
+              few times. I spent too much time trying to figure out why one
+              button wasn't styled correctly, or one form didn't have the right
+              box shadow, etc. This just reinforced the need for me to learn
+              more about CSS and how to keep things organized.
+            </p>
+            <p>
+              On the edit_book.html page, I have a form with inputs and
+              textareas for all the forward facing book information. For the
+              "user rating" field I used a select element with options for 1-5
+              stars and a checkbox for "read". It took me a while to finally get
+              this working as intended. I had to figure out how to pass the
+              current user rating and read status to the form. I ended up more
+              hidden input fields to actually hold the necessary values then
+              used JavaScript to pass these values to the correct fields.
+            </p>
+            <h3>Missing Features</h3>
+            <ul>
+              <li>Ability to edit user information</li>
+              <li>Ability to delete books and bookcases</li>
+              <li>Ability to delete users completely</li>
+              <li>Automatically scroll into view search results</li>
+              <li>Style the alert messages</li>
+              <li>Add a default image for books with no thumbnail link</li>
+              <li>
+                Books with no ISBN cannot be added to bookcase if there is
+                already a book without ISBN
+              </li>
+              <li>Allow users to change their password</li>
+            </ul>
+            <p>
+              I was exterminating bugs and adding features left and right,
+              breezing through the testing phase. I was feeling pretty good
+              about myself until I got to the last item on my list -- "Allow
+              users to change their password". I had no idea how to do this, and
+              I didn't consider this functionality during the planning phase. So
+              back to the drawing board I went.
+            </p>
+            <p>
+              Test Driven Development: This is a concept that was covered in
+              CS50x, but while I understand the concept of TDD, I do not
+              understand how to implement it. I think this is something I need
+              to learn more about before my next project along with PyTest.
+            </p>
+          </div>
+          <div class="summary-learned">
+            <h3>What I Learned</h3>
+            <ul>
+              <li>How to test a Flask application</li>
+              <li>How to debug a Flask application</li>
+              <li>
+                How to use JavaScript in conjunction with Flask to pass values
+                and create dynamic elements
+              </li>
+            </ul>
+          </div>
+          <div class="links">
+            <h3>Links</h3>
+            <ul>
+              <li>
+                <a href="https://flask.palletsprojects.com/en/3.0.x/testing/"
+                  >Flask Docs: Testing</a
+                >
+              </li>
+              <li>
+                <a href="https://www.youtube.com/watch?v=OWaQWpVd95k"
+                  >Krish Naik: Integrating CSS and JavaScript in the Flask Web
+                  Framework</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="part">
+          <h2>Part Nine: Forgot Password?</h2>
+          <h3>
+            Flask_Mail, itsdangerous, tokens, secrets, SMTP, serialized
+            tokens...ahhh
+          </h3>
+          <div class="part-content">
+            <p>
+              I added a "Forgot Password?" link to the login page. I decided to
+              break this task up into two parts. First I would figure out how to
+              use Flask-Mail to send an email to the user with a link to a page
+              where they could change their password. Then I would figure out
+              how to make this link secure.
+            </p>
+            <p>
+              Configuring Flask-Mail was fairly straight forward. I initially
+              created a Mail object and configured mail within my app.py file.
+              But because of my project's file structure, I ended up creating
+              the object within the __init__.py file's create_app() function. I
+              also added another two environment variables to my .env file, one
+              for the gmail username and one for the password. I used the "os"
+              module once again to access these environment variables.
+            </p>
+            <p>
+              The next step wasn't quite as simple. I started by installing the
+              Python "secrets" module and the "itsdangerous" library. I used
+              secrets to create a secret key for the token and used itsdangerous
+              to create a token that would be sent to the user's email address.
+              I spent an inordinate amount of time trying to discern the
+              differences between 'TimedJSONWebSignatureSerializer' and
+              'URLSafeTimedSerializer', and figuring out how it all actually
+              works. My biggest issue was trying to set the expiration time
+              within the parameters of the URLSafeTimedSerializer object. I must
+              have come across some post or maybe copilot (yea you) suggested I
+              use "expires_in" within the parameters of the object when I was
+              creating it. But turns out, I had to use "max_age" as an argument
+              for the loads() method when I was decoding/authenticating the
+              token. I enjoyed troubleshooting this bug as it was one of the
+              first times I felt comfortable following along with a more
+              "advanced" topic in Stack Overflow threads.
+            </p>
+            <p>
+              It was a genuinely great feeling when I heard my phone ding right
+              after testing the reset password functionality and saw an email
+              from "BookcaseDatabase@gmail.com" with a link to reset my
+              password. I clicked the link, entered a new password, and was
+              redirected to the login page. The new password worked!
+            </p>
+          </div>
+          <div class="summary-learned">
+            <h3>What I Learned</h3>
+            <ul>
+              <li>How to use Flask-Mail</li>
+              <li>How to use the secrets module</li>
+              <li>How to use the itsdangerous library</li>
+              <li>How to configure an App password with Gmail</li>
+              <li>Learned that SMTP means Simple Mail Transfer Protocol</li>
+              <p>
+                Regarding that last one, I'm super happy that I didn't google
+                the meaning of that until after I finished dealing with all
+                those frustrating bugs
+              </p>
+            </ul>
+          </div>
+          <div class="links">
+            <h3>Links</h3>
+            <ul>
+              <li>
+                <a href="https://mailtrap.io/blog/flask-email-sending/"
+                  >Mail Trap: Flask Email Sending</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://stackoverflow.com/questions/46629057/send-emails-through-gmail-using-flask-mail"
+                  >Stack Overflow: Send Emails Through Gmail Using Flask Mail</a
+                >
+              </li>
+              <li>
+                <a href="https://pythonhosted.org/Flask-Mail/"
+                  >Flask Docs: Flask Mail</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="part">
+        <h2>Part Ten: ..9...8...7...6...</h2>
+        <h3>Deployment!!! (and a few more bugs)</h3>
+        <div class="part-content">
+          <p>
+            Throughout my time working on the project there were a few moments
+            where I stopped and wondered how certain parts of the project would
+            work when I deployed it. I knew I would have to figure out how to
+            use environment variables outside of running my little bash script
+            each time I activated the virtual environment. I'd have to figure
+            out how to use a different database and how to connect it to my
+            application. But to start with I had to be able to answer the
+            question -- "How do I deploy a Flask application?"
+          </p>
+          <p>
+            Right off the bat, I kept seeing the same few options repeated over
+            and over. PythonAnywhere, Heroku, Docker and AWS. But first I
+            decided to finally figure out what "WSGI" meant. I knew that Flask
+            was defined as a "WSGI" framework, but I had no idea what that
+            meant. One quick google search later and I had my answer -- "Web
+            Server Gateway Interface". I learned that WSGI is a specification
+            for a universal interface between web servers and web apps. In other
+            words, it's a way for a web server to communicate with a web
+            application.
+          </p>
+          <p>
+            I flipped a four sided coin and decided to go with PythonAnywhere. I
+            followed step by step instructions on their website and was able to
+            get my site up and running fairly quickly. I used the "git clone"
+            command to clone my project from GitHub directly into
+            PythonAnywhere. The only thing that gave me a little trouble was
+            setting up and using python-dotenv and getting the virtual
+            environment within PythonAnywhere to include the dependencies I
+            needed. I had some trouble getting pipreqs to work, but I found a
+            post on Stack Overflow where the author answered their own question.
+            Turns out that because my .venv/ folder is in my main directory,
+            pipreqs was looking for all the dependencies within that folder
+            which was causing it to generate a weird requirements.txt file. I
+            fixed this by using the pipreqs option '--ignore' when executing the
+            command.
+          </p>
+          <p>
+            I shouldn't have been so stressed about the deployment process. It
+            ended up being very straight forward. The only other issue that I
+            encountered had to do with Flask Mail (yet again). I mentioned this
+            in the previous section, but this is when I actually had to move my
+            initialization of the Mail object from my app.py file to my
+            __init__.py file. I also had to change the way I was importing the
+            Mail object in my auth.py file. This was the first time I actually
+            began to feel like I understand how Python imports work.
+          </p>
+        </div>
+        <div class="summary-learned">
+          <h3>What I Learned</h3>
+          <ul>
+            <li>What WSGI means</li>
+            <li>How to deploy a Flask application</li>
+            <li>How to use python-dotenv</li>
+            <li>How to use pipreqs</li>
+            <li>How to use environment variables in PythonAnywhere</li>
+            <li>How to use the PythonAnywhere Bash Console</li>
+            <li>How to deploy a real website!</li>
+          </ul>
+        </div>
+        <div class="links">
+          <h3>Links</h3>
+          <ul>
+            <li>
+              <a href="https://help.pythonanywhere.com/pages/Flask/"
+                >PythonAnywhere Docs</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://pythonhow.com/python-tutorial/flask/deploy-flask-web-app-pythonanywhere/"
+                >Python How: Deploy Flask Web App PythonAnywhere</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://stackoverflow.com/questions/64630130/pipreqs-requirements-txt-is-not-correct"
+                >Stack Overflow: Pipreqs requirements.txt is not correct</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <h2>Miscellaneous Things I Learned in the Last Two Weeks</h2>
+        <ul>
+          <li>JSON</li>
+          <li>git branch, merge</li>
+          <li>Test Flask app locally w/ app.run(debug=True)</li>
+          <li>
+            Test locally on other devices w/ app.run(host="0.0.0.0", port=5000)
+          </li>
+          <li>Installed Homebrew</li>
+          <li>Update shell configuration files</li>
+          <li>Add directories to PATH</li>
+          <li>More practice using Figma</li>
+          <li>
+            Discovered the ERD generating tools - SQLFlow and Mermaid Chart
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <p>If you made it this far, bless your soul.</p>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Averia+Serif+Libre:wght@300;400;700&family=Courier+Prime:wght@400;700&family=Dosis:wght@300;400;500;600;700&family=Gravitas+One&family=Kalnia:wght@400;500;600;700&family=Laila:wght@300;400;500;600;700&family=Podkova:wght@400;500;600;700&family=Vollkorn+SC:wght@400;600;700&display=swap');
+
+
+body {
+    background-color: #3d5a60;
+    color: #3d5a60;
+    font-family: 'Courier Prime', monospace;
+    font-size: 14px;
+    text-align: center;
+}
+h1,
+h2,
+h3,
+h4 {
+    color: #233438;
+}
+.flex-container {
+    width: 80vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+.horizontal-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+ul {
+    text-align: left;
+}
+.over-ul > h4 {
+    font-size: 16px;
+}
+.over-ul {
+    text-align: center;
+    list-style-type: none;
+}
+.summary-learned, 
+.links {
+    margin-left: 20vw;
+    margin-right: 20vw;
+}
+
+.dates {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+    
+
+.part,
+.overview {
+    margin-top: 40px;
+    border-radius: 12px;
+    background-color: rgb(206, 217, 226);
+    padding: 20px;
+}
+
+
+h2 {
+    margin-bottom: 0px;
+}
+
+.part > h2 {
+    margin-bottom: 20px;
+}
+.part-content > p {
+    margin: 0 30px 15px 30px;
+    text-indent: 2em;
+    text-align: left;
+}
