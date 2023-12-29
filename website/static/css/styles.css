@@ -75,8 +75,13 @@ input {
 }
 
 #logo-img {
-  max-width: 80vw;
+  max-width: 75vw;
   margin: 30px 0 10px 0;
+}
+@media screen and (max-width: 600px) {
+  #logo-img {
+    max-width: 97vw;
+  }
 }
 
 /* BUTTONS */
@@ -187,7 +192,7 @@ button:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-bottom: 60px;
+  padding-bottom: 30px;
 }
 .register-h1,
 .login-h1 {
@@ -349,6 +354,7 @@ span.psw {
   font-size: 36px;
   margin-bottom: 30px;
 }
+
 .home-login-links {
   width: 240px;
   display: flex;
@@ -1405,6 +1411,16 @@ footer a:hover {
   }
 }
 
+/* LOGIN AND REGISTER PAGES */
+@media screen and (max-width: 600px) {
+  .register-container,
+  .login-container {
+    padding-bottom: 0px;
+  }
+}
+  
+
+
 /* HOME PAGE */
 @media screen and (max-width: 600px) {
   h1 {
@@ -1412,6 +1428,9 @@ footer a:hover {
     margin-bottom: 12px;
   }
   .home-h2 {
+    font-size: 24px;
+  }
+  .home-h2-signed-out {
     font-size: 24px;
   }
   .home-p {
