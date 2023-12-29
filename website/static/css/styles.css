@@ -317,6 +317,9 @@ span.psw {
 .home-content-item p {
   text-align: center;
 }
+.home-search-form {
+  margin-bottom: 60px;
+}
 .home-search,
 .home-form {
   width: 350px;

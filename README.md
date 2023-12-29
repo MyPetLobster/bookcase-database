@@ -1,6 +1,6 @@
 # Bookcase Database - CS50x Final Project
 
-![](design/images/)
+<img src="website/static/images/bcdb-logo-full.png" alt="Bookcase Database logo" width="600" >
 
 ## What is Bookcase Database?
 Bookcase Database is a simple web application that allows you to 
@@ -14,22 +14,20 @@ books, including ratings and notes.
 ### Preface
 Well, quite a lot. Coming into this project, I was about three months into
 my journey learning to code. I had completed the CS50x course, except for the
-final project. I had a bunch of ideas for final projects, but I didn't know
-how to actually implement them. I decided to take the CS50 Python and CS50 
-SQL courses to expand on the knowledge I gained from CS50x. While working
-through the courses these courses, I was also completing the Odin Project
-Foundations curriculum. I completed Foundations right before I started working on 
+final project. I had a bunch of ideas for final projects, but I wasn't quite sure where to start. I decided to take the CS50 Python and CS50 
+SQL courses to expand on the knowledge I gained from CS50x. While completing the CS50 curriculum, I was also working my way through the Odin Project
+Foundations. I completed Foundations right before I started working on 
 Bookcase Database.
 
 My initial idea for Bookcase Database was to create a web application where
-users could upload an image of a bookshelf in real life and my app would 
-analyze the image and create a virtual bookcase, automatically adding all of
-the books from the photograph. I quickly realized that this was way beyond my
+users could upload an image of a bookshelf from real life and my app would 
+analyze the image, create a virtual bookcase, and automatically add all of
+the books from the photograph alone. I quickly realized that this was way beyond my
 current skill level. I decided to scale back my idea and create a simple web
 application that would allow users to create virtual bookcases and add books.
 Stepping into the world of AI and machine learning is something I would like to
 do in the near future. So, I intend to revisit my original idea, updating this
-app or creating a new one in the near future.
+app or creating a new app entirely.
 
 ### My Process
 #### (FULL process <a href="design/process/process.html">here</a>)
@@ -43,14 +41,13 @@ app.
 </p>
 
 <p>
-I decided to try to stay organized. I learned
-what a Trello board is, then I used one to keep track of the entire process. Finally,
-I gave ChatGPT access to the Trello board, then sat back and watched my app come to life.</p>
+I wanted to try to stay organized and I had heard of trello boards. I learned
+what those were and how to use them, then I used my own trello board to keep track of the entire process. Finally. I gave ChatGPT access to the trello board, then sat back and watched my app come to life.</p>
 <p>
 Just kidding.
 </p>
 <p>
-Anyway, if you're actually interested in the process I took to create this app, there's a summary below. I've kept fairly 
+Anyway, if you're actually interested in the process I took to create this app, there's a brief summary below. I've kept fairly 
 detailed notes of each step and the things I've learned along the way. So if you're interested in reading about any of that, here is a full version of the <a href="design/process/process.html">entire process</a>.
 
 #### Summary of the steps I took to create Bookcase Database
