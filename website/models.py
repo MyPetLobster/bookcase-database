@@ -30,7 +30,7 @@ class User(db.Model, UserMixin):
 
 class Bookcase(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(150), unique=True)
+    name = db.Column(db.String(150), unique=False)
     owner_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     
     # Define the many-to-many relationship

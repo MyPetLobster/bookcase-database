@@ -472,6 +472,7 @@ def delete_profile():
 
     return render_template("edit_profile.html", user=current_user)
 
+# CREATE BOOKCASE
 @views.route("/create_bookcase/", methods=['POST'])
 @login_required
 def create_bookcase():
