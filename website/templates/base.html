@@ -59,11 +59,18 @@
     endblock %}
 
 <footer id="footer" class="footer-hidden">
+    {% if user.is_authenticated %}
     <a href="/home">Home</a>
     <a href="/profile">Profile</a>
     <a href="/bookcases">Bookcases</a>
     <a href="/search">Search</a>
     <a href="/about">About</a>
+    {% else %}
+    <a href="/home">Home</a>
+    <a href="/login">Login</a>
+    <a href="/register">Register</a>
+    <a href="/about">About</a>
+    {% endif %}
 </footer>
           
     <script>
