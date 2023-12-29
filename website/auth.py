@@ -91,6 +91,7 @@ def generate_reset_token(user_id):
 def forgot_password():
     if request.method == 'POST':
 
+        gmail_username = os.environ.get("GMAIL_USERNAME")
         input = request.form.get('email-username')
         # check if input is an email address or username
         if '@' in input:
@@ -105,7 +106,7 @@ def forgot_password():
             user.reset_token = generate_reset_token(user.id)
             db.session.commit()
 
-            msg = Message(subject='Bookcase Database Password Reset', sender='BookcaseDatabase@gmail.com', recipients=[email])
+            msg = Message(subject='Bookcase Database Password Reset', sender=gmail_username, recipients=[email])
             msg.body = f"Hello {user.username},\n\nYou recently requested to reset your password for your Bookcase Database account. Click the link below to reset it.\n\nhttps://mypetlobster.pythonanywhere.com/reset_password/{user.id}/{user.reset_token}\n\nIf you did not request a password reset, please ignore this email.\n\nThanks,\nBookcase Database"
             mail.send(msg)
     return render_template("forgot_password.html", user=current_user)
