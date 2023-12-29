@@ -49,18 +49,16 @@ def register():
     return render_template("register.html", user=current_user)
 
 # LOGIN
+# LOGIN
 @auth.route('/login/', methods=['POST', 'GET'])
 def login():
     if request.method == 'POST':
-        username = request.form.get('username').strip()
+        username_or_email = request.form.get('username').strip()
         password = request.form.get('psw')
-        remember = request.form.get('remember')
-        if (remember == 'on'):
-            remember = True
-        else:
-            remember = False
+        remember = request.form.get('remember') == 'on'
 
-        user = User.query.filter(db.func.lower(User.username) == username.lower()).first()
+        user = User.query.filter((db.func.lower(User.username) == username_or_email.lower()) | 
+                                 (db.func.lower(User.email) == username_or_email.lower())).first()
 
         if user:
             if check_password_hash(user.password, password):
@@ -70,7 +68,7 @@ def login():
             else:
                 flash('Incorrect password, try again.', category='error')
         else:
-            flash('Username does not exist.', category='error')
+            flash('Username or email does not exist.', category='error')
 
     return render_template("login.html", user=current_user)
 
