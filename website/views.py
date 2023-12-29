@@ -495,6 +495,29 @@ def create_bookcase():
 
     return render_template("profile.html", user=current_user)
 
+@views.route("/bookcase/<int:bc_id>/edit_bookcase/", methods=['POST'])
+@login_required
+def edit_bookcase(bc_id):
+    if request.method == 'POST':
+        # Retrieve all form data
+        new_name = request.form.get('name')
+
+        # create a list of all owner's bookcases
+        bookcases = Bookcase.query.filter_by(owner_id=current_user.id).all()
+        # Check new bookcase name against all bookcase names, all converted to lowercase
+        for bookcase in bookcases:
+            if new_name.lower() == bookcase.name.lower():
+                flash('Bookcase already exists!', category='error')
+                return render_template("bookcases.html", user=current_user, bookcases=bookcases)
+
+        # Update the bookcase name
+        current_bookcase = Bookcase.query.get(bc_id)
+        current_bookcase.name = new_name
+        db.session.commit()
+        return render_template("bookcases.html", user=current_user, bookcases=bookcases)
+
+    return render_template("bookcases.html", user=current_user, bookcases=bookcases)
+
 # ABOUT PAGE
 @views.route('/about/')
 def about():
