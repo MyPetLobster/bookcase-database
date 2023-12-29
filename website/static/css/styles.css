@@ -290,6 +290,9 @@ span.psw {
 
 
 /* HOME PAGE */
+.home-container {
+  padding-top: 60px;
+}
 .home-container,
 .profile-container {
   height: 100vh;
@@ -1315,7 +1318,7 @@ footer a:hover {
 /* Universal media queries for screens under 600px */
 @media screen and (max-width: 600px) {
   h1 {
-    font-size: 48px;
+    font-size: 32px;
     margin-bottom: 12px;
   }
   h2 {
@@ -1356,9 +1359,6 @@ footer a:hover {
   }
   .home-login-links a:hover {
     font-size: 22px;
-  }
-  .bookcases-main-header {
-    font-size: 24px;
   }
   .bookcases-item {
     margin-top: 0px;
@@ -1421,9 +1421,8 @@ footer a:hover {
 
 /* HOME PAGE */
 @media screen and (max-width: 600px) {
-  h1 {
-    font-size: 48px;
-    margin-bottom: 12px;
+  .home-container {
+    padding-top: 20px;
   }
   .home-h2 {
     font-size: 24px;
@@ -1465,10 +1464,6 @@ footer a:hover {
 @media screen and (max-width: 600px) {
   .profile-h2 {
     font-size: 36px;
-  }
-  .profile-h1 {
-    font-size: 42px;
-    margin-bottom: 0px;
   }
   .profile-content {
     flex-direction: column;
@@ -1568,9 +1563,7 @@ footer a:hover {
   .btn-small {
     width: 120px;
   }
-  .full-width {
-    width: 300px;
-  }
+
   .search-label {
     font-size: 18px;
   }
@@ -1687,12 +1680,13 @@ footer a:hover {
 /* ABOUT PAGE MEDIA QUERIES */
 @media screen and (max-width: 600px) {
   .about-container {
-    height: 100%;
+    height: auto;
     width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-bottom: 60px;
+    margin: 0px;
   }
   .about {
     margin-top: 60px;
