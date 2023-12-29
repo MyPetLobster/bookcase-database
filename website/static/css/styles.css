@@ -34,10 +34,11 @@ body {
 }
 h1 {
   font-family: "Kalnia", serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 50px;
   text-align: center;
-  color: var(--dark-font);
+  color: var(--primary-purple);
+  text-shadow: var(--dark-font) 1px 1px 1px;
 }
 h2 {
   font-family: "Averia Serif Libre", serif;
@@ -384,10 +385,7 @@ span.psw {
   align-items: center;
   padding-bottom: 60px;
 }
-.bookcases-main-header {
-  font-weight: 400;
-  color: #242f2b;
-}
+
 .bookcases-container {
   display: flex;
   flex-direction: column;
