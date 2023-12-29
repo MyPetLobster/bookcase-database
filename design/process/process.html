@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="process.css" />
     <title>Bookcase Database Creation Process</title>
   </head>
-  <body>
+  <body class="process-body">
     <div class="flex-container">
       <div class="overview">
         <h1 class="top-header">Bookcase Database Creation Process</h1>
@@ -54,10 +54,24 @@
         </ul>
         </div>
       </div>
-
+      <div class="table-of-contents">
+        <h2>Table of Contents</h2>
+        <ul class="toc-list">
+          <li><a href="#part-one">Part One: Scratching My Head...</a></li>
+          <li><a href="#part-two">Part Two: Enter the Matrix</a></li>
+          <li><a href="#part-three">Part Three: Put the db in bc.db</a></li>
+          <li><a href="#part-four">Part Four: Inside Out</a></li>
+          <li><a href="#part-five">Part Five: Oh, the Places You'll Go</a></li>
+          <li><a href="#part-six">Part Six: The Keys to the Kingdom</a></li>
+          <li><a href="#part-seven">Part Seven: CSS</a></li>
+          <li><a href="#part-eight">Part Eight: The Home Stretch</a></li>
+          <li><a href="#part-nine">Part Nine: Forgot Password?</a></li>
+          <li><a href="#part-ten">Part Ten: ...9...8...7...6...</a></li>
+        </ul>
+      </div>
       <div class="all-parts">
         <div class="part">
-          <h2>Part One: Scratching My Head...</h2>
+          <h2 id="part-one">Part One: Scratching My Head.</h2>
           <div class="part-content">
             <p>
                 My initial plan was to create an application where a user could
@@ -65,6 +79,7 @@
                 image recognition and machine learning to identify the specific 
                 edition of each and every book in the photo. It would then automatically add 
                 all of those books to the user's database.
+            </p>
             <p>
                 However, I didn't even make it past "Part One: Scratching my head..." 
                 before I realized that I should probably scale back the idea a bit
@@ -91,7 +106,7 @@
             </p>
             <p>
                 By far the most helpful tutorials I found were by Youtubers
-                <a href="">@bitfumes</a> and <a href="#">@TechWithTim</a>. I
+                <a href="https://www.youtube.com/c/Bitfumes">@bitfumes</a> and <a href="https://www.youtube.com/c/techwithtim">@TechWithTim</a>. I
                 greatly appreciate their help in getting many concepts to finally
                 start clicking for me.
             </p>
@@ -100,7 +115,7 @@
                 building my application. I created my repository
                 "bookcase-database" and got to work thinking about the bones of
                 the project, its
-                <a href="#">basic file structure</a>.
+                <a href="../planning/file_structure.txt">basic file structure</a>.
             </p>
           </div>
           <div class="summary-learned">
@@ -137,7 +152,7 @@
         </div>
 
         <div class="part">
-          <h2>Part Two: Enter the Matrix</h2>
+          <h2 id="part-two">Part Two: Enter the Matrix</h2>
           <h3>(aka WTF is a virtual environment)</h3>
           <div class="part-content">
             <p>
@@ -225,7 +240,7 @@
         </div>
 
         <div class="part">
-          <h2>Part Three: Put the db in bc.db</h2>
+          <h2 id="part-three">Part Three: Put the db in bc.db</h2>
           <h3>Actually, I think it's pronounced "Skewl"</h3>
           <div class="part-content">
             <p>
@@ -278,7 +293,7 @@
               (dun dun dun).
             </p>
 
-            <h5><a href="#">Here is an ERD of my database model</a></h5>
+            <h3><a href="../images/bcdb-erd-dark.png" alt="ERD of database model">Here is an ERD of my database model</a></h3>
           </div>
           <div class="summary-learned">
             <h3>What I Learned</h3>
@@ -320,7 +335,7 @@
         </div>
 
         <div class="part">
-          <h2>Part Four: Inside Out</h2>
+          <h2 id="part-four">Part Four: Inside Out</h2>
           <h3>Register, Login, and Logout</h3>
           <div class="part-content">
             <p>
@@ -331,7 +346,7 @@
               JavaScript files, and a "templates" folder for all the HTML files.
             </p>
             <p>
-              Thanks to <a href="#">TechWithTim's Flask tutorials</a>, I was
+              Thanks to <a href="https://www.techwithtim.net/tutorials/flask">TechWithTim's Flask tutorials</a>, I was
               able to get user authentication up and running pretty quickly. I
               created a "auth.py" file and imported the db object from my
               "models.py" file. I created a User class and a Bookcase class. I
@@ -374,7 +389,7 @@
           <div class="links">
             <h3>Links</h3>
             <ul>
-              <li><a href="#">TechWithTim Flask Tutorials</a></li>
+              <li><a href="https://www.techwithtim.net/tutorials/flask">TechWithTim Flask Tutorials</a></li>
               <li>
                 <a
                   href="https://realpython.com/using-flask-login-for-user-management-with-flask/"
@@ -402,7 +417,7 @@
         </div>
 
         <div class="part">
-          <h2>Part Five: Oh, the Places You'll Go</h2>
+          <h2 id="part-five">Part Five: Oh, the Places You'll Go</h2>
           <h3>Routes, views, adding books manually</h3>
           <div class="part-content">
             <p>
@@ -469,7 +484,7 @@
         </div>
 
         <div class="part">
-          <h2>Part Six: The Keys to the Kingdom</h2>
+          <h2 id="part-six">Part Six: The Keys to the Kingdom</h2>
           <h3>How to use API's</h3>
           <div class="part-content">
             <p>
@@ -557,8 +572,8 @@
         </div>
 
         <div class="part">
-          <h2>Part Seven: CSS</h2>
-          <h3>More Like CS-MESS, amirite?</h3>
+          <h2 id="part-seven">Part Seven: More Like CS-MESS, amirite?</h2>
+          <h3>Adding CSS Styling to Bring My Website to Life</h3>
           <div class="part-content">
             <p>
               Yeah. Coming into this project, CSS was actually one of my
@@ -621,11 +636,10 @@
               I'll start my googling there before my next project.
             </p>
             <p>
-              I feel like I owe <a href="#">Kevin Powell</a> an apology for my
+              I feel like I owe <a href="https://www.youtube.com/@KevinPowell">Kevin Powell</a> an apology for my
               butchering of this CSS. I'm sorry, Kevin. This does NOT reflect on
-              Kevin's tutorials which I have found to be incredibly helpful. In
-              fact, I can't even imagine what my website and CSS file would look
-              like if it weren't for his tutorials. I'll be better next time!
+              Kevin's tutorials which I have found to be incredibly helpful. In fact, without his tutorials, 
+              I can't even imagine what my website and CSS file would look like. I'll be better next time!
             </p>
           </div>
           <div class="links">
@@ -654,7 +668,7 @@
         </div>
 
         <div class="part">
-          <h2>Part Eight: The Home Stretch</h2>
+          <h2  id="part-eight">Part Eight: The Home Stretch</h2>
           <h3>Testing, Debugging, and Missing Features</h3>
           <div class="part-content">
             <p>
@@ -708,6 +722,7 @@
             </p>
             <h3>Missing Features</h3>
             <ul>
+              <li>Add a footer</li>
               <li>Ability to edit user information</li>
               <li>Ability to delete books and bookcases</li>
               <li>Ability to delete users completely</li>
@@ -765,7 +780,7 @@
         </div>
 
         <div class="part">
-          <h2>Part Nine: Forgot Password?</h2>
+          <h2  id="part-nine">Part Nine: Forgot Password?</h2>
           <h3>
             Flask_Mail, itsdangerous, tokens, secrets, SMTP, serialized
             tokens...ahhh
@@ -853,7 +868,7 @@
       </div>
 
       <div class="part">
-        <h2>Part Ten: ..9...8...7...6...</h2>
+        <h2 id="part-ten">Part Ten: ...9...8...7...6...</h2>
         <h3>Deployment!!! (and a few more bugs)</h3>
         <div class="part-content">
           <p>
@@ -940,7 +955,7 @@
         </div>
       </div>
 
-      <div>
+      <div class="summary" id="summary">
         <h2>Miscellaneous Things I Learned in the Last Two Weeks</h2>
         <ul>
           <li>JSON</li>
@@ -956,6 +971,7 @@
           <li>
             Discovered the ERD generating tools - SQLFlow and Mermaid Chart
           </li>
+          <li>Use <a href="https://oldmanprogrammer.net/source.php?dir=projects/tree">a utility called Tree</a> to create visual <a href="structure.html">text representation of file structure</a></li>
         </ul>
       </div>
 

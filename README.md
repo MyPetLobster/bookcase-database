@@ -1,6 +1,6 @@
 # Bookcase Database - CS50x Final Project
 
-![](design/bcdb-logo-h-sm.png)
+![](design/images/)
 
 ## What is Bookcase Database?
 Bookcase Database is a simple web application that allows you to 
@@ -32,23 +32,29 @@ do in the near future. So, I intend to revisit my original idea, updating this
 app or creating a new one in the near future.
 
 ### My Process
+#### (FULL process <a href="design/process/process.html">here</a>)
 <p>
-I started by jotting down a <a href="#">list of the features</a>> I wanted to include in my
-app. I'm a very visual person, so I also created a few <a href="#">mockups</a> of what I
-wanted the app to look like. I then decided to try to stay organized. I learned
-what a Trello board is, then I used one to keep track of the <a href="#">entire process<a>. Then
-I gave ChatGPT access to the Trello board, then sat back and watched.</p>
+I started by jotting down a list of the features I wanted to include in my
+app. 
+<details>
+  <summary><i>Feature List</i></summary>
+  <b><img src="design/images/feature-list.jpeg" alt="List of planned features" width="200" height="300"></b>
+</details>
+</p>
+
 <p>
-Just kidding. That's not a thing (yet). SIDEBAR: So I take it back. It probably is a thing already.
-<a href="#">This just happened</a> while I was typing that last bit. I might turn co-pilot off while I finish this README.
+I decided to try to stay organized. I learned
+what a Trello board is, then I used one to keep track of the entire process. Finally,
+I gave ChatGPT access to the Trello board, then sat back and watched my app come to life.</p>
+<p>
+Just kidding.
 </p>
 <p>
 Anyway, if you're actually interested in the process I took to create this app, there's a summary below. I've kept fairly 
-detailed notes of each step and the things I've learned along the way. So if you're interested in reading about any of that,
-just follow any of the links located in the summary below. (Or if you prefer, here is a PDF version of the <a href="#">entire process</a>.)
+detailed notes of each step and the things I've learned along the way. So if you're interested in reading about any of that, here is a full version of the <a href="design/process/process.html">entire process</a>.
 
 #### Summary of the steps I took to create Bookcase Database
-- Create a <a href="#">Trello board</a> to keep track of the entire process
+- Create a Trello board to keep track of the entire process
 - Create a list of the features I wanted to include in my app
 - Create a few mockups of what I wanted the app to look like
 - Create a GitHub repository to store the code for my app
@@ -72,6 +78,14 @@ just follow any of the links located in the summary below. (Or if you prefer, he
 - Create this README file to document the entire process
 
 
+
+
+
+## And here's a screenshot of my homepage! 
+
+![](design/images/homepage.jpeg)
+
+
 ## CREDITS
 - Special thanks to the CS50 staff for creating the CS50x course and the CS50 Python and CS50 SQL courses.
 - Special thanks to the Odin Project for creating the Foundations curriculum.
@@ -79,57 +93,3 @@ just follow any of the links located in the summary below. (Or if you prefer, he
     understand how to use it.
 - Special thanks to <a href="https://codepen.io/BrandonGuerra">Brandon Guerra</a> for creating an awesome star rating system 
   with CSS that I used in this app.
-
-
-
-
-
-
-
-
-
-
-
-    11.1. Create the base template
-    11.2. Create the home page template
-    11.3. Create the bookcase page template
-    11.4. Create the book page template
-    11.5. Create the add book page template
-    11.6. Create the edit book page template
-    11.7. Create the delete book page template
-    11.8. Create the login page template
-    11.9. Create the register page template
-    11.10. Create the account page template
-    11.11. Create the edit account page template
-    11.12. Create the delete account page template
-    11.13. Create the error page template
-
-I learned a lot about how to use Flask and SQL to create a web application.
-I also learned how to use the Google Books API to search for books and
-retrieve information about them. I also learned how to use the Jinja
-templating language to create dynamic web pages. I also learned how to
-use the Bootstrap framework to create a responsive web application. I
-also learned how to use the `requests` module to make HTTP requests to
-the Google Books API. I also learned how to use the `json` module to 
-parse JSON data. I also learned how to use the `datetime` module to 
-format dates and times. I also learned how to use the `re` module to 
-validate user input. I also learned how to use the `os` module to 
-access environment variables. I also learned how to use the `flask`
-module to create a web application. I also learned how to use the `sql`
-module to interact with a SQLite database. I also learned how to use
-the `werkzeug.security` module to hash passwords. I also learned how
-to use the `flask_login` module to manage user sessions. I also learned
-how to use the `flask_wtf` module to create forms. I also learned how
-to use the `wtforms` module to create forms. I also learned how to use
-the `flask_bootstrap` module to use the Bootstrap framework in a Flask
-application. I also learned how to use the `flask_sqlalchemy` module
-to use SQLAlchemy in a Flask application. I also learned how to use
-the `flask_migrate` module to use Flask-Migrate in a Flask application.
-I also learned how to use the `flask_script` module to use Flask-Script
-
-I learned how to create a virtual environment using `venv`. I learned
-how to install packages using `pip`. I learned how to use `git` to
-
-
-## My Process
-

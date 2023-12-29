@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Averia+Serif+Libre:wght@300;400;700&family=Courier+Prime:wght@400;700&family=Dosis:wght@300;400;500;600;700&family=Gravitas+One&family=Kalnia:wght@400;500;600;700&family=Laila:wght@300;400;500;600;700&family=Podkova:wght@400;500;600;700&family=Vollkorn+SC:wght@400;600;700&display=swap');
 
 
-body {
+.process-body {
     background-color: #3d5a60;
     color: #3d5a60;
     font-family: 'Courier Prime', monospace;
@@ -52,13 +52,33 @@ ul {
     
 
 .part,
-.overview {
+.overview,
+.table-of-contents,
+.summary {
     margin-top: 40px;
     border-radius: 12px;
     background-color: rgb(206, 217, 226);
     padding: 20px;
 }
-
+.toc-list {
+    list-style-type: disc;
+    text-align: left;
+}
+a {
+    text-decoration: none;
+    color: #1a8bc0;
+}
+a:hover,
+a:visited:hover {
+    color: #233438;
+}
+a:visited {
+    color: #7c5275;
+}
+a:active,
+a:visited:active {
+    color: #8c5193;
+}
 
 h2 {
     margin-bottom: 0px;
@@ -71,4 +91,28 @@ h2 {
     margin: 0 30px 15px 30px;
     text-indent: 2em;
     text-align: left;
+}
+
+
+
+.struct-body {
+    background-color: #233438;
+}
+.file-structure {
+    max-width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 0 60px 0;
+}
+pre {
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    text-align: left;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgb(206, 217, 226);
+    border-radius: 12px;
 }
