@@ -1,6 +1,6 @@
 {% extends "base.html" %} {% block title %}Edit Book{% endblock %} {% block
 content %}
-<h2>Edit <span class="bold-title">{{ book.title }}</span>'s Details</h2>
+<h2><span class="bold-title">{{ book.title }}</span></h2><h2>Edit Details</h2>
 <div class="edit-book-box">
   <form
     class="edit-book-form"
@@ -139,6 +139,7 @@ content %}
       Save
     </button>
   </form>
+  <div class="spacer-div"></div>
 </div>
 
 <script>
