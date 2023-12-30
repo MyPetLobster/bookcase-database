@@ -649,9 +649,10 @@ span.psw {
 }
 #edit-bookcase-button {
   color: var(--primary-purple);
-  font-size: 22px;
+  font-size: 18px;
   background-color: var(--form-bg-blue);
   padding: 10px;
+  font-weight: 400;
   border-radius: 7px;
   box-shadow: 0px 0px 40px var(--shadow-color);
   margin-top: 0px;
@@ -669,11 +670,12 @@ span.psw {
 }
 
 #export-data-btn {
+  padding: 7px;
   margin-top: 0px;
   margin-bottom: 60px;
   background-color: var(--almost-white);
   color: var(--greenish-blue);
-  font-size: 14px;
+  font-size: 16px;
 }
 #export-data-btn:hover {
   background-color: #373737;
@@ -1848,6 +1850,19 @@ footer a:hover {
   .bookcases-create-form {
     margin-top: 20px;
     width: 300px;
+  }
+  #edit-bookcase-button {
+  color: var(--primary-purple);
+  font-size: 14px;
+  background-color: var(--form-bg-blue);
+  padding: 6px;
+  border-radius: 7px;
+  box-shadow: 0px 0px 40px var(--shadow-color);
+  margin-top: 0px;
+  margin-bottom: 30px;
+  }
+  #export-data-btn {
+  font-size: 13px;
   }
 }
 
