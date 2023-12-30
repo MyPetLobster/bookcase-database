@@ -7,6 +7,7 @@ content %}
     {% for book in current_bookcase.books %}
     <div class="books-in-container">
       <div class="book-cover">
+        <a href="/bookcase/{{ current_bookcase.id }}/{{ book.id }}/">
         {% if book.thumbnail_link == "" %}
         <img
           class="book-cover-img"
@@ -20,6 +21,7 @@ content %}
           alt="{{ book.title }} Cover"
         />
         {% endif %}
+        </a>
       </div>
       <div class="book-info">
         <h2>{{ book.title }}</h2>
