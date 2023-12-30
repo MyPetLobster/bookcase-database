@@ -948,6 +948,24 @@ span.psw {
 #book-read {
   outline: none;
 }
+.edit-book-cancel-btn {
+  width: 150px;
+  font-size: 14px;
+  border-radius: 10px;
+  background-color: var(--active-red);
+  transition-duration: 150ms;
+}
+.edit-book-cancel-btn:hover {
+  background-color: var(--passive-red);
+  color: var(--active-red);
+  font-weight: bold;
+  transition-duration: 150ms;
+}
+.edit-book-cancel {
+  align-self: center;
+  text-decoration: none;
+}
+
 
 @media screen and (max-width: 600px) {
   .edit-book-box {
@@ -966,6 +984,12 @@ span.psw {
   .bold-title {
     font-size: 36px;
   }
+ 
+  #book-read {
+    align-items: flex-start;
+    width: 50px;
+  }
+  .edit-book-cancel {}
 
 }
 
