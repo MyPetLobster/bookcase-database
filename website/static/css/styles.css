@@ -989,7 +989,6 @@ span.psw {
     align-items: flex-start;
     width: 50px;
   }
-  .edit-book-cancel {}
 
 }
 
@@ -1087,7 +1086,7 @@ h3 {
 }
 .dropdown {
   width: 200px;
-  height: 30px;
+  height: 40px;
   border-radius: 7px;
   font-family: "Courier Prime", monospace;
   font-size: 16px;
@@ -1107,6 +1106,16 @@ h3 {
 }
 .search-label {
   font-size: 22px;
+}
+#back-to-top {
+  text-align: center;
+  text-decoration: none;
+  color: var(--almost-white);
+}
+#back-to-top:hover {
+  font-weight: bold;
+  color: var(--primary-purple);
+  transition-duration: 150ms;
 }
 
 
@@ -1514,6 +1523,7 @@ footer a:hover {
   .bookcase {
     width: 100%;
   }
+
 }
 
 /* LOGIN AND REGISTER PAGES */
@@ -1652,7 +1662,7 @@ footer a:hover {
     height: 225px;
   }
   .search-result-info {
-    width: 150px;
+    width: 225px;
   }
   .search-results-form {
     display: flex;
