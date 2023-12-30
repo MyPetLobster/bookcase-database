@@ -894,6 +894,42 @@ span.psw {
   color: var(--active-red);
   transition-duration: 150ms;
 }
+.full-size-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Edit Profile Media Queries */
+@media screen and (max-width: 600px) {
+  .edit-profile-box form {
+    width: 100%;
+  }
+  .edit-profile-box {
+    width: 100%;
+  }
+  .button-box {
+    width: 100%;
+  }
+  .change-email,
+  .change-password {
+    margin-top: 20px;
+  }
+  .delete-profile-form-box {
+    width: 100%;
+  }
+  .delete-profile-form-box-active {
+    width: 100%;
+  }
+  #delete-acc-header {
+    font-size: 18px;
+  }
+  #confirm-delete-btn {
+    width: 150px;
+    font-size: 14px;
+  }
+}
 
 
 /* EDIT BOOK DETAILS PAGE */
@@ -1209,6 +1245,18 @@ li {
   font-weight: bold;
   color: var(--primary-purple);
   transition-duration: 150ms;
+}
+.github {
+  text-decoration: none;
+  color: var(--greenish-blue);
+}
+.github:hover {
+  font-weight: bold;
+  color: var(--dark-font);
+  transition-duration: 150ms;
+}
+.github:visited {
+  color: var(--primary-purple);
 }
 
 
