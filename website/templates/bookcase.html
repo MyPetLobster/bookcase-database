@@ -129,6 +129,8 @@ content %}
     </div>
   </div>
   <h2 id="manual-add-book-btn" class="item">Add Book Manually</h2>
+  
+  <button id="export-data-btn" class="home-button" type="button">Export Bookcase Data</button>
 
   <div id="form-anchor"></div>
 
@@ -303,6 +305,15 @@ content %}
   });
   cancelEditBookcase.addEventListener("click", function () {
     editBookcase.classList.toggle("edit-bookcase-active");
+  });
+
+  const exportDataBtn = document.querySelector("#export-data-btn");
+  // On hover, change button text to Coming Soon!
+  exportDataBtn.addEventListener("mouseover", function () {
+    exportDataBtn.textContent = "Coming Soon!";
+  });
+  exportDataBtn.addEventListener("mouseout", function () {
+    exportDataBtn.textContent = "Export Bookcase Data";
   });
 </script>
 

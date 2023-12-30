@@ -665,6 +665,18 @@ span.psw {
   font-size: 22px;
 }
 
+#export-data-btn {
+  margin-top: 0px;
+  margin-bottom: 60px;
+  background-color: var(--almost-white);
+  color: var(--greenish-blue);
+  font-size: 14px;
+}
+#export-data-btn:hover {
+  background-color: #373737;
+  color: #afafaf;
+  font-weight: bold;
+}
 
 
 /* Manual Add Book Form */
@@ -689,7 +701,7 @@ span.psw {
   font-size: 18px;
 }
 #manual-add-book-btn {
-  margin-bottom: 60px;
+  margin-bottom: 20px;
   color: var(--primary-purple);
   font-size: 22px;
   background-color: var(--form-bg-blue);
