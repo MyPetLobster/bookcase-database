@@ -67,9 +67,9 @@ input {
   border-radius: 7px;
 }
 /* Add padding to containers */
-.container {
+/* .container {
   padding: 16px;
-}
+} */
 .bold-big {
   font-weight: bold;
   font-size: 20px;
