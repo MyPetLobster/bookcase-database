@@ -1650,19 +1650,22 @@ footer a:hover {
     width: 250px;
   }
   .search-results-container {
-    width: 300px;
+    width: 90vw;
   }
   .search-result {
     display: flex;
     flex-direction: column;
-    width: 250px;
+    width: 90%;
   }
   .search-result-cover img {
     width: 150px;
     height: 225px;
   }
   .search-result-info {
-    width: 225px;
+    width: 90%;
+  }
+  .search-result-info h3 {
+    text-align: center;
   }
   .search-results-form {
     display: flex;
