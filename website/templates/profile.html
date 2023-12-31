@@ -15,14 +15,14 @@ content %}
         <p><span class="bold-menu">Member Since:</span> {{ user.date_created.strftime('%m/%d/%Y') }}</p>
       </div>
       <div class="edit-prof-box">
-          <a class="xs-link edit-prof-link" href="/edit_profile">Edit Profile</a>
+          <a class="xs-link" id="edit-prof-link" href="/edit_profile">Edit Profile</a>
       </div>
     </div>
 
     <div>
       <div class="profile-bookcases profile-item">
-        <h2 class="profile-h2">Bookcases</h2>
-        <ul>
+        <h2 class="profile-h2"><a class="profile-bookcases-link" href="/bookcases/">Bookcases</a></h2>
+        <ul class="profile-bookcases-list">
           {% for bookcase in bookcases %}
           <li>
             <a class="small-link" href="/bookcase/{{bookcase.id}}/"> {{bookcase.name}} </a>
@@ -31,7 +31,7 @@ content %}
         </ul>
       </div>
       <div class="create-bookcase-box">
-          <a class="xs-link create-bookcase-link" href="#">Create New Bookcase</a>
+          <a class="xs-link" id="create-bookcase-link" href="#">Create New Bookcase</a>
       </div>
       <div class="spacer-div"></div>
     </div>

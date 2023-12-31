@@ -650,6 +650,29 @@ span.psw {
 #create-bc-btn {
   width: 150px;
 }
+.profile-bookcases-list {
+  margin-top: 0px;
+}
+.profile-h2 {
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+.profile-bookcases-link {
+  text-decoration: none;
+}
+.profile-bookcases-link:hover {
+  color: var(--greenish-blue);
+  transition-duration: 150ms;
+}
+.profile-bookcases-link:visited {
+  color: var(--dark-font);
+}
+#edit-prof-link,
+#create-bookcase-link {
+    font-size: 20px;
+}
+
+
 
 
 /* BOOKCASE PAGE */
@@ -1771,6 +1794,11 @@ footer a:hover {
   .create-bookcase-box {
     width: 300px;
   }
+  #edit-prof-link,
+  #create-bookcase-link {
+    font-size: 18px;
+  }
+
   .profile-bookcases {
     width: 300px;
   }
