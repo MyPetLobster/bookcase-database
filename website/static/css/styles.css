@@ -77,6 +77,11 @@ input {
 .bold-menu {
   font-weight: bold;
 }
+.smaller-font {
+  font-size: 12px;
+}
+
+
 
 option {
   text-align: center;
@@ -298,6 +303,8 @@ span.psw {
   float: right;
   padding-top: 16px;
 }
+
+
 
 
 /* HOME PAGE */
@@ -545,8 +552,6 @@ span.psw {
   width: 200px;
   height: 300px;
   border-radius: 8px;
-}
-.author-link {
 }
 
 
