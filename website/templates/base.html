@@ -39,6 +39,10 @@
         <i class="fa fa-bars"></i>
       </a>
     </div>
+    <div class="beta-banner">
+      <p>BC.DB is currently in beta. Please report any bugs to <a class="email-team" href="mailto:BookcaseDatabase@gmail.com?subject=bugs">our team!</a></p>
+    </div>
+    
     
     <div class="spacer-div"></div>
 
@@ -78,6 +82,7 @@
     const anchorTags = document.querySelectorAll("#myTopnav a");
     const bcdbLogo = document.getElementById("bcdb-logo");
     const footer = document.getElementById("footer");
+    const betaBanner = document.querySelector(".beta-banner");
 
     // Function to check if the footer should be visible
     function checkFooterVisibility() {
@@ -108,6 +113,7 @@
    
     window.onscroll = function () {
       if (window.pageYOffset > 0) {
+        betaBanner.classList.add("beta-solid-bg")
         topNav.classList.add("solid-bg");
         bcdbLogo.classList.add("remove-border-radius");
         anchorTags.forEach((anchor) => {
@@ -115,6 +121,7 @@
         });
       } else {
         topNav.classList.remove("solid-bg");
+        betaBanner.classList.remove("beta-solid-bg");
         bcdbLogo.classList.remove("remove-border-radius");
         anchorTags.forEach((anchor) => {
           anchor.classList.remove("white-font");
@@ -126,13 +133,16 @@
     const burger = document.getElementById("hamburger");
     burger.addEventListener("click", () => {
       if (topNav.className === "topnav") {
+        betaBanner.classList.add("beta-hidden");
         topNav.className += " responsive";
         topNav.scrollIntoView({ behavior: 'smooth' });
       } else if (topNav.className === "topnav solid-bg") {
+        betaBanner.classList.add("beta-hidden");
         topNav.className = "topnav responsive";
         topNav.scrollIntoView({ behavior: 'smooth' });
       }
       else {
+        betaBanner.classList.remove("beta-hidden");
         topNav.className = "topnav";
       }
     });
@@ -140,6 +150,7 @@
     bcdbLogo.addEventListener("click", () => {
       if (topNav.className === "topnav responsive") {
         topNav.className = "topnav";
+        betaBanner.classList.remove("beta-hidden");
         bcdbLogo.removeAttribute("href");
       }
       else {

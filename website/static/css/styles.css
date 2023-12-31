@@ -131,6 +131,46 @@ button:hover {
 }
 
 
+/* BETA BANNER */
+.beta-banner {
+  position: fixed;
+  top: 66px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  overflow: hidden;
+  height: 20px;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+.beta-banner > p {
+  color: var(--dark-font);
+  font-family: "Courier Prime", monospace;
+  font-size: 14px;
+}
+.beta-solid-bg {
+  background-color: var(--almost-white);
+  color: var(--dark-font);
+  transition-duration: 150ms;
+}
+.beta-hidden {
+  display: none;
+}
+.email-team {
+  text-decoration: none;
+  color: #175088;
+  font-weight: bold;
+  transition-duration: 150ms;
+}
+.email-team:hover {
+  color: #327dc9;
+  transition-duration: 150ms;
+}
+
+
+
 /* NAVBAR */
 .topnav {
   display: flex;
@@ -1624,6 +1664,14 @@ footer a:hover {
   #hamburger {
     color: var(--primary-purple);
     
+  }
+  .beta-banner > p {
+    font-size: 10px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .beta-banner > p {
+    font-size: 8px;
   }
 }
 
