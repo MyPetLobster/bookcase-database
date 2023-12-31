@@ -415,7 +415,8 @@ span.psw {
   font-family: "Kalnia", "serif";
   font-size: 36px;
   font-weight: 300;
-  line-height: 20px;
+  line-height: 0px;
+  padding-top: 10px;
 }
 .bc-header:hover {
   font-weight: bold;
@@ -426,20 +427,81 @@ span.psw {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100vw;
+  width: 90vw;
 }
 .bookcases-item {
-  margin-top: 0px;
-  padding-top: 0px;
-  padding-bottom: 15px;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0px;
 }
-.gallery {
+
+.close-gallery {
+  cursor: pointer;
+  color: #1a2729;
+}
+.close-gallery:hover {
+  color: #3d5a60;
+  transition-duration: 150ms;
+}
+.close-gallery:active {
+  color: var(--primary-purple);
+}
+.close-inactive {
+  display: none;
+}
+.close-active {
+  display: inherit;
+}
+
+.gallery-inactive {
+  display: none;
+}
+
+.gallery-active {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
+  margin-top: 20px;
+  padding-bottom: 20px;
+  transition-duration: 300ms;
 }
+
+.very-small-gallery {
+  cursor: pointer;
+}
+.very-small-gallery-inactive {
+  display: none;
+}
+.very-small-gallery-active {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-grow: 0;
+  flex-shrink: 0;
+  width: 300px;
+  height: auto;
+  gap: 5px;
+  transition-duration: 300ms;
+  padding-bottom: 20px;
+}
+.very-small-img-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25px;
+  height: 37px;
+  overflow: hidden;
+  border: 2px solid #242f2b;
+  border-radius: 10px;
+}
+.very-small-thumb {
+  width: 30px;
+  height: 40px;
+}
+
 .img-div {
   display: flex;
   justify-content: center;

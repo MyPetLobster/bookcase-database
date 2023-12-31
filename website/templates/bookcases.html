@@ -6,10 +6,33 @@ content %}
   <div class="display-bookcases">
     {% for bookcase in bookcases %}
     <div class="bookcases-item" style="background-color: {{ color }}">
+
       <a href="/bookcase/{{ bookcase.id }}/">
         <h2 class="bc-header">{{ bookcase.name }}</h2>
       </a>
-      <div class="gallery">
+      <h2 class="close-gallery close-inactive">&#10006;</h2>
+      <div class="very-small-gallery very-small-gallery-active">
+        
+        {% for book in bookcase.books %}
+        <div class="very-small-img-div">
+            {% if book.thumbnail_link == "" %}
+            <img
+              class="very-small-thumb"
+              src="/static/images/image_not_available.jpeg"
+              alt="{{ book.title }} Cover"
+            />
+            {% else %}
+            <img
+              class="very-small-thumb"
+              src="{{ book.thumbnail_link }}"
+              alt="{{ book.title }} Cover"
+            />
+            {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="gallery gallery-inactive">
         {% for book in bookcase.books %}
         <div class="img-div">
           <a href="/bookcase/{{ bookcase.id }}/{{ book.id }}/">
@@ -30,6 +53,7 @@ content %}
         </div>
         {% endfor %}
       </div>
+
     </div>
     {% endfor %}
   </div>
@@ -50,5 +74,42 @@ content %}
     </form>
   </div>
 </div>
+
+<script>
+
+const verySmallGalleries = document.querySelectorAll(".very-small-gallery");
+const galleries = document.querySelectorAll(".gallery");
+const closeGallery = document.querySelectorAll(".close-gallery");
+
+if (verySmallGalleries.length === galleries.length) {
+  for (let i = 0; i < verySmallGalleries.length; i++) {
+    verySmallGalleries[i].addEventListener("click", () => {
+      verySmallGalleries[i].classList.remove("very-small-gallery-active");
+      verySmallGalleries[i].classList.add("very-small-gallery-inactive");
+      galleries[i].classList.remove("gallery-inactive");
+      galleries[i].classList.add("gallery-active");
+      closeGallery[i].classList.remove("close-inactive");
+      closeGallery[i].classList.add("close-active");
+    });
+  }
+} else {
+  console.error("Mismatched number of elements: verySmallGalleries and galleries.");
+}
+
+for (let i = 0; i < closeGallery.length; i++) {
+  closeGallery[i].addEventListener("click", () => {
+    verySmallGalleries[i].classList.remove("very-small-gallery-inactive");
+    verySmallGalleries[i].classList.add("very-small-gallery-active");
+    galleries[i].classList.remove("gallery-active");
+    galleries[i].classList.add("gallery-inactive");
+    closeGallery[i].classList.remove("close-active");
+    closeGallery[i].classList.add("close-inactive");
+  });
+}
+
+
+
+</script>
+
 
 {% endblock %}
