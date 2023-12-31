@@ -553,6 +553,28 @@ span.psw {
   height: 300px;
   border-radius: 8px;
 }
+.description-inactive {
+  display: none;
+}
+.description-active {
+  display: inherit;
+}
+.description-active:hover {
+  color: var(--greenish-blue);
+  transition-duration: 150ms;
+  cursor: pointer;
+}
+.description-truncated-inactive {
+  display: none;
+}
+.description-truncated-active {
+  display: inherit;
+}
+.description-truncated-active:hover {
+  color: var(--greenish-blue);
+  transition-duration: 150ms;
+  cursor: pointer;
+}
 
 
 /* PROFILE PAGE */

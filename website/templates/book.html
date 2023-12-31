@@ -26,7 +26,8 @@
         <button class="author-search-button" type="submit"><h3 class="author-link">{{ author }}</h3></button>{% if not loop.last %},
       </form> 
     {% endif %} {% endfor %}{% endif %}
-    <p class="description">{{ book.description }}</p>
+    <p class="description-truncated description-truncated-active">{{ book.description_truncated }}</p>
+    <p class="description description-inactive">{{ book.description }}</p>
     <p><span class="bold-menu">Categories:</span> {{ book.categories }}</p>
     <p><span class="bold-menu">Publisher:</span> {{ book.publisher }}</p>
     <p><span class="bold-menu">Publication Date:</span> {{ book.publication_date }}</p>
@@ -62,4 +63,27 @@
   </div>
   <div class="half-spacer-div"></div>
 </div>
+
+<script>
+
+  const descriptionTruncated = document.querySelector(".description-truncated");
+  const description = document.querySelector(".description");
+
+  descriptionTruncated.addEventListener("click", () => {
+    descriptionTruncated.classList.remove("description-truncated-active");
+    descriptionTruncated.classList.add("description-truncated-inactive");
+    description.classList.remove("description-inactive");
+    description.classList.add("description-active");
+  });
+
+  description.addEventListener("click", () => {
+    description.classList.remove("description-active");
+    description.classList.add("description-inactive");
+    descriptionTruncated.classList.remove("description-truncated-inactive");
+    descriptionTruncated.classList.add("description-truncated-active");
+  });
+
+</script>
+
+
 {% endblock %}
