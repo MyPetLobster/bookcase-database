@@ -546,6 +546,8 @@ span.psw {
   height: 300px;
   border-radius: 8px;
 }
+.author-link {
+}
 
 
 /* PROFILE PAGE */
@@ -1178,6 +1180,9 @@ select:focus {
 .search-result-info {
   width: 300px;
 }
+.title-results {
+  text-align: center;
+}
 .author-results {
   text-align: center;
 }
@@ -1225,7 +1230,29 @@ h3 {
   color: var(--primary-purple);
   transition-duration: 150ms;
 }
+.author-search-button {
+  background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+  margin: 0;
+  width: auto;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+  height: auto;
+  margin-bottom: 10px;
+}
 
+.author-search-button:hover {
+  font-weight: bold;
+  color: var(--primary-purple);
+  transition-duration: 150ms;
+}
+.author-link {
+  padding: 0px;
+  margin: 0px;
+}
 
 /* FORGOT and RESET PASSWORD PAGES */
 .reset-pass-h2 {

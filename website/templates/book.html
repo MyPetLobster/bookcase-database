@@ -16,7 +16,16 @@
   <div class="book-info">
     <h2>{{ book.title }}</h2>
     <h4>{{ book.subtitle }}</h4>
-    <h3>{{ book.authors }}</h3>
+
+    {% if book.authors == "" %}
+      No Authors Listed
+    {% else %}
+    {% for author in book.authors.split(",") %} 
+      <form class="author-search-form" action="/search/" method="post">
+        <input type="hidden" name="author" value="{{ author }}" />
+        <button class="author-search-button" type="submit"><h3 class="author-link">{{ author }}</h3></button>{% if not loop.last %},
+      </form> 
+    {% endif %} {% endfor %}{% endif %}
     <p class="description">{{ book.description }}</p>
     <p><span class="bold-menu">Categories:</span> {{ book.categories }}</p>
     <p><span class="bold-menu">Publisher:</span> {{ book.publisher }}</p>
