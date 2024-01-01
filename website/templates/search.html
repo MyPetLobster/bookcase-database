@@ -52,16 +52,12 @@ content %}
         </div>
         <div class="search-result-info">
           <h3 class="title-results">{{ book['volumeInfo']['title'] }}</h3>
-          <h4 class="author-results">
-            {% for author in book['volumeInfo']['authors'] %} 
-              <form class="author-search-form" action="/search/" method="post">
-                <input type="hidden" name="author" value="{{ author }}" />
-                <button class="author-search-button" type="submit">{{ author }}</button>
-                {% if not loop.last %}, 
-              </form>
-              
-            {% endif %} {% endfor %}
-          </h4>
+        <h4 class="author-results">
+          {% for author in book['volumeInfo']['authors'] %} 
+            <a href="/search/?author={{ author }}">{{ author }}</a>
+            {% if not loop.last %},{% endif %}
+          {% endfor %}
+        </h4>
           {% for isbn_type in book['volumeInfo']['industryIdentifiers'] %} {% if
           isbn_type['type'] == 'ISBN_13' %}
           <p><span class="bold-menu">ISBN_13:</span> {{ isbn_type['identifier'] }}</p>
@@ -85,81 +81,97 @@ content %}
             <input
               type="hidden"
               name="book-title"
+              id="book-title"
               value="{{ book['volumeInfo']['title'] }}"
             />
             <input
               type="hidden"
               name="book-subtitle"
+              id="book-subtitle"
               value="{% if book['volumeInfo']['subtitle'] %}{{ book['volumeInfo']['subtitle'] }}{% endif %}"
             />
             <input
               type="hidden"
               name="book-author"
+              id="book-author"
               value="{% for author in book['volumeInfo']['authors'] %}{{ author }}{% if not loop.last %}, {% endif %}{% endfor %}"
             />
             <input
               type="hidden"
               name="book-description"
+              id="book-description"
               value="{% if book['volumeInfo']['description'] %}{{ book['volumeInfo']['description'] }}{% endif %}"
             />
             <input
               type="hidden"
               name="book-isbn-13"
+              id="book-isbn-13"
               value="{% for isbn_type in book['volumeInfo']['industryIdentifiers'] %}{% if isbn_type['type'] == 'ISBN_13' %}{{ isbn_type['identifier'] }}{% endif %}{% endfor %}"
             />
             <input
               type="hidden"
               name="book-isbn-10"
+              id="book-isbn-10"
               value="{% for isbn_type in book['volumeInfo']['industryIdentifiers'] %}{% if isbn_type['type'] == 'ISBN_10' %}{{ isbn_type['identifier'] }}{% endif %}{% endfor %}"
             />
             <input
               type="hidden"
               name="book-publisher"
+              id="book-publisher"
               value="{% if book['volumeInfo']['publisher'] %}{{ book['volumeInfo']['publisher'] }}{% endif %}"
             />
             <input
               type="hidden"
               name="book-publication-date"
+              id="book-publication-date"
               value="{% if book['volumeInfo']['publishedDate'] %}{{ book['volumeInfo']['publishedDate'] }}{% endif %}"
             />
             <input
               type="hidden"
               name="book-categories"
+              id="book-categories"
               value="{% for category in book['volumeInfo']['categories'] %}{{ category }}{% if not loop.last %}, {% endif %}{% endfor %}"
             />
             <input
               type="hidden"
               name="book-language"
+              id="book-language"
               value="{% if book['volumeInfo']['language'] %}{{ book['volumeInfo']['language'] }}{% endif %}"
             />
             <input
               type="hidden"
               name="book-page-count"
+              id="book-page-count"
               value="{% if book['volumeInfo']['pageCount'] %}{{ book['volumeInfo']['pageCount'] }}{% endif %}"
             />
             <input
               type="hidden"
               name="book-google-rating"
+              id="book-google-rating"
               value="{% if book['volumeInfo']['averageRating'] %}{{ book['volumeInfo']['averageRating'] }}{% endif %}"
             />
             <input
               type="hidden"
               name="book-google-rating-count"
+              id="book-google-rating-count"
               value="{% if book['volumeInfo']['ratingsCount'] %}{{ book['volumeInfo']['ratingsCount'] }}{% endif %}"
             />
             <input
               type="hidden"
               name="book-google-link"
+              id="book-google-link"
               value="{% if book['volumeInfo']['infoLink'] %}{{ book['volumeInfo']['infoLink'] }}{% endif %}"
             />
             <input
               type="hidden"
               name="book-thumbnail-link"
+              id="book-thumbnail-link"
               value="{% if book['volumeInfo']['imageLinks'] %}{{ book['volumeInfo']['imageLinks']['thumbnail'] }}{% else %}https://dummyimage.com/130x170/e3e3e3/0d0d0d.jpg&text=No+Image+Available{% endif %}"
             />
             <input
               type="hidden"
               name="book-google-id"
+              id="book-google-id"
               value="{{ book['id'] }}"
             />
             <div class="add-new-container">
@@ -188,6 +200,22 @@ content %}
 
 {% if request.method == "POST" %}
 <script>
+    document.addEventListener("DOMContentLoaded", function () {
+    const authorLinks = document.querySelectorAll(".author-results a");
+    authorLinks.forEach(function (link) {
+      link.addEventListener("click", function (event) {
+        event.preventDefault();
+        const authorName = link.textContent;
+        // Update the 'author' input field in the outer form
+        document.querySelector("#author").value = authorName;
+        // Submit the outer form
+        document.querySelector(".search-book-form").submit();
+      });
+    });
+  });
+
+
+
   // Pass the search results from Flask to JavaScript
     const searchResults = {{ books|tojson|safe }};
 

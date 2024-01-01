@@ -232,7 +232,7 @@ def search():
             
             data = urllib.request.urlopen(url).read()
             dict = json.loads(data)
-
+            print(query_params)
             return render_template("search.html", user=current_user, books=dict['items'], bookcases=bookcases)
 
         elif request.form.get('general-search'):
@@ -248,6 +248,7 @@ def search():
             session['search_query'] = url
             data = urllib.request.urlopen(url).read()
             dict = json.loads(data)
+            print(query_params)
             return render_template("search.html", user=current_user, books=dict['items'], bookcases=bookcases)
 
         else:
@@ -255,7 +256,7 @@ def search():
             db.session.rollback()
             print("IntegrityError: The book may already exist.")
             
-
+    
     return render_template("search.html", user=current_user, bookcases=bookcases)
 
 # ADD BOOK TO BOOKCASE
@@ -355,8 +356,10 @@ def add_book():
             print("IntegrityError: The book may already exist.")
 
     url = session.get('search_query')
+    print(f"***** ***** ***** search query: {url}")
     data = urllib.request.urlopen(url).read()
     dict = json.loads(data)
+    print(dict['items'])
     return render_template("search.html", user=current_user, books=dict['items'], bookcases=bookcases)
     
 # DELETE BOOK FROM BOOKCASE
