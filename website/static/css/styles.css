@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Averia+Serif+Libre:wght@300;400;700&family=Courier+Prime:wght@400;700&family=Dosis:wght@300;400;500;600;700&family=Gravitas+One&family=Kalnia:wght@400;500;600;700&family=Laila:wght@300;400;500;600;700&family=Podkova:wght@400;500;600;700&family=Vollkorn+SC:wght@400;600;700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Averia+Serif+Libre:wght@300;400;700&family=Courier+Prime:wght@400;700&family=Dosis:wght@300;400;500;600;700&family=Gravitas+One&family=Kalnia:wght@400;500;600;700&family=Laila:wght@300;400;500;600;700&family=Podkova:wght@400;500;600;700&family=Vollkorn+SC:wght@400;600;700&display=swap'); */
 @font-face {
   font-family: 'pass';
   font-style: normal;
@@ -105,7 +105,7 @@ option {
 /* BUTTONS */
 button {
   font-family: "Averia Serif Libre", serif;
-  font-weight: 600;
+  font-weight: bold;
   font-size: 18px;
 }
 /* Set a style for all buttons */
@@ -472,7 +472,7 @@ span.psw {
   text-decoration: none;
   font-family: "Kalnia", "serif";
   font-size: 36px;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 0px;
   padding-top: 10px;
 }
@@ -1321,7 +1321,7 @@ h3 {
   font-size: 22px;
 }
 #back-to-top {
-  font-family:'Courier New', Courier, monospace;
+  font-family:'Courier Prime', Courier, monospace;
   text-align: center;
   text-decoration: none;
   color: var(--almost-white);
@@ -1474,7 +1474,7 @@ footer {
 }
 footer a {
   color: var(--almost-white);
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Courier Prime', Courier, monospace;
   text-decoration: none;
   font-size: 14px;
   padding: 0 10px; /* Add horizontal padding to create spacing between links */
