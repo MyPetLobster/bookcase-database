@@ -22,7 +22,7 @@ content %}
   <div class="sort-by-container">
     <pre
       class="sort-by-pre"
-    ><span class="title-sort"><span id="title-up-down-arrow" class="up-down-arrow">&#8597;</span><span id="title-down-arrow" class="down-arrow">&darr;</span><span id="title-up-arrow" class="up-arrow">&uarr;</span> Title</span>                 <span class="author-sort"><span id="author-up-down-arrow" class="up-down-arrow">&#8597;</span><span id="author-down-arrow" class="down-arrow">&darr;</span><span id="author-up-arrow" class="up-arrow">&uarr;</span> Author</span></pre>
+    ><span class="title-sort"><span id="title-down-arrow" class="down-arrow">&darr;</span><span id="title-up-arrow" class="up-arrow">&uarr;</span> Title</span>                 <span class="author-sort"><span id="author-down-arrow" class="down-arrow">&darr;</span><span id="author-up-arrow" class="up-arrow">&uarr;</span> Author</span></pre>
   </div>
   <div class="books-collection">
     {% for book in current_bookcase.books %}
@@ -290,7 +290,6 @@ content %}
   const sortByForm = document.querySelector(".sort-by-form");
   const sortBy = document.querySelector("#sortby");
   const sortByDirection = document.querySelector("#sort-by-direction");
-  const titleUpDownArrow = document.querySelector("#title-up-down-arrow");
   const titleDownArrow = document.querySelector("#title-down-arrow");
   const titleUpArrow = document.querySelector("#title-up-arrow");
   const authorDownArrow = document.querySelector("#author-down-arrow");
@@ -304,27 +303,20 @@ content %}
     }
 
     // Check the status of the authorArrowDirection in sessionStorage
-    if (!sessionStorage.getItem("authorArrowDirection")) {
-      // Default to up-down arrow if no direction is set
-      authorUpDownArrow.classList.add("arrow-active");
-    } else if (sessionStorage.getItem("authorArrowDirection") == "up") {
+    if (sessionStorage.getItem("authorArrowDirection") == "up") {
       authorUpArrow.classList.add("arrow-active");
     } else if (sessionStorage.getItem("authorArrowDirection") == "down") {
       authorDownArrow.classList.add("arrow-active");
     }
 
     // Check the status of the titleArrowDirection in sessionStorage
-    if (!sessionStorage.getItem("titleArrowDirection")) {
-      // Default to up-down arrow if no direction is set
-      titleUpDownArrow.classList.add("arrow-active");
-    } else if (sessionStorage.getItem("titleArrowDirection") == "up") {
+    if (sessionStorage.getItem("titleArrowDirection") == "up") {
       titleUpArrow.classList.add("arrow-active");
     } else if (sessionStorage.getItem("titleArrowDirection") == "down") {
       titleDownArrow.classList.add("arrow-active");
     }
 
     titleSort.addEventListener("click", function () {
-      titleUpDownArrow.classList.remove("arrow-active");
       let direction = sessionStorage.getItem("directionSession");
       sortBy.value = "title";
       if (direction == "asc") {
@@ -336,12 +328,11 @@ content %}
         sessionStorage.setItem("titleArrowDirection", "up"); // Update title arrow direction
         sessionStorage.setItem("directionSession", "asc"); // Update sort direction
       }
-      sessionStorage.setItem("authorArrowDirection", "up-down"); // Reset title arrow direction
+      sessionStorage.setItem("authorArrowDirection", "none"); // Reset title arrow direction
       sortByForm.submit();
     });
 
     authorSort.addEventListener("click", function () {
-      authorUpDownArrow.classList.remove("arrow-active");
       let direction = sessionStorage.getItem("directionSession");
       sortBy.value = "author";
       if (direction == "asc") {
@@ -353,7 +344,7 @@ content %}
         sessionStorage.setItem("authorArrowDirection", "up"); // Update author arrow direction
         sessionStorage.setItem("directionSession", "asc"); // Update sort direction
       }
-      sessionStorage.setItem("titleArrowDirection", "up-down"); // Reset author arrow direction
+      sessionStorage.setItem("titleArrowDirection", "none"); // Reset author arrow direction
       sortByForm.submit();
     });
   });

@@ -757,7 +757,8 @@ span.psw {
   cursor: pointer;
   transition-duration: 150ms;
 }
-.up-down-arrow,
+
+/* Sort By BOOKCASE PAGE */
 .down-arrow,
 .up-arrow {
   display: none;
