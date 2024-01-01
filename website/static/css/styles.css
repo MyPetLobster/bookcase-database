@@ -764,11 +764,27 @@ span.psw {
   margin: 0px;
   padding: 0px;
 }
-
 .arrow-active {
   display: inline;
 } 
 
+@media screen and (max-width: 600px) {
+  .sort-by-container {
+    flex-direction: column;
+    gap: 10px;
+    height: auto;
+  }
+  #sort-by-header {
+    margin-top: 20px;
+    font-size: 13px;
+  }
+  .sort-by-container p {
+    line-height: 5px;
+    font-size: 10px;
+  }
+}
+
+/* Bookcase Page Proper */
 .bookcase-page {
   width: 100vw;
   height: auto;
