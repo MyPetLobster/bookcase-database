@@ -41,6 +41,11 @@ content %}
       <span id="rating-up-arrow" class="up-arrow">&uarr;</span>
         User Rating
     </p>
+    <p class="google-rating-sort">
+      <span id="google-rating-down-arrow" class="down-arrow">&darr;</span>
+      <span id="google-rating-up-arrow" class="up-arrow">&uarr;</span>
+        Google Rating
+    </p>
   </div>
 
   <div class="books-collection">
@@ -306,6 +311,9 @@ content %}
 <script>
   const titleSort = document.querySelector(".title-sort");
   const authorSort = document.querySelector(".author-sort");
+  const publishSort = document.querySelector(".publish-sort");
+  const ratingSort = document.querySelector(".rating-sort");
+  const googleRatingSort = document.querySelector(".google-rating-sort");
   const sortByForm = document.querySelector(".sort-by-form");
   const sortBy = document.querySelector("#sortby");
   const sortByDirection = document.querySelector("#sort-by-direction");
@@ -313,6 +321,12 @@ content %}
   const titleUpArrow = document.querySelector("#title-up-arrow");
   const authorDownArrow = document.querySelector("#author-down-arrow");
   const authorUpArrow = document.querySelector("#author-up-arrow");
+  const publishDownArrow = document.querySelector("#publish-down-arrow");
+  const publishUpArrow = document.querySelector("#publish-up-arrow");
+  const ratingDownArrow = document.querySelector("#rating-down-arrow");
+  const ratingUpArrow = document.querySelector("#rating-up-arrow");
+  const googleRatingDownArrow = document.querySelector("#google-rating-down-arrow");
+  const googleRatingUpArrow = document.querySelector("#google-rating-up-arrow");
 
 
   document.addEventListener("DOMContentLoaded", function () {
@@ -322,7 +336,8 @@ content %}
       sessionStorage.setItem("directionSession", "asc");
     }
 
-    // Check the status of the authorArrowDirection in sessionStorage
+    // CHECK WHICH ARROW DIRECTION PASSED FROM SESSION STORAGE and ADD ACTIVE CLASS
+    // Author Sort
     if (sessionStorage.getItem("authorArrowDirection") == "up") {
       authorUpArrow.classList.add("arrow-active");
       authorSort.classList.add("bold-menu");
@@ -330,8 +345,7 @@ content %}
       authorSort.classList.add("bold-menu");
       authorDownArrow.classList.add("arrow-active");
     }
-
-    // Check the status of the titleArrowDirection in sessionStorage
+    // Title Sort
     if (sessionStorage.getItem("titleArrowDirection") == "up") {
       titleUpArrow.classList.add("arrow-active");
       titleSort.classList.add("bold-menu");
@@ -339,7 +353,33 @@ content %}
       titleDownArrow.classList.add("arrow-active");
       titleSort.classList.add("bold-menu");
     }
+    // Publish Date Sort
+    if (sessionStorage.getItem("publishArrowDirection") == "up") {
+      publishUpArrow.classList.add("arrow-active");
+      publishSort.classList.add("bold-menu");
+    } else if (sessionStorage.getItem("publishArrowDirection") == "down") {
+      publishDownArrow.classList.add("arrow-active");
+      publishSort.classList.add("bold-menu");
+    }
+    // User Rating Sort
+    if (sessionStorage.getItem("ratingArrowDirection") == "up") {
+      ratingUpArrow.classList.add("arrow-active");
+      ratingSort.classList.add("bold-menu");
+    } else if (sessionStorage.getItem("ratingArrowDirection") == "down") {
+      ratingDownArrow.classList.add("arrow-active");
+      ratingSort.classList.add("bold-menu");
+    }
+    // Google Rating Sort
+    if (sessionStorage.getItem("googleRatingArrowDirection") == "up") {
+      googleRatingUpArrow.classList.add("arrow-active");
+      googleRatingSort.classList.add("bold-menu");
+    } else if (sessionStorage.getItem("googleRatingArrowDirection") == "down") {
+      googleRatingDownArrow.classList.add("arrow-active");
+      googleRatingSort.classList.add("bold-menu");
+    }
 
+    // ADD EVENT LISTENERS TO SORT BY ARROWS
+    // Title Event Listener
     titleSort.addEventListener("click", function () {
       let direction = sessionStorage.getItem("directionSession");
       sortBy.value = "title";
@@ -352,10 +392,20 @@ content %}
         sessionStorage.setItem("titleArrowDirection", "up"); // Update title arrow direction
         sessionStorage.setItem("directionSession", "asc"); // Update sort direction
       }
-      sessionStorage.setItem("authorArrowDirection", "none"); // Reset title arrow direction
+      // Reset all other arrow directions
+      let arrowArray = [
+        "authorArrowDirection",
+        "publishArrowDirection",
+        "ratingArrowDirection",
+        "googleRatingArrowDirection",
+      ];
+      for (let i = 0; i < arrowArray.length; i++) {
+        sessionStorage.setItem(arrowArray[i], "none");
+      }
       sortByForm.submit();
     });
 
+    // Author Event Listener
     authorSort.addEventListener("click", function () {
       let direction = sessionStorage.getItem("directionSession");
       sortBy.value = "author";
@@ -368,7 +418,98 @@ content %}
         sessionStorage.setItem("authorArrowDirection", "up"); // Update author arrow direction
         sessionStorage.setItem("directionSession", "asc"); // Update sort direction
       }
+      // Reset all other arrow directions
+      let arrowArray = [
+        "titleArrowDirection",
+        "publishArrowDirection",
+        "ratingArrowDirection",
+        "googleRatingArrowDirection",
+      ];
+      for (let i = 0; i < arrowArray.length; i++) {
+        sessionStorage.setItem(arrowArray[i], "none");
+      }
       sessionStorage.setItem("titleArrowDirection", "none"); // Reset author arrow direction
+      sortByForm.submit();
+    });
+
+    // Publish Date Event Listener
+    publishSort.addEventListener("click", function () {
+      let direction = sessionStorage.getItem("directionSession");
+      sortBy.value = "publication_date";
+      if (direction == "asc") {
+        sortByDirection.value = "desc";
+        sessionStorage.setItem("publishArrowDirection", "down"); // Update publish arrow direction
+        sessionStorage.setItem("directionSession", "desc"); // Update sort direction
+      } else {
+        sortByDirection.value = "asc";
+        sessionStorage.setItem("publishArrowDirection", "up"); // Update publish arrow direction
+        sessionStorage.setItem("directionSession", "asc"); // Update sort direction
+      }
+      // Reset all other arrow directions
+      let arrowArray = [
+        "titleArrowDirection",
+        "authorArrowDirection",
+        "ratingArrowDirection",
+        "googleRatingArrowDirection",
+      ];
+      for (let i = 0; i < arrowArray.length; i++) {
+        sessionStorage.setItem(arrowArray[i], "none");
+      }
+      sessionStorage.setItem("titleArrowDirection", "none"); // Reset publish arrow direction
+      sortByForm.submit();
+    });
+
+    // User Rating Event Listener
+    ratingSort.addEventListener("click", function () {
+      let direction = sessionStorage.getItem("directionSession");
+      sortBy.value = "user_rating";
+      if (direction == "asc") {
+        sortByDirection.value = "desc";
+        sessionStorage.setItem("ratingArrowDirection", "down"); // Update rating arrow direction
+        sessionStorage.setItem("directionSession", "desc"); // Update sort direction
+      } else {
+        sortByDirection.value = "asc";
+        sessionStorage.setItem("ratingArrowDirection", "up"); // Update rating arrow direction
+        sessionStorage.setItem("directionSession", "asc"); // Update sort direction
+      }
+      // Reset all other arrow directions
+      let arrowArray = [
+        "titleArrowDirection",
+        "authorArrowDirection",
+        "publishArrowDirection",
+        "googleRatingArrowDirection",
+      ];
+      for (let i = 0; i < arrowArray.length; i++) {
+        sessionStorage.setItem(arrowArray[i], "none");
+      }
+      sessionStorage.setItem("titleArrowDirection", "none"); // Reset rating arrow direction
+      sortByForm.submit();
+    });
+
+    // Google Rating Event Listener
+    googleRatingSort.addEventListener("click", function () {
+      let direction = sessionStorage.getItem("directionSession");
+      sortBy.value = "google_books_rating";
+      if (direction == "asc") {
+        sortByDirection.value = "desc";
+        sessionStorage.setItem("googleRatingArrowDirection", "down"); // Update google rating arrow direction
+        sessionStorage.setItem("directionSession", "desc"); // Update sort direction
+      } else {
+        sortByDirection.value = "asc";
+        sessionStorage.setItem("googleRatingArrowDirection", "up"); // Update google rating arrow direction
+        sessionStorage.setItem("directionSession", "asc"); // Update sort direction
+      }
+      // Reset all other arrow directions
+      let arrowArray = [
+        "titleArrowDirection",
+        "authorArrowDirection",
+        "publishArrowDirection",
+        "ratingArrowDirection",
+      ];
+      for (let i = 0; i < arrowArray.length; i++) {
+        sessionStorage.setItem(arrowArray[i], "none");
+      }
+      sessionStorage.setItem("titleArrowDirection", "none"); // Reset google rating arrow direction
       sortByForm.submit();
     });
   });

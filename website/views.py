@@ -130,6 +130,23 @@ def sort_by(id):
             current_bookcase.books = sorted(current_bookcase.books, key=lambda x: x.authors.split(",", 1)[0].rsplit(None, 1)[-1])
         elif sort_by_direction == "desc":
             current_bookcase.books = sorted(current_bookcase.books, key=lambda x: x.authors.split(",", 1)[0].rsplit(None, 1)[-1], reverse=True)
+    elif sort_by == "publication_date":
+        if sort_by_direction == "asc":
+            current_bookcase.books = sorted(current_bookcase.books, key=lambda x: x.publication_date)
+        elif sort_by_direction == "desc":
+            current_bookcase.books = sorted(current_bookcase.books, key=lambda x: x.publication_date, reverse=True)
+    elif sort_by == "user_rating":
+        # sort by user_rating, handle cases where user_rating is None
+        if sort_by_direction == "asc":
+            current_bookcase.books = sorted(current_bookcase.books, key=lambda x: x.user_rating if x.user_rating else 0)
+        elif sort_by_direction == "desc":
+            current_bookcase.books = sorted(current_bookcase.books, key=lambda x: x.user_rating if x.user_rating else 0, reverse=True)
+    elif sort_by == "google_books_rating":
+        # sort by google_books_rating, handle cases where google_books_rating is None
+        if sort_by_direction == "asc":
+            current_bookcase.books = sorted(current_bookcase.books, key=lambda x: x.google_books_rating if x.google_books_rating else 0)
+        elif sort_by_direction == "desc":
+            current_bookcase.books = sorted(current_bookcase.books, key=lambda x: x.google_books_rating if x.google_books_rating else 0, reverse=True)
     
 
     # Check if the user owns the bookcase before allowing them to view it

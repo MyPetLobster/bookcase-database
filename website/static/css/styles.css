@@ -767,7 +767,14 @@ span.psw {
 .arrow-active {
   display: inline;
 } 
-
+@media screen and (max-width: 750px) {
+  #sort-by-header {
+    font-size: 13px;
+  }
+  .sort-by-container p {
+    font-size: 11px;
+  }
+}
 @media screen and (max-width: 600px) {
   .sort-by-container {
     flex-direction: column;
