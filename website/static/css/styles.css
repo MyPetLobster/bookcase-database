@@ -727,45 +727,44 @@ span.psw {
 
 
 /* BOOKCASE PAGE */
-.sort-by-pre {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 60px;
-}
-.sort-by-header {
-  font-size: 16px;
-  font-weight: bold;
-  margin-bottom: 0px;
-}
-.sort-by-pre > span {
-  font-size: 16px;
-  margin: 0px;
-  padding: 0px;
-}
+
+/* Sort By BOOKCASE PAGE */
+
 
 
 .sort-by-container {
   display: flex;
+  border-radius: 10px;
+  padding: 0 10px 0 10px;
   justify-content: center;
   align-items: center;
+  gap: 40px;
   margin-bottom: 20px;
   height: 40px;
 }
-.sort-by-container {
-  color: var(--greenish-blue);
-  cursor: pointer;
-  transition-duration: 150ms;
+#sort-by-header {
+  font-size: 16px;
 }
-
-/* Sort By BOOKCASE PAGE */
+.sort-by-container p {
+  margin: 0px;
+  padding: 0px;
+  font-size: 14px;
+  font-family: 'Courier Prime', monospace;
+  color: var(--dark-font);
+}
+.title-sort:hover,
+.author-sort:hover {
+  color: var(--greenish-blue);
+  transition-duration: 150ms;
+  cursor: pointer;
+}
 .down-arrow,
 .up-arrow {
   display: none;
-  font-family: "Laila", serif;
   margin: 0px;
   padding: 0px;
 }
+
 .arrow-active {
   display: inline;
 } 

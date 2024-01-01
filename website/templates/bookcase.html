@@ -18,12 +18,19 @@ content %}
     />
   </form>
 
-  <pre class="sort-by-header">Sort By: </pre>
+
   <div class="sort-by-container">
-    <pre
-      class="sort-by-pre"
-    ><span class="title-sort"><span id="title-down-arrow" class="down-arrow">&darr;</span><span id="title-up-arrow" class="up-arrow">&uarr;</span> Title</span>                 <span class="author-sort"><span id="author-down-arrow" class="down-arrow">&darr;</span><span id="author-up-arrow" class="up-arrow">&uarr;</span> Author</span></pre>
+    <p class="bold-menu" id="sort-by-header">Sort By:</p>
+    <p class="title-sort">
+      <span id="title-down-arrow" class="down-arrow">&darr;</span>
+      <span id="title-up-arrow" class="up-arrow">&uarr;
+        </span> Title</p>                 
+    <p class="author-sort">
+      <span id="author-down-arrow" class="down-arrow">&darr;</span>
+      <span id="author-up-arrow" class="up-arrow">&uarr;
+      </span> Author</p>
   </div>
+
   <div class="books-collection">
     {% for book in current_bookcase.books %}
     <div class="books-in-container">
@@ -295,6 +302,7 @@ content %}
   const authorDownArrow = document.querySelector("#author-down-arrow");
   const authorUpArrow = document.querySelector("#author-up-arrow");
 
+
   document.addEventListener("DOMContentLoaded", function () {
     // Check if directionSession is not set in sessionStorage
     if (!sessionStorage.getItem("directionSession")) {
@@ -305,15 +313,19 @@ content %}
     // Check the status of the authorArrowDirection in sessionStorage
     if (sessionStorage.getItem("authorArrowDirection") == "up") {
       authorUpArrow.classList.add("arrow-active");
+      authorSort.classList.add("bold-menu");
     } else if (sessionStorage.getItem("authorArrowDirection") == "down") {
+      authorSort.classList.add("bold-menu");
       authorDownArrow.classList.add("arrow-active");
     }
 
     // Check the status of the titleArrowDirection in sessionStorage
     if (sessionStorage.getItem("titleArrowDirection") == "up") {
       titleUpArrow.classList.add("arrow-active");
+      titleSort.classList.add("bold-menu");
     } else if (sessionStorage.getItem("titleArrowDirection") == "down") {
       titleDownArrow.classList.add("arrow-active");
+      titleSort.classList.add("bold-menu");
     }
 
     titleSort.addEventListener("click", function () {
