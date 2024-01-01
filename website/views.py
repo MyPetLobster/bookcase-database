@@ -113,6 +113,30 @@ def bookcase(id):
         return redirect(url_for('views.bookcases'))
     return render_template("bookcase.html", id=id, current_bookcase=current_bookcase, user=current_user)
 
+# BOOKCASE SORT BY
+@views.route('/bookcase/<int:id>/sort/', methods=['POST'])
+@login_required
+def sort_by(id):
+    sort_by = request.form.get('sort-by')
+    sort_by_direction = request.form.get('sort-by-direction')
+    current_bookcase = Bookcase.query.get(id)   
+    if sort_by == "title":
+        if sort_by_direction == "asc":
+            current_bookcase.books = sorted(current_bookcase.books, key=lambda x: x.title)
+        elif sort_by_direction == "desc":
+            current_bookcase.books = sorted(current_bookcase.books, key=lambda x: x.title, reverse=True)
+    elif sort_by == "author":
+        if sort_by_direction == "asc":
+            current_bookcase.books = sorted(current_bookcase.books, key=lambda x: x.authors.split(",", 1)[0].rsplit(None, 1)[-1])
+        elif sort_by_direction == "desc":
+            current_bookcase.books = sorted(current_bookcase.books, key=lambda x: x.authors.split(",", 1)[0].rsplit(None, 1)[-1], reverse=True)
+    
+
+    # Check if the user owns the bookcase before allowing them to view it
+    if current_bookcase.owner_id != current_user.id:
+        return redirect(url_for('views.bookcases'))
+    return render_template("bookcase.html", id=id, current_bookcase=current_bookcase, user=current_user)
+
 # DELETE BOOKCASE
 @views.route('/bookcase/<int:id>/delete_bookcase/', methods=['GET', 'POST'])
 @login_required
@@ -495,6 +519,7 @@ def create_bookcase():
 
     return render_template("profile.html", user=current_user)
 
+# EDIT BOOKCASE
 @views.route("/bookcase/<int:bc_id>/edit_bookcase/", methods=['POST'])
 @login_required
 def edit_bookcase(bc_id):

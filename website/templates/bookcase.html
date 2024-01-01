@@ -2,26 +2,46 @@
 content %}
 <div class="med-spacer"></div>
 <div class="bookcase-page">
-
   <h1>{{ current_bookcase.name }}</h1>
+
+  <form
+    class="sort-by-form"
+    action="/bookcase/{{ current_bookcase.id }}/sort/"
+    method="post"
+  >
+    <input type="hidden" name="sort-by" id="sortby" value="" />
+    <input
+      type="hidden"
+      name="sort-by-direction"
+      id="sort-by-direction"
+      value=""
+    />
+  </form>
+
+  <pre class="sort-by-header">Sort By: </pre>
+  <div class="sort-by-container">
+    <pre
+      class="sort-by-pre"
+    ><span class="title-sort"><span id="title-up-down-arrow" class="up-down-arrow">&#8597;</span><span id="title-down-arrow" class="down-arrow">&darr;</span><span id="title-up-arrow" class="up-arrow">&uarr;</span> Title</span>                 <span class="author-sort"><span id="author-up-down-arrow" class="up-down-arrow">&#8597;</span><span id="author-down-arrow" class="down-arrow">&darr;</span><span id="author-up-arrow" class="up-arrow">&uarr;</span> Author</span></pre>
+  </div>
   <div class="books-collection">
     {% for book in current_bookcase.books %}
     <div class="books-in-container">
       <div class="book-cover">
         <a href="/bookcase/{{ current_bookcase.id }}/{{ book.id }}/">
-        {% if book.thumbnail_link == "" %}
-        <img
-          class="book-cover-img"
-          src="/static/images/image_not_available.jpeg"
-          alt="Image Not Available"
-        />
-        {% else %}
-        <img
-          class="book-cover-img"
-          src="{{ book.thumbnail_link }}"
-          alt="{{ book.title }} Cover"
-        />
-        {% endif %}
+          {% if book.thumbnail_link == "" %}
+          <img
+            class="book-cover-img"
+            src="/static/images/image_not_available.jpeg"
+            alt="Image Not Available"
+          />
+          {% else %}
+          <img
+            class="book-cover-img"
+            src="{{ book.thumbnail_link }}"
+            alt="{{ book.title }} Cover"
+          />
+          {% endif %}
         </a>
       </div>
       <div class="book-info">
@@ -72,11 +92,15 @@ content %}
   </div>
 
   <div class="delete-bookcase-button-box">
-      <button class="home-button delete-bookcase-button" type="button">Delete Bookcase</button>
+    <button class="home-button delete-bookcase-button" type="button">
+      Delete Bookcase
+    </button>
   </div>
 
   <div class="edit-bookcase-button-box">
-      <button class="home-button" id="edit-bookcase-button" type="button">Edit Bookcase Name</button>
+    <button class="home-button" id="edit-bookcase-button" type="button">
+      Edit Bookcase Name
+    </button>
   </div>
 
   <div class="edit-bookcase">
@@ -100,12 +124,15 @@ content %}
         </button>
       </div>
     </form>
-
   </div>
 
   <div class="confirm-delete-bookcase">
-    <h4 class="delete-h4">Are you sure you want to delete your <span class="bold-big">{{ current_bookcase.name }}</span> bookcase? This action cannot be undone!</h4>
-    
+    <h4 class="delete-h4">
+      Are you sure you want to delete your
+      <span class="bold-big">{{ current_bookcase.name }}</span> bookcase? This
+      action cannot be undone!
+    </h4>
+
     <a href="/bookcase/{{ current_bookcase.id }}/delete_bookcase/">
       <button class="home-button" type="button">Confirm Delete Bookcase</button>
     </a>
@@ -132,8 +159,10 @@ content %}
     </div>
   </div>
   <h2 id="manual-add-book-btn" class="item">Add Book Manually</h2>
-  
-  <button id="export-data-btn" class="home-button" type="button">Export Bookcase Data</button>
+
+  <button id="export-data-btn" class="home-button" type="button">
+    Export Bookcase Data
+  </button>
 
   <div id="form-anchor"></div>
 
@@ -256,8 +285,86 @@ content %}
 </div>
 
 <script>
-  const deleteBookcaseButton = document.querySelector(".delete-bookcase-button");
-  const confirmDeleteBookcase = document.querySelector(".confirm-delete-bookcase");
+  const titleSort = document.querySelector(".title-sort");
+  const authorSort = document.querySelector(".author-sort");
+  const sortByForm = document.querySelector(".sort-by-form");
+  const sortBy = document.querySelector("#sortby");
+  const sortByDirection = document.querySelector("#sort-by-direction");
+  const titleUpDownArrow = document.querySelector("#title-up-down-arrow");
+  const titleDownArrow = document.querySelector("#title-down-arrow");
+  const titleUpArrow = document.querySelector("#title-up-arrow");
+  const authorDownArrow = document.querySelector("#author-down-arrow");
+  const authorUpArrow = document.querySelector("#author-up-arrow");
+
+  document.addEventListener("DOMContentLoaded", function () {
+    // Check if directionSession is not set in sessionStorage
+    if (!sessionStorage.getItem("directionSession")) {
+      // Initialize it to "asc" if not set
+      sessionStorage.setItem("directionSession", "asc");
+    }
+
+    // Check the status of the authorArrowDirection in sessionStorage
+    if (!sessionStorage.getItem("authorArrowDirection")) {
+      // Default to up-down arrow if no direction is set
+      authorUpDownArrow.classList.add("arrow-active");
+    } else if (sessionStorage.getItem("authorArrowDirection") == "up") {
+      authorUpArrow.classList.add("arrow-active");
+    } else if (sessionStorage.getItem("authorArrowDirection") == "down") {
+      authorDownArrow.classList.add("arrow-active");
+    }
+
+    // Check the status of the titleArrowDirection in sessionStorage
+    if (!sessionStorage.getItem("titleArrowDirection")) {
+      // Default to up-down arrow if no direction is set
+      titleUpDownArrow.classList.add("arrow-active");
+    } else if (sessionStorage.getItem("titleArrowDirection") == "up") {
+      titleUpArrow.classList.add("arrow-active");
+    } else if (sessionStorage.getItem("titleArrowDirection") == "down") {
+      titleDownArrow.classList.add("arrow-active");
+    }
+
+    titleSort.addEventListener("click", function () {
+      titleUpDownArrow.classList.remove("arrow-active");
+      let direction = sessionStorage.getItem("directionSession");
+      sortBy.value = "title";
+      if (direction == "asc") {
+        sortByDirection.value = "desc";
+        sessionStorage.setItem("titleArrowDirection", "down"); // Update title arrow direction
+        sessionStorage.setItem("directionSession", "desc"); // Update sort direction
+      } else {
+        sortByDirection.value = "asc";
+        sessionStorage.setItem("titleArrowDirection", "up"); // Update title arrow direction
+        sessionStorage.setItem("directionSession", "asc"); // Update sort direction
+      }
+      sessionStorage.setItem("authorArrowDirection", "up-down"); // Reset title arrow direction
+      sortByForm.submit();
+    });
+
+    authorSort.addEventListener("click", function () {
+      authorUpDownArrow.classList.remove("arrow-active");
+      let direction = sessionStorage.getItem("directionSession");
+      sortBy.value = "author";
+      if (direction == "asc") {
+        sortByDirection.value = "desc";
+        sessionStorage.setItem("authorArrowDirection", "down"); // Update author arrow direction
+        sessionStorage.setItem("directionSession", "desc"); // Update sort direction
+      } else {
+        sortByDirection.value = "asc";
+        sessionStorage.setItem("authorArrowDirection", "up"); // Update author arrow direction
+        sessionStorage.setItem("directionSession", "asc"); // Update sort direction
+      }
+      sessionStorage.setItem("titleArrowDirection", "up-down"); // Reset author arrow direction
+      sortByForm.submit();
+    });
+  });
+
+
+  const deleteBookcaseButton = document.querySelector(
+    ".delete-bookcase-button"
+  );
+  const confirmDeleteBookcase = document.querySelector(
+    ".confirm-delete-bookcase"
+  );
   const deleteBookCancelBtn = document.getElementById("delete-book-cancel-btn");
   deleteBookcaseButton.addEventListener("click", function () {
     confirmDeleteBookcase.classList.toggle("confirm-delete-bookcase-active");
@@ -268,7 +375,6 @@ content %}
 
   const manualAddBookAnchor = document.querySelector("#form-anchor");
 
-
   const manualAddBookBtn = document.querySelector("#manual-add-book-btn");
   const manualAddBook = document.querySelector(".manual-add-book");
   manualAddBookBtn.addEventListener("click", function () {
@@ -277,13 +383,13 @@ content %}
   });
 
   const readCheckbox = document.querySelector("#read");
-  readCheckbox.addEventListener('change', function() {
+  readCheckbox.addEventListener("change", function () {
     if (readCheckbox.checked) {
       readCheckbox.value = "True";
     } else {
       readCheckbox.value = "False";
     }
-});
+  });
 
   document.addEventListener("click", function (event) {
     if (event.target.classList.contains("star")) {
@@ -298,7 +404,6 @@ content %}
       manualAddBook.classList.toggle("manual-add-book-active");
     });
   }
-
 
   const editBookcaseButton = document.querySelector("#edit-bookcase-button");
   const editBookcase = document.querySelector(".edit-bookcase");
