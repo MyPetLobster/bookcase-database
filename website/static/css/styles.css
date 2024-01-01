@@ -753,7 +753,10 @@ span.psw {
   color: var(--dark-font);
 }
 .title-sort:hover,
-.author-sort:hover {
+.author-sort:hover,
+.publish-sort:hover,
+.rating-sort:hover,
+.google-rating-sort:hover {
   color: var(--greenish-blue);
   transition-duration: 150ms;
   cursor: pointer;
