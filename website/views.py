@@ -295,7 +295,10 @@ def add_book():
     google_books_rating = request.form.get('book-google-rating')
     # check type of google_books_rating
     if type(google_books_rating) == str:
-        google_books_rating = float(google_books_rating)
+        if google_books_rating == "":
+            google_books_rating = None
+        else:
+            google_books_rating = float(google_books_rating)
     google_books_rating_count = request.form.get('book-google-books-count')
     thumbnail_link = request.form.get('book-thumbnail-link')
     google_books_link = request.form.get('book-google-books-link')
