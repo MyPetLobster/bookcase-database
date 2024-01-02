@@ -177,11 +177,17 @@ document.addEventListener("DOMContentLoaded", () => {
   if (sessionStorage.getItem("nameArrowDirection") == "up") {
     nameUpArrow.classList.add("arrow-active");
     nameSort.classList.add("bold-menu");
+  } else if (sessionStorage.getItem("nameArrowDirection") == "down") {
+    nameDownArrow.classList.add("arrow-active");
+    nameSort.classList.add("bold-menu");
   }
  
   /* Book Count Sort Arrows */
   if (sessionStorage.getItem("bookCountArrowDirection") == "up") {
     bookCountUpArrow.classList.add("arrow-active");
+    bookCountSort.classList.add("bold-menu");
+  } else if (sessionStorage.getItem("bookCountArrowDirection") == "down") {
+    bookCountDownArrow.classList.add("arrow-active");
     bookCountSort.classList.add("bold-menu");
   }
 
