@@ -252,6 +252,7 @@ button:hover {
   justify-content: center;
   align-items: center;
   padding: 20px;
+  padding-bottom: 0px;
 
 }
 .register-h1,
@@ -339,10 +340,13 @@ span {
   width: 20px;
   outline: none;  
 }
-#cancel-register,
-#cancel-login {
+#cancel-register{
   margin-top: 0px;
-  padding: 20px;
+  padding: 10px;
+  padding-top: 0px;
+}
+#cancel-login {
+  padding: 10px;
 }
 .remember-me-container {
   margin-top: 10px;
@@ -843,9 +847,6 @@ span.psw {
 /* BOOKCASE PAGE */
 
 /* Sort By BOOKCASE PAGE */
-
-
-
 .sort-by-container {
   display: flex;
   border-radius: 10px;
@@ -1608,22 +1609,23 @@ li {
 }
 .github:hover {
   font-weight: bold;
-  color: var(--primary-purple);
+  color: var(--dark-font);
   transition-duration: 150ms;
 }
-.github {
+.contact-link {
   text-decoration: none;
   color: var(--greenish-blue);
 }
-.github:hover {
+.contact-link:hover {
   font-weight: bold;
   color: var(--dark-font);
   transition-duration: 150ms;
 }
-.github:visited {
-  color: var(--primary-purple);
+#copyright {
+  font-family: "Courier Prime", monospace;
+  font-size: 12px;
+  margin-bottom: 0px;
 }
-
 
 /* FOOTER */
 footer {
