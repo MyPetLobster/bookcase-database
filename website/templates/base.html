@@ -45,15 +45,15 @@
       </a>
     </div>
     <div class="beta-banner">
-      <p>BC.DB is currently in beta. Please report any bugs to <a class="email-team" href="mailto:BookcaseDatabase@gmail.com?subject=bugs">our team!</a></p>
+      <p>BC.DB is currently in beta. Bugs or suggestions? <a class="email-team" href="mailto:BookcaseDatabase@gmail.com?subject=bugs">Send me an email!</a></p>
     </div>
-    
-    
+
+
     <div class="spacer-div"></div>
 
     {% with messages = get_flashed_messages(with_categories=True) %}
-    
-    {% if messages %} 
+
+    {% if messages %}
       <div id="flash-container">
       {% for category, message in messages %} {% if category == "error" %}
         <div class="flash-alerts danger" role="alert">
@@ -81,7 +81,7 @@
     <a href="/about">About</a>
     {% endif %}
 </footer>
-          
+
     <script>
     const topNav = document.getElementById("myTopnav");
     const anchorTags = document.querySelectorAll("#myTopnav a");
@@ -113,9 +113,9 @@
 
     // Initially check footer visibility on page load
     checkFooterVisibility();
-    
- 
-   
+
+
+
     window.onscroll = function () {
       if (window.pageYOffset > 0) {
         betaBanner.classList.add("beta-solid-bg")
