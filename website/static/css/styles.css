@@ -469,15 +469,30 @@ span.psw {
 }
 .bc-header {
   text-align: center;
-  text-decoration: none;
-  font-family: "Kalnia", "serif";
+  font-family: "Averia Serif Libre", serif;
+  color: #242f2b;
   font-size: 36px;
   font-weight: 400;
-  line-height: 0px;
   padding-top: 10px;
+  /* border-bottom: 2px solid #242f2b; */
 }
 .bc-header:hover {
   font-weight: bold;
+  color: var(--primary-purple);
+  text-shadow: var(--dark-font);
+  /* border-bottom: 3px solid var(--primary-purple); */
+  transition-duration: 150ms;
+}
+.bc-header:after {
+    content: ""; /* This is necessary for the pseudo element to work. */ 
+    display: block; /* This will put the pseudo element on its own line. */
+    margin: 0 auto; /* This will center the border. */
+    width: 70%; /* Change this to whatever width you want. */
+    padding-top: 3px; /* This creates some space between the element and the border. */
+    border-bottom: 2px solid black; /* This creates the border. Replace black with whatever color you want. */
+}
+.bc-header:hover:after {
+  border-bottom: 3px solid var(--primary-purple);
   transition-duration: 150ms;
 }
 .display-bookcases {
