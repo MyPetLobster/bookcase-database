@@ -73,7 +73,48 @@ content %}
       </button>
     </form>
   </div>
+
+  <div class="dynamic-description">
+    <p>
+      Dynamic Bookcases are bookcases that are automatically populated with
+      books based on tags. First, add some tags (eg. #romance #favorites) to
+      the Notes section of your books.  
+    </p>
+    <p>
+      Then you can create a dynamic bookcase by entering tags
+      below. For example, if you enter #romance #fantasy #mystery, your dynamic
+      bookcase will be populated with books that have at least one of those
+      tags.
+    </p>
+  </div>
+
+  <div class="dynamic-bookcase-container">
+    <form action="/dynamic_bookcase/" method="post" class="dynamic-bookcase">
+      <label for="dynamic-bookcase-name">Create Dynamic Bookcase</label>
+      <input
+        type="text"
+        name="dynamic-bookcase-name"
+        id="dynamic-bookcase-name"
+        placeholder="Bookcase Name"
+        required
+      />
+      <label for="dynamic-tags">Enter Tags: </label>
+      <input
+        type="text"
+        name="dynamic-tags"
+        id="dynamic-tags"
+        placeholder="#romance #fantasy #mystery"
+        required
+      />
+      <button class="home-button create-bookcase-btn" type="submit">
+        Create Bookcase!
+      </button>
+    </form>
+  </div>
+
 </div>
+
+
 
 <script>
 

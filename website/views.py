@@ -106,6 +106,7 @@ def bookcase(id):
             db.session.commit()
         except IntegrityError:
             db.session.rollback()
+            flash('Book already exists in this bookcase!', category='error')
             print("IntegrityError: The book may already exist.")
 
     # Check if the user owns the bookcase before allowing them to view it
@@ -165,7 +166,7 @@ def delete_bookcase(id):
             db.session.commit()
         except IntegrityError:
             db.session.rollback()
-            print("IntegrityError: The book may already exist.")
+            print("IntegrityError: Unable to delete bookcase")
     return redirect(url_for('views.bookcases'))
 
 # BOOK DETAILS
@@ -232,7 +233,7 @@ def search():
             
             data = urllib.request.urlopen(url).read()
             dict = json.loads(data)
-            print(query_params)
+
             return render_template("search.html", user=current_user, books=dict['items'], bookcases=bookcases)
 
         elif request.form.get('general-search'):
@@ -248,13 +249,12 @@ def search():
             session['search_query'] = url
             data = urllib.request.urlopen(url).read()
             dict = json.loads(data)
-            print(query_params)
+
             return render_template("search.html", user=current_user, books=dict['items'], bookcases=bookcases)
 
         else:
-            # Handle integrity error (e.g., if the book already exists)
             db.session.rollback()
-            print("IntegrityError: The book may already exist.")
+            print("IntegrityError: Unknown request.")
             
 
     return render_template("search.html", user=current_user, bookcases=bookcases)
@@ -353,13 +353,13 @@ def add_book():
         except IntegrityError:
             # Handle integrity error (e.g., if the book already exists)
             db.session.rollback()
-            print("IntegrityError: The book may already exist.")
+            print("IntegrityError: The book may already exist in this bookcase.")
 
     url = session.get('search_query')
-    print(f"***** ***** ***** search query: {url}")
+
     data = urllib.request.urlopen(url).read()
     dict = json.loads(data)
-    print(dict['items'])
+
     return render_template("search.html", user=current_user, books=dict['items'], bookcases=bookcases)
     
 # DELETE BOOK FROM BOOKCASE
@@ -374,7 +374,7 @@ def delete_book(bc_id, book_id):
             db.session.commit()
         except IntegrityError:
             db.session.rollback()
-            print("IntegrityError: The book may already exist.")
+            print("IntegrityError: Unable to delete book.")
     return redirect(url_for('views.bookcase', id=bc_id))
 
 # EDIT BOOK DETAILS
@@ -455,7 +455,7 @@ def edit_book(bc_id, book_id):
             db.session.commit()
         except IntegrityError:
             db.session.rollback()
-            print("IntegrityError: The book may already exist.")
+            print("IntegrityError: Unable to save changes.")
 
         return redirect(url_for('views.book', bc_id=bc_id, book_id=book_id))
     
@@ -562,6 +562,60 @@ def edit_bookcase(bc_id):
         return render_template("bookcases.html", user=current_user, bookcases=bookcases)
 
     return render_template("bookcases.html", user=current_user, bookcases=bookcases)
+
+#DYNAMIC BOOOKCASE
+@views.route("/dynamic_bookcase/", methods=["POST"])
+@login_required
+def dynamic_bookcase():
+    if request.method == 'POST':
+        # Retrieve all form data
+        bookcase_name = request.form.get("dynamic-bookcase-name")
+        tags = request.form.get("dynamic-tags")
+
+        # split tags at each space, remove commas, and convert to lowercase
+        tags = tags.split()
+        tags = [tag.replace(",", "") for tag in tags]
+        tags = [tag.lower() for tag in tags]
+
+        
+        # Create a new bookcase named bookcase_name
+        owner_id = current_user.id
+        new_bookcase = Bookcase(name=bookcase_name, owner_id=owner_id)
+        db.session.add(new_bookcase)
+        
+        # List to store books to be added to the new bookcase
+        books_to_add = []
+        # Query the bookcases associated with the current user
+        user_bookcases = Bookcase.query.filter_by(owner_id=owner_id).all()
+
+        # Loop through the user's bookcases
+        for bookcase in user_bookcases:
+            for book in bookcase.books:
+                for tag in tags:
+                    if book.user_notes:
+                        if tag in book.user_notes:
+                            books_to_add.append(book)
+
+        # Add the selected books to the new bookcase
+        for book in books_to_add:
+            new_bookcase.books.append(book)
+        
+        # If the new bookcase is empty, delete it
+        if len(new_bookcase.books) == 0:
+            flash('No matching tags!', category='error')
+            db.session.delete(new_bookcase)
+        
+        db.session.commit()
+        return redirect(url_for('views.bookcases'))
+    
+    return render_template("bookcases.html", user=current_user, bookcases=bookcases)
+
+
+    
+        
+
+    return render_template("bookcases.html", user=current_user, bookcases=bookcases)
+
 
 # ABOUT PAGE
 @views.route('/about/')
