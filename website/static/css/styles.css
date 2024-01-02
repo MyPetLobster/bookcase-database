@@ -899,16 +899,16 @@ span.psw {
 @media screen and (max-width: 600px) {
   .sort-by-container {
     flex-direction: column;
-    gap: 10px;
+    gap: 18px;
     height: auto;
   }
   #sort-by-header {
     margin-top: 20px;
-    font-size: 13px;
+    font-size: 14px;
   }
   .sort-by-container p {
     line-height: 5px;
-    font-size: 10px;
+    font-size: 12px;
   }
 }
 
