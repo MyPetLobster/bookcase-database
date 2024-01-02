@@ -50,6 +50,29 @@ def bookcases():
         
     return render_template("bookcases.html", user=current_user, bookcases=bookcases)
 
+# BOOKCASES SORT BY
+@views.route('/bookcases/sort/', methods=['POST'])
+@login_required
+def sort_bookcases():
+    sort_by = request.form.get('bc-sort-by')
+    sort_by_direction = request.form.get('bc-sort-by-direction')
+    bookcases = Bookcase.query.filter_by(owner_id=current_user.id).all()
+    if sort_by == "name":
+        if sort_by_direction == "asc":
+            bookcases = sorted(bookcases, key=lambda x: x.name)
+        elif sort_by_direction == "desc":
+            bookcases = sorted(bookcases, key=lambda x: x.name, reverse=True)
+    elif sort_by == "book_count":
+        # count the number of books in each bookcase
+        for bookcase in bookcases:
+            bookcase.book_count = len(bookcase.books)
+        if sort_by_direction == "asc":
+            bookcases = sorted(bookcases, key=lambda x: x.book_count)
+        elif sort_by_direction == "desc":
+            bookcases = sorted(bookcases, key=lambda x: x.book_count, reverse=True)
+            
+    return render_template("bookcases.html", user=current_user, bookcases=bookcases)
+
 # BOOKCASE DETAILS 
 @views.route('/bookcase/<int:id>/', methods=['GET', 'POST'])
 @login_required
@@ -637,13 +660,6 @@ def dynamic_bookcase():
         return redirect(url_for('views.bookcases'))
     
     return render_template("bookcases.html", user=current_user, bookcases=bookcases)
-
-
-    
-        
-
-    return render_template("bookcases.html", user=current_user, bookcases=bookcases)
-
 
 # ABOUT PAGE
 @views.route('/about/')

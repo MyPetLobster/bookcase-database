@@ -871,7 +871,10 @@ span.psw {
 .author-sort:hover,
 .publish-sort:hover,
 .rating-sort:hover,
-.google-rating-sort:hover {
+.google-rating-sort:hover,
+.date-sort:hover,
+.name-sort:hover,
+.book-count-sort:hover {
   color: var(--greenish-blue);
   transition-duration: 150ms;
   cursor: pointer;

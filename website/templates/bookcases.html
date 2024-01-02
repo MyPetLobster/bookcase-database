@@ -3,6 +3,38 @@ content %}
 <div class="med-spacer"></div>
 <div class="bookcases-page-container">
   <h1 class="bookcases-main-header">{{ user.username }}'s Bookcases</h1>
+
+    <form
+      class="bc-sort-by-form"
+      action="/bookcases/sort/"
+      method="post"
+    >
+    <input type="hidden" 
+      name="bc-sort-by" 
+      id="bc-sort-by" 
+      value="" 
+    />
+    <input
+      type="hidden"
+      name="bc-sort-by-direction"
+      id="bc-sort-by-direction"
+      value=""
+    />
+  </form>
+
+  <div class="sort-by-container">
+    <p class="bold-menu" id="sort-by-header">Sort By:</p>
+    <p class="name-sort">
+      <span id="name-down-arrow" class="down-arrow">&darr;</span>
+      <span id="name-up-arrow" class="up-arrow">&uarr;</span>
+        Name
+    </p>                 
+    <p class="book-count-sort">
+      <span id="book-count-down-arrow" class="down-arrow">&darr;</span>
+      <span id="book-count-up-arrow" class="up-arrow">&uarr;</span>
+        Book Count
+    </p>
+  </div>
   <div class="display-bookcases">
     {% for bookcase in bookcases %}
     <div class="bookcases-item" style="background-color: {{ color }}">
@@ -121,6 +153,83 @@ content %}
 
 
 <script>
+
+const bcSortForm = document.querySelector(".bc-sort-by-form");
+const nameSort = document.querySelector(".name-sort");
+const bookCountSort = document.querySelector(".book-count-sort");
+
+const bcSortBy = document.getElementById("bc-sort-by");
+const sortDirection = document.getElementById("bc-sort-by-direction");
+
+const nameDownArrow = document.getElementById("name-down-arrow");
+const nameUpArrow = document.getElementById("name-up-arrow");
+const bookCountDownArrow = document.getElementById("book-count-down-arrow");
+const bookCountUpArrow = document.getElementById("book-count-up-arrow");
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  if (!sessionStorage.getItem("directionSession")) {
+    // Initialize it to "asc" if not set
+    sessionStorage.setItem("directionSession", "asc");
+  }
+
+  /* Name Sort Arrows */
+  if (sessionStorage.getItem("nameArrowDirection") == "up") {
+    nameUpArrow.classList.add("arrow-active");
+    nameSort.classList.add("bold-menu");
+  }
+  else {
+    nameDownArrow.classList.add("arrow-active");
+    nameSort.classList.add("bold-menu");
+  }
+  /* Book Count Sort Arrows */
+  if (sessionStorage.getItem("bookCountArrowDirection") == "up") {
+    bookCountUpArrow.classList.add("arrow-active");
+    bookCountSort.classList.add("bold-menu");
+  }
+  else {
+    bookCountDownArrow.classList.add("arrow-active");
+    bookCountSort.classList.add("bold-menu");
+  }
+
+  /* ADD EVENT LISTENERS */
+  /* Name Sort Event Listener */
+  nameSort.addEventListener("click", () => {
+    let direction = sessionStorage.getItem("directionSession");
+    bcSortBy.value = "name";
+    if (direction == "asc") {
+      sortDirection.value = "desc";
+      sessionStorage.setItem("nameArrowDirection", "down");
+      sessionStorage.setItem("directionSession", "desc");
+    } else {
+      sortDirection.value = "asc";
+      sessionStorage.setItem("nameArrowDirection", "up");
+      sessionStorage.setItem("directionSession", "asc");
+    }
+    sessionStorage.setItem("bookCountArrowDirection", "none");
+    bcSortForm.submit();
+  });
+
+  /* Book Count Sort Event Listener */
+  bookCountSort.addEventListener("click", () => {
+    let direction = sessionStorage.getItem("directionSession");
+    bcSortBy.value = "book_count";
+    if (direction == "asc") {
+      sortDirection.value = "desc";
+      sessionStorage.setItem("bookCountArrowDirection", "down");
+      sessionStorage.setItem("directionSession", "desc");
+    } else {
+      sortDirection.value = "asc";
+      sessionStorage.setItem("bookCountArrowDirection", "up");
+      sessionStorage.setItem("directionSession", "asc");
+    }
+    sessionStorage.setItem("nameArrowDirection", "none");
+    bcSortForm.submit();
+  });
+
+});
+
+
 const dynamicDescription = document.getElementById("dynamic-description");
 const dynamicBookcaseContainer = document.getElementById("dynamic-bookcase-container");
 const dynamicButton = document.getElementById("dynamic-header-link");
