@@ -74,23 +74,24 @@ content %}
     </form>
   </div>
 
-  <div class="dynamic-description">
+  <div id="dynamic-description" class="dynamic-description-active">
+    <h3 id="dynamic-header">Dynamic Bookcases</h3>
     <p>
       Dynamic Bookcases are bookcases that are automatically populated with
       books based on tags. First, add some tags (eg. #romance #favorites) to
       the Notes section of your books.  
     </p>
     <p>
-      Then you can create a dynamic bookcase by entering tags
-      below. For example, if you enter #romance #fantasy #mystery, your dynamic
-      bookcase will be populated with books that have at least one of those
-      tags.
+      Then you can create a dynamic bookcase by entering tags in the form. 
+      Your bookcase will be populated with books that have at least
+      one of the entered tags.
     </p>
+    <h3 id="dynamic-header-link">Give it a try!</h3>
   </div>
 
-  <div class="dynamic-bookcase-container">
+  <div id="dynamic-bookcase-container" class="dynamic-bookcase-container-inactive">
     <form action="/dynamic_bookcase/" method="post" class="dynamic-bookcase">
-      <label for="dynamic-bookcase-name">Create Dynamic Bookcase</label>
+      <label for="dynamic-bookcase-name">Dynamic Bookcase Name:</label>
       <input
         type="text"
         name="dynamic-bookcase-name"
@@ -106,17 +107,38 @@ content %}
         placeholder="#romance #fantasy #mystery"
         required
       />
-      <button class="home-button create-bookcase-btn" type="submit">
-        Create Bookcase!
+      <button id="generate-bc-btn" class="home-button create-bookcase-btn" type="submit">
+        Generate Bookcase!
       </button>
+      <p id="close-dynamic">&#10006;</p>
     </form>
+    
   </div>
+  <div class="med-spacer"></div>
 
 </div>
 
 
 
 <script>
+const dynamicDescription = document.getElementById("dynamic-description");
+const dynamicBookcaseContainer = document.getElementById("dynamic-bookcase-container");
+const dynamicButton = document.getElementById("dynamic-header-link");
+const closeDynamic = document.getElementById("close-dynamic");
+
+dynamicButton.addEventListener("click", () => {
+  dynamicDescription.classList.remove("dynamic-description-active");
+  dynamicDescription.classList.add("dynamic-description-inactive");
+  dynamicBookcaseContainer.classList.remove("dynamic-bookcase-container-inactive");
+  dynamicBookcaseContainer.classList.add("dynamic-bookcase-container-active");
+});
+
+closeDynamic.addEventListener("click", () => {
+  dynamicDescription.classList.remove("dynamic-description-inactive");
+  dynamicDescription.classList.add("dynamic-description-active");
+  dynamicBookcaseContainer.classList.remove("dynamic-bookcase-container-active");
+  dynamicBookcaseContainer.classList.add("dynamic-bookcase-container-inactive");
+});
 
 const verySmallGalleries = document.querySelectorAll(".very-small-gallery");
 const galleries = document.querySelectorAll(".gallery");
