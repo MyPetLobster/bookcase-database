@@ -306,6 +306,14 @@ content %}
       </div>
     </form>
   </div>
+
+  <!-- Checks if there are more than 6 books in bookcase, displays #back-to-top if so -->
+  {% if current_bookcase.books|length > 6 %}
+  <div class="full-width">
+    <a id="back-to-top" class="back-to-top" href="#top">Back to Top</a>
+  </div>
+  {% endif %}
+  <div class="spacer-div"></div>
 </div>
 
 <script>
