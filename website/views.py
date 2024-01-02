@@ -573,7 +573,7 @@ def edit_bookcase(bc_id):
 
     return render_template("bookcases.html", user=current_user, bookcases=bookcases)
 
-#DYNAMIC BOOOKCASE
+#DYNAMIC BOOKCASE
 @views.route("/dynamic_bookcase/", methods=["POST"])
 @login_required
 def dynamic_bookcase():
@@ -584,6 +584,7 @@ def dynamic_bookcase():
 
         # split tags at each space, remove commas, and convert to lowercase
         tags = tags.split()
+        tags = [tag.replace("#", "") for tag in tags]
         tags = [tag.replace(",", "") for tag in tags]
         tags = [tag.lower() for tag in tags]
 
@@ -608,10 +609,21 @@ def dynamic_bookcase():
         for bookcase in user_bookcases:
             for book in bookcase.books:
                 for tag in tags:
+                    print(f"tag={tag}")
                     if book.user_notes:
-                        if tag in book.user_notes:
+                        user_notes = book.user_notes.split()
+                        # Make list of hashtags in user_notes
+                        user_tags = [note for note in user_notes if note.startswith("#")]
+                        # Remove the hashtags from user_tags and check if tag is in user_tags
+                        user_tags = [tag.replace("#", "") for tag in user_tags]
+                        if tag in user_tags:
                             books_to_add.append(book)
-
+                    if book.categories:
+                        genres = book.categories.lower().split()
+                        print(f"genres={genres}")
+                        if tag in genres:
+                            books_to_add.append(book)
+                        
         # Add the selected books to the new bookcase
         for book in books_to_add:
             new_bookcase.books.append(book)

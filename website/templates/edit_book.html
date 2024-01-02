@@ -93,7 +93,7 @@ content %}
       value="{{ book.pages }}"
     />
     <label class="label-med" for="book-user-notes">Notes</label>
-    <textarea name="book-user-notes" class="text-area"></textarea>
+    <textarea name="book-user-notes" class="text-area">{{ book.user_notes }}</textarea>
 
     <div class="user-rating-container">
       <label class="label-med" id="user-rating-label" for="book-user-rating">Your Rating:</label>
