@@ -227,13 +227,17 @@ def search():
                 'q': q_string,
                 'key': api_key,
             }
-            
+            print(query_params)
             url = f"https://www.googleapis.com/books/v1/volumes?{urlencode(query_params)}"
             session['search_query'] = url
             
             data = urllib.request.urlopen(url).read()
             dict = json.loads(data)
-
+            
+            if dict['totalItems'] == 0:
+                flash('No results found!', category='error')
+                return redirect(url_for('views.search'))
+            
             return render_template("search.html", user=current_user, books=dict['items'], bookcases=bookcases)
 
         elif request.form.get('general-search'):
@@ -249,6 +253,9 @@ def search():
             session['search_query'] = url
             data = urllib.request.urlopen(url).read()
             dict = json.loads(data)
+            if dict['totalItems'] == 0:
+                flash('No results found!', category='error')
+                return redirect(url_for('views.search'))
 
             return render_template("search.html", user=current_user, books=dict['items'], bookcases=bookcases)
 
