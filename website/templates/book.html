@@ -2,6 +2,9 @@
 %}
 <div class="med-spacer"></div>
 <div class="book-page">
+  <form class="search-book-form" action="/search/" method="post">
+    <input type="hidden" name="author" id="author"/>
+  </form>
   <div class="book-cover">
     {% if book.thumbnail_link == "" %}
     <img
@@ -17,15 +20,13 @@
     <h2>{{ book.title }}</h2>
     <h4>{{ book.subtitle }}</h4>
 
-    {% if book.authors == "" %}
-      No Authors Listed
-    {% else %}
-    {% for author in book.authors.split(",") %} 
-      <form class="author-search-form" action="/search/" method="post">
-        <input type="hidden" name="author" value="{{ author }}" />
-        <button class="author-search-button" type="submit"><h3 class="author-link">{{ author }}</h3></button>{% if not loop.last %},
-      </form> 
-    {% endif %} {% endfor %}{% endif %}
+    <h3 class="author-results">
+      {% for author in book.authors.split(', ') %} 
+        <a class="author-link" href="/search/?author={{ author }}">{{ author }}</a>
+        {% if not loop.last %},{% endif %}
+      {% endfor %}
+    </h3>
+
     <p class="description-truncated description-truncated-active">{{ book.description_truncated }}</p>
     <p class="description description-inactive">{{ book.description }}</p>
     <p><span class="bold-menu">Categories:</span> {{ book.categories }}</p>
@@ -65,6 +66,23 @@
 </div>
 
 <script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const authorLinks = document.querySelectorAll(".author-results a");
+      authorLinks.forEach(function (link) {
+        link.addEventListener("click", function (event) {
+          event.preventDefault();
+          const authorName = link.textContent;
+          // Update the 'author' input field in the outer form
+          document.querySelector("#author").value = authorName;
+          // Submit the outer form
+          document.querySelector(".search-book-form").submit();
+        });
+      });
+    });
+
+
+
 
   const descriptionTruncated = document.querySelector(".description-truncated");
   const description = document.querySelector(".description");
