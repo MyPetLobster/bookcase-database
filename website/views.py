@@ -577,6 +577,12 @@ def dynamic_bookcase():
         tags = [tag.replace(",", "") for tag in tags]
         tags = [tag.lower() for tag in tags]
 
+        # Check if the user already has a bookcase with the same name
+        bookcases = Bookcase.query.filter_by(owner_id=current_user.id).all()
+        for bookcase in bookcases:
+            if bookcase_name.lower() == bookcase.name.lower():
+                flash('Bookcase name already exists!', category='error')
+                return redirect(url_for('views.bookcases'))
         
         # Create a new bookcase named bookcase_name
         owner_id = current_user.id

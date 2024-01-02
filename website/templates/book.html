@@ -5,6 +5,11 @@
   <form class="search-book-form" action="/search/" method="post">
     <input type="hidden" name="author" id="author"/>
   </form>
+
+  <div class="back-to-bc-container">
+    <a class="back-to-bc-link" href="/bookcase/{{ current_bookcase.id }}/">&larr; Back to '{{ current_bookcase.name }}' Bookcase</a>
+  </div>
+
   <div class="book-cover">
     {% if book.thumbnail_link == "" %}
     <img

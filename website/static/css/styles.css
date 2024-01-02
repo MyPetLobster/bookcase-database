@@ -823,6 +823,19 @@ span.psw {
 #create-bookcase-link {
     font-size: 20px;
 }
+.back-to-bc-container {
+  margin: 25px;
+}
+.back-to-bc-link {
+  font-family: "Laila", serif;
+  text-decoration: none;
+  color: var(--greenish-blue);
+  font-size: 16px;
+}
+.back-to-bc-link:hover {
+  color: var(--dark-font);
+  transition-duration: 150ms;
+}
 
 
 
