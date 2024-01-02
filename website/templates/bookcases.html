@@ -178,17 +178,10 @@ document.addEventListener("DOMContentLoaded", () => {
     nameUpArrow.classList.add("arrow-active");
     nameSort.classList.add("bold-menu");
   }
-  else {
-    nameDownArrow.classList.add("arrow-active");
-    nameSort.classList.add("bold-menu");
-  }
+ 
   /* Book Count Sort Arrows */
   if (sessionStorage.getItem("bookCountArrowDirection") == "up") {
     bookCountUpArrow.classList.add("arrow-active");
-    bookCountSort.classList.add("bold-menu");
-  }
-  else {
-    bookCountDownArrow.classList.add("arrow-active");
     bookCountSort.classList.add("bold-menu");
   }
 
