@@ -54,7 +54,7 @@ content %}
           <h3 class="title-results">{{ book['volumeInfo']['title'] }}</h3>
         <h4 class="author-results">
           {% for author in book['volumeInfo']['authors'] %} 
-            <a href="/search/?author={{ author }}">{{ author }}</a>
+            <a class="author-link" href="/search/?author={{ author }}">{{ author }}</a>
             {% if not loop.last %},{% endif %}
           {% endfor %}
         </h4>

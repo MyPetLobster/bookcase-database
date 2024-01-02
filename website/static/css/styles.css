@@ -710,13 +710,11 @@ span.psw {
 }
 .profile-bookcases-link {
   text-decoration: none;
+  color: var(--greenish-blue);
 }
 .profile-bookcases-link:hover {
-  color: var(--greenish-blue);
-  transition-duration: 150ms;
-}
-.profile-bookcases-link:visited {
   color: var(--dark-font);
+  transition-duration: 150ms;
 }
 #edit-prof-link,
 #create-bookcase-link {
@@ -1399,28 +1397,14 @@ h3 {
   color: var(--primary-purple);
   transition-duration: 150ms;
 }
-.author-search-button {
-  background: none;
-	color: inherit;
-	border: none;
-	padding: 0;
-  margin: 0;
-  width: auto;
-	font: inherit;
-	cursor: pointer;
-	outline: inherit;
-  height: auto;
-  margin-bottom: 10px;
-}
 
-.author-search-button:hover {
-  font-weight: bold;
-  color: var(--primary-purple);
-  transition-duration: 150ms;
-}
 .author-link {
-  padding: 0px;
-  margin: 0px;
+  text-decoration: none;
+  color: var(--greenish-blue);
+}
+.author-link:hover {
+  color: var(--dark-font);
+  transition-duration: 150ms;
 }
 
 /* FORGOT and RESET PASSWORD PAGES */
