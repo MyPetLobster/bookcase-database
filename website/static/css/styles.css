@@ -977,6 +977,7 @@ span.psw {
 .xs-link:hover {
   font-weight: bold;
   transition-duration: 150ms;
+  cursor: pointer;
 }
 
 .edit-bookcase {

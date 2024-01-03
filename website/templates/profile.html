@@ -30,9 +30,11 @@ content %}
           {% endfor %}
         </ul>
       </div>
+
       <div class="create-bookcase-box">
-          <a class="xs-link" id="create-bookcase-link" href="#">Create New Bookcase</a>
+          <a class="xs-link" id="create-bookcase-link" class="create-bookcase-link">Create New Bookcase</a>
       </div>
+
       <div class="spacer-div"></div>
     </div>
   </div>
@@ -48,7 +50,7 @@ content %}
 </div>
 <script>
   sessionStorage.clear();
-  const createBookcaseLink = document.querySelector('.create-bookcase-link');
+  const createBookcaseLink = document.querySelector('#create-bookcase-link');
   const createBookcaseForm = document.querySelector('.create-bc-expanded-form-box');
   createBookcaseLink.addEventListener('click', () => {
     createBookcaseForm.classList.toggle('create-bc-expanded-form-box-active');

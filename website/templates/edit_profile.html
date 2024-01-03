@@ -47,7 +47,7 @@ content %}
     <div class="button-box">
         <button class="home-button edit-profile-save" type="submit" value="Save">Save Changes</button>
         <div class="cancel-container-edit-prof">
-            <button type="button" id="cancel-button" class="cancelbtn">Cancel</button>
+            <button type="button" id="edit-prof-cancel-button" class="cancelbtn">Cancel</button>
         </div>
     </div>
     </form>
@@ -71,6 +71,11 @@ content %}
 <script>
     const deleteProfileBtn = document.querySelector('#delete-profile-btn');
     const deleteProfileFormBox = document.querySelector('.delete-profile-form-box');
+    const editProfCancelBtn = document.querySelector('#edit-prof-cancel-button');
+
+    editProfCancelBtn.addEventListener('click', () => {
+        window.location.href = "/profile/";
+    });
 
     deleteProfileBtn.addEventListener('click', () => {
         deleteProfileFormBox.classList.toggle('delete-profile-form-box-active');
