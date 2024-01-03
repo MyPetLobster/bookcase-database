@@ -139,6 +139,15 @@ content %}
         placeholder="#romance #fantasy #mystery"
         required
       />
+      <div class="inclusive-tags-container">
+        <label id="inclusive-tags-label" for="inclusive-tags">Inclusive Tags?</label>
+        <input
+          type="checkbox"
+          name="inclusive-tags"
+          id="inclusive-tags"
+          value=""
+        />
+      </div>
       <button id="generate-bc-btn" class="home-button create-bookcase-btn" type="submit">
         Generate Bookcase!
       </button>
@@ -153,6 +162,14 @@ content %}
 
 
 <script>
+const inclusiveTags = document.getElementById("inclusive-tags");
+inclusiveTags.addEventListener("click", () => {
+  if (inclusiveTags.checked) {
+    inclusiveTags.value = "inclusive";
+  } else {
+    inclusiveTags.value = "exclusive";
+  }
+});
 
 const bcSortForm = document.querySelector(".bc-sort-by-form");
 const nameSort = document.querySelector(".name-sort");

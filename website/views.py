@@ -596,70 +596,82 @@ def edit_bookcase(bc_id):
 
     return render_template("bookcases.html", user=current_user, bookcases=bookcases)
 
-#DYNAMIC BOOKCASE
+# Import your necessary modules and classes at the top of your views.py file
+
+# DYNAMIC BOOKCASE
 @views.route("/dynamic_bookcase/", methods=["POST"])
 @login_required
 def dynamic_bookcase():
     if request.method == 'POST':
         # Retrieve all form data
         bookcase_name = request.form.get("dynamic-bookcase-name")
-        tags = request.form.get("dynamic-tags")
-
-        # split tags at each space, remove commas, and convert to lowercase
-        tags = tags.split()
-        tags = [tag.replace("#", "") for tag in tags]
-        tags = [tag.replace(",", "") for tag in tags]
-        tags = [tag.lower() for tag in tags]
+        tags = set(tag.lower().replace("#", "").replace(",", "") for tag in request.form.get("dynamic-tags").split())
+        inclusive_tags = request.form.get("inclusive-tags")
 
         # Check if the user already has a bookcase with the same name
-        bookcases = Bookcase.query.filter_by(owner_id=current_user.id).all()
-        for bookcase in bookcases:
-            if bookcase_name.lower() == bookcase.name.lower():
-                flash('Bookcase name already exists!', category='error')
-                return redirect(url_for('views.bookcases'))
-        
+        if Bookcase.query.filter_by(owner_id=current_user.id, name=bookcase_name).first():
+            flash('Bookcase name already exists!', category='error')
+            return redirect(url_for('views.bookcases'))
+
         # Create a new bookcase named bookcase_name
         owner_id = current_user.id
         new_bookcase = Bookcase(name=bookcase_name, owner_id=owner_id)
         db.session.add(new_bookcase)
-        
+
+        # Define a function to check if a book matches the tags based on the selected option
+        def match_tags(book_tags):
+            if inclusive_tags == "inclusive":
+                return all(tag in book_tags for tag in tags)
+            else:
+                return any(tag in book_tags for tag in tags)
+
         # List to store books to be added to the new bookcase
         books_to_add = []
-        # Query the bookcases associated with the current user
-        user_bookcases = Bookcase.query.filter_by(owner_id=owner_id).all()
 
-        # Loop through the user's bookcases
-        for bookcase in user_bookcases:
-            for book in bookcase.books:
-                for tag in tags:
-                    print(f"tag={tag}")
-                    if book.user_notes:
-                        user_notes = book.user_notes.split()
-                        # Make list of hashtags in user_notes
-                        user_tags = [note for note in user_notes if note.startswith("#")]
-                        # Remove the hashtags from user_tags and check if tag is in user_tags
-                        user_tags = [tag.replace("#", "") for tag in user_tags]
-                        if tag in user_tags:
-                            books_to_add.append(book)
-                    if book.categories:
-                        genres = book.categories.lower().split()
-                        print(f"genres={genres}")
-                        if tag in genres:
-                            books_to_add.append(book)
-                        
+        # Query the bookcases associated with the current user
+        bookcases = Bookcase.query.filter_by(owner_id=current_user.id).all()
+        # Use list comprehension to build user_books
+        user_books = [book for bookcase in bookcases for book in bookcase.books]
+
+        # Loop through the user's books
+        for book in user_books:
+            if book.user_notes:
+                book_tags = [
+                    tag.lower().replace("#", "").replace(",", "")
+                    for tag in book.user_notes.split()
+                    if tag.startswith("#")
+                ]
+            else:
+                book_tags = []
+
+            if book.categories:
+                book_categories = [
+                    tag.lower().replace("#", "").replace(",", "")
+                    for tag in book.categories.split()
+                ]
+            else:
+                book_categories = []
+
+            # Combine both lists
+            book_tags += book_categories
+
+            # Check if the book matches the tags based on the selected option
+            if match_tags(book_tags):
+                books_to_add.append(book)
+
         # Add the selected books to the new bookcase
-        for book in books_to_add:
-            new_bookcase.books.append(book)
-        
+        new_bookcase.books.extend(books_to_add)
+
         # If the new bookcase is empty, delete it
-        if len(new_bookcase.books) == 0:
+        if not new_bookcase.books:
             flash('No matching tags!', category='error')
             db.session.delete(new_bookcase)
-        
+
         db.session.commit()
         return redirect(url_for('views.bookcases'))
-    
+
     return render_template("bookcases.html", user=current_user, bookcases=bookcases)
+
 
 # ABOUT PAGE
 @views.route('/about/')
