@@ -151,6 +151,14 @@ content %}
       <button id="generate-bc-btn" class="home-button create-bookcase-btn" type="submit">
         Generate Bookcase!
       </button>
+      <div class="explain-inclusive-container">
+        <p id="explain-inclusive">
+          <span class="bold-menu">Inclusive:</span> Box checked. Books must match all entered tags.
+        </p>
+        <p id="explain-inclusive">
+          <span class="bold-menu">Exclusive:</span> Box unchecked. Books must only match one tag.
+        </p>
+      </div>
       <p id="close-dynamic">&#10006;</p>
     </form>
     
@@ -162,6 +170,21 @@ content %}
 
 
 <script>
+const explainInclusiveContainer = document.querySelector(".explain-inclusive-container");
+const inclusiveTagsLabel = document.getElementById("inclusive-tags-label");
+inclusiveTagsLabel.addEventListener("mouseover", () => {
+  explainInclusiveContainer.classList.add("explain-inclusive-container-active");
+});
+inclusiveTagsLabel.addEventListener("mouseout", () => {
+  explainInclusiveContainer.classList.remove("explain-inclusive-container-active");
+});
+inclusiveTagsLabel.addEventListener("touchstart", () => {
+  explainInclusiveContainer.classList.add("explain-inclusive-container-active");
+});
+inclusiveTagsLabel.addEventListener("touchend", () => {
+  explainInclusiveContainer.classList.add("explain-inclusive-container-active");
+});
+
 const inclusiveTags = document.getElementById("inclusive-tags");
 inclusiveTags.addEventListener("click", () => {
   if (inclusiveTags.checked) {
