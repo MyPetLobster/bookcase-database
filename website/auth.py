@@ -107,7 +107,7 @@ def forgot_password():
             db.session.commit()
 
             msg = Message(subject='Bookcase Database Password Reset', sender=gmail_username, recipients=[email])
-            msg.body = f"Hello {user.username},\n\nYou recently requested to reset your password for your Bookcase Database account. Click the link below to reset it.\n\nhttps://mypetlobster.pythonanywhere.com/reset_password/{user.id}/{user.reset_token}\n\nIf you did not request a password reset, please ignore this email.\n\nThanks,\nBookcase Database"
+            msg.body = f"Hello {user.username},\n\nYou recently requested to reset your password for your Bookcase Database account. Click the link below to reset it.\n\nhttps://www.bookcasedatabase.com/reset_password/{user.id}/{user.reset_token}\n\nIf you did not request a password reset, please ignore this email.\n\nThanks,\nBookcase Database"
             mail.send(msg)
     return render_template("forgot_password.html", user=current_user)
 
