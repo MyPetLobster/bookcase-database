@@ -45,13 +45,11 @@
     <p><span class="bold-menu">Your Rating:</span> {{ book.user_rating }}</p>
     <p><span class="bold-menu">Notes:</span> {{ book.user_notes }}</p>
     <p>
-      <span class="bold-menu">Read:</span>
-      {% if book.read == None %}
-      No
-      {% elif book.read == True %}
-      Yes
-      {% endif %}
-    </p>
+    {% if book.read %}
+      <p><span class="bold-menu">Read:</span> Yes</p>
+    {% else %}
+      <p><span class="bold-menu">Read:</span> No</p>
+    {% endif %}
     
 
     <div class="book-buttons">

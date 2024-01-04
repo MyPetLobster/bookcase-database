@@ -86,7 +86,6 @@ content %}
         <p>
           <span class="bold-menu">Your Rating:</span> {{ book.user_rating }}
         </p>
-        <!-- Add a checkbox for "Read: ". Leave unchecked if book.read is False and add checkmark if True -->
         {% if book.read %}
         <p><span class="bold-menu">Read:</span> Yes</p>
         {% else %}

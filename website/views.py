@@ -321,7 +321,8 @@ def add_book():
     isbn_13 = request.form.get('book-isbn-13')
     isbn_10 = request.form.get('book-isbn-10')
     language = request.form.get('book-language')
-    pages = request.form.get('book-pages')
+    pages = request.form.get('book-page-count')
+
     google_books_rating = request.form.get('book-google-rating')
     # check type of google_books_rating
     if type(google_books_rating) == str:
