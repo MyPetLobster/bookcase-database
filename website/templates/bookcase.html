@@ -329,14 +329,21 @@ content %}
 <script>
   // Scroll to bottom of page
   const scrollToBottom = document.querySelector("#scroll-to-bottom");
-  scrollToBottom.addEventListener("click", function () {
+  // check if scrollToBottom exists
+  if (scrollToBottom) {
+      scrollToBottom.addEventListener("click", function () {
      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
   });
-  // Scroll to top of page
+  }
+
   const backToTop = document.querySelector("#back-to-top");
+  if (backToTop) { 
   backToTop.addEventListener("click", function () {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   });
+  }
+  // Scroll to top of page
+
 
   const titleSort = document.querySelector(".title-sort");
   const authorSort = document.querySelector(".author-sort");
