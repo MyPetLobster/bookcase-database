@@ -156,12 +156,15 @@ content %}
   <div class="confirm-delete-bookcase">
     <h4 class="delete-h4">
       Are you sure you want to delete your
-      <span class="bold-big">{{ current_bookcase.name }}</span> bookcase? This
-      action cannot be undone!
+      <span class="bold-big">{{ current_bookcase.name }}</span> bookcase?
     </h4>
+    <p class="delete-p">
+      This will delete all books in this bookcase. This action cannot be
+      undone.
+    </p>
 
     <a href="/bookcase/{{ current_bookcase.id }}/delete_bookcase/">
-      <button class="home-button" type="button">Confirm Delete Bookcase</button>
+      <button class="home-button" id="confirm-delete-bc-btn" type="button">Confirm Delete Bookcase</button>
     </a>
     <div class="container cancel-container cancel-add-book">
       <button type="button" id="delete-book-cancel-btn" class="cancelbtn">

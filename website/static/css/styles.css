@@ -1205,10 +1205,15 @@ span.psw {
 }
 .delete-h4 {
   text-align: center;
+  font-size: 16px;
   font-family: "Averia Serif Libre", serif;
   color: var(--almost-white);
   margin-top: 0px;
   margin-bottom: 10px;
+}
+.delete-p {
+  color: var(--almost-white);
+  text-align: center;
 }
 .confirm-delete-bookcase {
   width: 350px;
@@ -1226,6 +1231,10 @@ span.psw {
   flex-direction: column;
   align-items: center;
   border: 5px solid var(--primary-purple);
+}
+#confirm-delete-bc-btn {
+  padding: 10px;
+  font-size: 18px;
 }
 .confirm-delete-bookcase-active {
   visibility: visible;
@@ -2308,6 +2317,12 @@ footer a:hover {
   }
   .bc-header {
     font-size: 28px;
+  }
+  .confirm-delete-bookcase {
+  width: 250px;
+  }
+  #confirm-delete-bc-btn {
+    font-size: 14px;
   }
 }
 
