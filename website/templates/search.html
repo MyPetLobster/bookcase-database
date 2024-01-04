@@ -191,7 +191,7 @@ content %}
       {% endfor %}
     </div>
     <div class="full-width">
-      <a id="back-to-top" href="#top" class="back-to-top">Back to Top</a>
+      <a id="back-to-top" class="back-to-top">Back to Top</a>
     </div>
       <div class="spacer-div"></div>
   </div>
@@ -200,6 +200,11 @@ content %}
 
 {% if request.method == "POST" %}
 <script>
+  // Scroll to top of page
+  const backToTop = document.querySelector("#back-to-top");
+  backToTop.addEventListener("click", function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  });
   sessionStorage.clear();
   document.addEventListener("DOMContentLoaded", function () {
     const authorLinks = document.querySelectorAll(".author-results a");

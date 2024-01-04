@@ -1574,16 +1574,19 @@ h3 {
 .search-label {
   font-size: 22px;
 }
-#back-to-top {
+#back-to-top,
+#scroll-to-bottom {
   font-family:'Courier Prime', Courier, monospace;
   text-align: center;
   text-decoration: none;
   color: var(--almost-white);
 }
-#back-to-top:hover {
+#back-to-top:hover,
+#scroll-to-bottom:hover {
   font-weight: bold;
   color: var(--primary-purple);
   transition-duration: 150ms;
+  cursor: pointer;
 }
 
 .author-link {

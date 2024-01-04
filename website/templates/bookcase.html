@@ -50,6 +50,11 @@ content %}
         Google Rating
     </p>
   </div>
+  {% if current_bookcase.books|length > 6 %}
+    <div class="full-width">
+      <a id="scroll-to-bottom" class="scroll-to-bottom">Scroll to Bottom</a>
+    </div>
+  {% endif %}
 
   <div class="books-collection">
     {% for book in current_bookcase.books %}
@@ -315,13 +320,24 @@ content %}
   <!-- Checks if there are more than 6 books in bookcase, displays #back-to-top if so -->
   {% if current_bookcase.books|length > 6 %}
   <div class="full-width">
-    <a id="back-to-top" class="back-to-top" href="#top">Back to Top</a>
+    <a id="back-to-top" class="back-to-top">Back to Top</a>
   </div>
   {% endif %}
   <div class="spacer-div"></div>
 </div>
 
 <script>
+  // Scroll to bottom of page
+  const scrollToBottom = document.querySelector("#scroll-to-bottom");
+  scrollToBottom.addEventListener("click", function () {
+     window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
+  });
+  // Scroll to top of page
+  const backToTop = document.querySelector("#back-to-top");
+  backToTop.addEventListener("click", function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  });
+
   const titleSort = document.querySelector(".title-sort");
   const authorSort = document.querySelector(".author-sort");
   const publishSort = document.querySelector(".publish-sort");
