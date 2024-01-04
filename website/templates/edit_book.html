@@ -93,7 +93,7 @@ content %}
       value="{{ book.pages }}"
     />
     <label class="label-med" for="book-user-notes">Notes</label>
-    {{ if book.user_notes == None }}
+    {% if book.user_notes == None %}
     <textarea name="book-user-notes" class="text-area"></textarea>
     {% else %}
     <textarea name="book-user-notes" class="text-area">{{ book.user_notes }}</textarea>
