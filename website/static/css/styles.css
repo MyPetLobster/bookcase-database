@@ -717,8 +717,14 @@ span.psw {
   height: 20px;
   accent-color: var(--primary-purple);
 }
-
-
+.empty-bc {
+  color: var(--dark-font);
+}
+.empty-bc:hover {
+  color: var(--primary-purple);
+  transition-duration: 150ms;
+  cursor: pointer;
+}
 
 
 .explain-inclusive-container {
@@ -898,7 +904,10 @@ span.psw {
   color: var(--dark-font);
   transition-duration: 150ms;
 }
-
+.gold-user {
+  max-width: 80%;
+  text-align: center;
+}
 .gold-user,
 #gold-user {
   color: #8d0f78;

@@ -42,9 +42,16 @@ content %}
       <a href="/bookcase/{{ bookcase.id }}/">
         <h2 class="bc-header">{{ bookcase.name }}</h2>
       </a>
+      {% if bookcase.books|length > 0 %}
       <h2 class="close-gallery close-inactive">&#10006;</h2>
+      {% endif %}
+      {% if bookcase.books|length == 0 %}
+        <div class="empty-bookcase-div">
+          <p class="empty-bookcase-text"><a class="empty-bc" href="/search">Add some books to your "{{ bookcase.name }}" bookcase</a></p>
+        </div>
+      {% else %}
       <div class="very-small-gallery very-small-gallery-active">
-        
+
         {% for book in bookcase.books %}
         <div class="very-small-img-div">
             {% if book.thumbnail_link == "" %}
@@ -63,6 +70,7 @@ content %}
         </div>
         {% endfor %}
       </div>
+      {% endif %}
 
       <div class="gallery gallery-inactive">
         {% for book in bookcase.books %}
