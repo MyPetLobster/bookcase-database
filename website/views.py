@@ -636,14 +636,20 @@ def dynamic_bookcase():
 
         # Loop through the user's books
         for book in user_books:
+
+            if book.read == None or book.read == False:
+                book_tags = ["unread"]
+            elif book.read == True:
+                book_tags = ["read"]
+
+            print(f"book.read = {book.read} || book_tags = {book_tags}")
+
             if book.user_notes:
-                book_tags = [
+                book_tags += [
                     tag.lower().replace("#", "").replace(",", "")
                     for tag in book.user_notes.split()
                     if tag.startswith("#")
                 ]
-            else:
-                book_tags = []
 
             if book.categories:
                 book_categories = [
