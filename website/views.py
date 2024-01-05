@@ -50,7 +50,7 @@ def bookcases():
         
     return render_template("bookcases.html", user=current_user, bookcases=bookcases)
 
-# BOOKCASES SORT BY
+# SORT BOOKCASES
 @views.route('/bookcases/sort/', methods=['POST'])
 @login_required
 def sort_bookcases():
@@ -137,7 +137,7 @@ def bookcase(id):
         return redirect(url_for('views.bookcases'))
     return render_template("bookcase.html", id=id, current_bookcase=current_bookcase, user=current_user)
 
-# BOOKCASE SORT BY
+# SORT BOOKS
 @views.route('/bookcase/<int:id>/sort/', methods=['POST'])
 @login_required
 def sort_by(id):
@@ -597,8 +597,6 @@ def edit_bookcase(bc_id):
 
     return render_template("bookcases.html", user=current_user, bookcases=bookcases)
 
-# Import your necessary modules and classes at the top of your views.py file
-
 # DYNAMIC BOOKCASE
 @views.route("/dynamic_bookcase/", methods=["POST"])
 @login_required
@@ -678,7 +676,6 @@ def dynamic_bookcase():
         return redirect(url_for('views.bookcases'))
 
     return render_template("bookcases.html", user=current_user, bookcases=bookcases)
-
 
 # ABOUT PAGE
 @views.route('/about/')

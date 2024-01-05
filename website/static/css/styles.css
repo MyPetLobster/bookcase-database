@@ -1,4 +1,3 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Averia+Serif+Libre:wght@300;400;700&family=Courier+Prime:wght@400;700&family=Dosis:wght@300;400;500;600;700&family=Gravitas+One&family=Kalnia:wght@400;500;600;700&family=Laila:wght@300;400;500;600;700&family=Podkova:wght@400;500;600;700&family=Vollkorn+SC:wght@400;600;700&display=swap'); */
 @font-face {
   font-family: 'pass';
   font-style: normal;
@@ -72,10 +71,6 @@ input {
   font-size: 16px;
   border-radius: 7px;
 }
-/* Add padding to containers */
-/* .container {
-  padding: 16px;
-} */
 .bold-big {
   font-weight: bold;
   font-size: 20px;
@@ -491,12 +486,12 @@ span.psw {
   transition-duration: 150ms;
 }
 .bc-header:after {
-    content: ""; /* This is necessary for the pseudo element to work. */
-    display: block; /* This will put the pseudo element on its own line. */
-    margin: 0 auto; /* This will center the border. */
-    width: 70%; /* Change this to whatever width you want. */
-    padding-top: 3px; /* This creates some space between the element and the border. */
-    border-bottom: 2px solid black; /* This creates the border. Replace black with whatever color you want. */
+    content: ""; 
+    display: block; 
+    margin: 0 auto; 
+    width: 70%; 
+    padding-top: 3px; 
+    border-bottom: 2px solid black; 
 }
 .bc-header:hover:after {
   border-bottom: 3px solid var(--primary-purple);

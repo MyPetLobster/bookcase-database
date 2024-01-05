@@ -13,11 +13,11 @@ books, including ratings and notes.
 
 ### Preface
 Well, quite a lot. Coming into this project, I was about three months into
-my journey learning to code. I had completed the CS50x course, except for the
-final project. I had a bunch of ideas for final projects, but I wasn't quite sure where to start. I decided to take the CS50 Python and CS50 SQL courses to expand on the knowledge I gained from CS50x. While completing the CS50 curriculum, I was also working my way through the Odin Project
+my journey learning to code. I had completed all of the CS50x course, except for the
+final project. I had a bunch of ideas for final projects, but I wasn't quite sure where to start. I decided to take the CS50 Python and SQL courses to expand on the knowledge I gained from CS50x. While completing the CS50 curriculum, I was also working my way through the Odin Project
 Foundations. I completed Foundations right before I started working on 
 Bookcase Database. All that to say that although I was still very much a beginner, I did go a bit beyond
-the CS50x course before starting this final project for CS50x.
+the CS50x course before starting this final project.
 
 My initial idea for Bookcase Database was to create a web application where
 users could upload an image of a bookshelf from real life and my app would 
@@ -73,6 +73,10 @@ detailed notes of each step and the things I've learned along the way. So if you
 - Deploy the app using PythonAnywhere
 - Testing and troubleshooting woes continued...
 - Create this README file to document the entire process
+- Go back and add more features
+- Bought a domain and linked it to the app
+- Testing and troubleshooting woes continued... again...
+- Submit the final project
 
 
 
@@ -80,7 +84,7 @@ detailed notes of each step and the things I've learned along the way. So if you
 
 ## And here's a screenshot of my homepage! 
 
-![](design/images/homepage.jpeg)
+![](design/images/home_screenshot.jpeg)
 
 
 ## CREDITS
