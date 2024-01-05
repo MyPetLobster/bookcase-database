@@ -899,8 +899,27 @@ span.psw {
   transition-duration: 150ms;
 }
 
-
-
+.gold-user,
+#gold-user {
+  color: #8d0f78;
+}
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#gold {
+  color: rgb(196, 164, 0);
+  font-size: 68px;
+}
+#silver {
+  color: rgb(145, 140, 140);
+  font-size: 68px;
+}
+#bronze {
+  color: rgb(205, 127, 50);
+  font-size: 68px;
+}
 
 /* BOOKCASE PAGE */
 

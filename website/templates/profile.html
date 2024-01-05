@@ -2,17 +2,40 @@
 content %}
 <div class="spacer-div"></div>
 <div class="profile-container">
+  {% if user.id == 3 or user.id == 6 or user.id == 7 or user.id == 1 %}
+  <div class="flex-column">
+  <h1 class="profile-header" id="gold-header">{{username}}'s Profile</h1>
+  <h4 class="gold-user">You were one of the first three people to sign up for Bookcase Database!!</h4>
+  {% if user.id == 3 %}
+  <p class="bold-menu gold-user">Thanks Jackie!! &#128513;</p>
+  <p class="gold-user">If you have any questions or suggestions, text me anytime!</p>
+  <h1 id="gold">#{{ 1 }}</h1>
+  {% elif user.id == 6 %}
+  <p class="bold-menu gold-user">"I hate losing more than I love winning" - The Falcon</p>
+  <h1 id="silver">#{{ 2 }}</h1>
+  {% elif user.id == 7 or user.id == 1 %}
+  <p class="bold-menu gold-user">Thanks for your support!</p>
+  <h1 id="bronze">#{{ 3 }}</h1>
+  {% endif %}
+  </div>
+  {% else %}
+  <div>
   <h1 class="profile-header">{{username}}'s Profile</h1>
-
+  </div>
+  {% endif %}
   <div class="profile-content">
     <div>
       <div class="profile-info profile-item">
         <h2 class="profile-h2">User Info</h2>
+        {% if user.id < 4 %}
+        <p class="gold-user"><span id="gold-user" class="bold-menu">Username:</span> {{username}}</p>
+        {% else %}
         <p><span class="bold-menu">Username:</span> {{username}}</p>
+        {% endif %}
         <p><span class="bold-menu">Email:</span> {{ user.email }}</p>
         <p><span class="bold-menu">Bookcases:</span> {{ bookcases|length }}</p>
         <p><span class="bold-menu">Books:</span> {{ total_books }}</p>
-        <p><span class="bold-menu">Member Since:</span> {{ user.date_created.strftime('%m/%d/%Y') }}</p>
+        <p class="gold-user"><span class="bold-menu">Member Since:</span> {{ user.date_created.strftime('%m/%d/%Y') }}</p>
       </div>
       <div class="edit-prof-box">
           <a class="xs-link" id="edit-prof-link" href="/edit_profile">Edit Profile</a>
