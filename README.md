@@ -1,6 +1,9 @@
 # Bookcase Database - CS50x Final Project
-
+## By Cory Suzuki - 2024
 <img src="website/static/images/bcdb-logo-full.png" alt="Bookcase Database logo" width="600" >
+
+#### Link to my website: https://www.bookcasedatabase.com
+#### Video Demo: https://www.youtube.com/watch?v=vu7Djq2DUH8
 
 ## What is Bookcase Database?
 Bookcase Database is a simple web application that allows you to 
